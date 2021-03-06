@@ -41,7 +41,7 @@ class Category(models.Model):
         return self.name
 
     def get_absolute_url(self):
-        return reverse('chinesseRestaurant:item_list',
+        return reverse('chineseSpicyFlavor:item_list',
                        args=[self.slug])
 
 
@@ -65,7 +65,7 @@ class Item(models.Model):
         return self.name
 
     def get_absolute_url(self):
-        return reverse('chinesseRestaurant:item_list',
+        return reverse('chineseSpicyFlavor:item_list',
                        args=[self.id, self.slug])
 
 
