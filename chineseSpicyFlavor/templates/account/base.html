@@ -154,6 +154,23 @@
 
 {% endifequal %}
 
+<h3>Your Recent Orders</h3>
+{% for o in orders %}
+
+    <h4>Order #: {{ o.id }}</h4>
+    <p>Order Qty: {{ o.orderQty }}</p>
+    <p>Delivery Pref: {{ o.deliveryPref }}</p>
+    {% ifequal o.deliveryPref|stringformat:"s" "delivery" %}
+        <p>You chose delivery, we will deliver it to the current address on file. </p>
+    {% endifequal %}
+
+    <h5>Items: </h5>
+{% for oi in orderItem %}
+    <li><p>{{ oi.product }}</p></li>
+
+{% endfor %}
+{% endfor %}
+
 
 </body>
 </html>
