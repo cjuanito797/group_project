@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="../static/css/main.css">
+    <title>Chinese Spicy Flavor</title>
+    <style>
+    </style>
+</head>
+
+<body>
+<ul class="nav navbar-nav">
+    <a href="{% url 'chineseSpicyFlavor:item_list' %}">Foods</a>
+    <a href="{% url 'chineseSpicyFlavor:home' %}">Home</a>
+    <a href="{% url 'chineseSpicyFlavor:home' %}">About</a>
+    <a href="{% url 'chineseSpicyFlavor:home' %}">Contact</a>
+    <a href="{% url 'chineseSpicyFlavor:menu' %}">Menu</a>
+    <a href="{% url 'chineseSpicyFlavor:order_now' %}">Order Now</a>
+
+</ul>
+
+
+<ul class="secure-nav">
+    <a href="{% url 'chineseSpicyFlavor:register' %}">Sign Up</a>
+    <a href="{% url 'chineseSpicyFlavor:user_login' %}">Login</a>
+</ul>
+<div id="banner">
+
+    <h1>Welcome to Chinese Spicy Flavor</h1>
+</div>
+
+<div id="logo">
+    <img src="{% static "images/logo1.jpg" %}" alt="panda"/>
+</div>
+
+
+</body>
+</html>

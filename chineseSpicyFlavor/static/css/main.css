@@ -1,0 +1,63 @@
+#logo
+{
+  background-color: white;
+  position: absolute;
+  left: 30%;
+
+}
+
+#header
+{
+  position: absolute;
+  width: 500px;
+  height: 100px;
+  z-index: 15;
+  top: 15%;
+  left: 51%;
+  margin: -100px 0 0 -150px;
+}
+
+#wrapper
+{
+  height: 500px;
+  overflow-y: auto;
+  width: 800px;
+  float:left;
+  position: relative;
+  margin-left: 500px;
+}
+
+
+#banner
+{
+  color: white;
+  background-color: skyblue;
+  text-align: center;
+  height: 80px;
+  border-radius: 30px;
+}
+
+a:hover{
+    color: black;
+  }
+
+img {
+  border-radius: 50%;
+
+}
+
+.foodDesc{
+  color: lightcoral;
+}
+h2
+{
+  color: blue;
+}
+/*
+This is a comment
+*/
+
+#profilePic{
+  position: relative;
+
+}

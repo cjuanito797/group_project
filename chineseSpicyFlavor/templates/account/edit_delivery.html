@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit Delivery Preferences</title>
+</head>
+<body>
+<h1>Edit your account</h1>
+  <p>You can edit your delivery preferences below:</p>
+  <form method="post" enctype="multipart/form-data">
+    {{ profile_form.as_p }}
+    {% csrf_token %}
+    <p><input type="submit" value="Save changes"></p>
+  </form>
+</body>

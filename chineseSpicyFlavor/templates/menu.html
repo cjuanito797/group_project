@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+<head>
+    <meta charset="UTF-8">
+    <title>Menu</title>
+</head>
+
+
+<body>
+    <div class="page-container">
+        <p>Please choose from below options.</p>
+    </div>
+
+    <div class="content container">
+        <div class="row">
+            <div class="col-md-6">
+                <img src="{% static "images/Entrees.jpg" %}" alt="Entrees"/>
+                <div class="caption">
+                    <h2>Entrees</h2>
+                    <p>Choose the sides and drink with your entree and make your own platters.</p>
+                    <p><a class="btn btn-primary" href="{% url 'crm:entrees_item' %}"
+                                         role="button">View
+                                       details &raquo;</a></p>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <img src="{% static "images/Sides.jpg" %}" alt="Sides"/>
+                <div class="caption">
+                    <h2>Sides</h2>
+                    <p>Stimulate your appetite with best appetizer.</p>
+                    <p><a class="btn btn-primary" href="{% url 'crm:sides_item' %}"
+                                         role="button">View
+                                       details &raquo;</a></p>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <img src="{% static "images/Drinks.jpg" %}" alt="Drinks"/>
+                <div class="caption">
+                    <h2>Drinks</h2>
+                    <p>Match your entree with the choice of your fruit drinks.</p>
+                    <p><a class="btn btn-primary" href="{% url 'crm:drinks_item' %}"
+                                         role="button">View
+                                       details &raquo;</a></p>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <img src="{% static "images/Desserts.jpg" %}" alt="Desserts"/>
+                <div class="caption">
+                    <h2>Desserts</h2>
+                    <p>Grab your favorite chinese desserts with fruit flavors.</p>
+                    <p><a class="btn btn-primary" href="{% url 'crm:desserts_item' %}"
+                                         role="button">View
+                                       details &raquo;</a></p>
+                </div>
+            </div>
+
+
+        </div>
+
+    </div>
+
+</body>
+</html>

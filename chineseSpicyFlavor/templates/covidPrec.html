@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>COVID AGREEMENT BUTTON</title>
+    <link rel="stylesheet" href="../static/css/COVID.css">
+</head>
+<body>
+<header>
+    <div id="sign_up_button">
+                <a href="{% url 'chineseSpicyFlavor:register' %}">Signup</a>
+
+            </div>
+    <div>
+        <div id="title">Hello Customer!</div>
+        <div id="titlebottom">
+            Welcome to our restaurant! We are committed to providing the best foods and the best service for you.
+            Hope you can enjoy our foods and service! Because of the COVID pandemic, we only serve pick-up now.
+            Sorry for the inconvenience! Please click the agree button to agree our COVID agreement
+            and then you can order your foods. Stay safe and have a good day!
+        </div>
+
+        <div id="sign_up">
+            <div>JOIN US NOW</div>
+            <div>GET $10 OFF</div>
+
+        </div>
+    </div>
+</header>
+
+<div id ="button">
+<a href="javascript:">Agree!</a>
+<a href="{% url 'chineseSpicyFlavor:home' %}">Agree!</a>
+</div>
+
+
+</body>
+</html>
