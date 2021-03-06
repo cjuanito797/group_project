@@ -3,7 +3,7 @@ from django.http import HttpResponse
 from django.shortcuts import get_object_or_404
 from django.shortcuts import render
 from django.contrib import messages
-from .models import Item, Order, Category, Profile
+from .models import Item, Order, Category, Profile, OrderItem
 
 
 def item_list(request, category_slug=None):
@@ -70,7 +70,9 @@ from django.contrib.auth.decorators import login_required
 
 @login_required
 def customerView(request):
-    return render(request, 'account/base.html')
+    orders = Order.objects.all()
+    orderItem = OrderItem.objects.all()
+    return render(request, 'account/base.html', {'orders' : orders, 'orderItem' : orderItem})
 
 
 from .forms import UserEditForm, ProfileEditForm
