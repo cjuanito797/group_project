@@ -1,1 +1,11 @@
 
+
+.img-chowmein {
+  paddin: 0
+  width: 500px;
+  height: 100px;
+  z-index: 15;
+  top: 15%;
+  left: 51%;
+  margin: -100px 0 0 -150px;
+}
