@@ -21,6 +21,7 @@ class Profile(models.Model):
         return f'Profile for user {self.user.username}'
 
 
+# Good for 10^6 orders.
 def create_new_ref_number():
     return str(random.randint(100000, 999999))
 
