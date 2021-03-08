@@ -45,10 +45,16 @@ from django.contrib.auth.models import User
 
 
 class UserRegistrationForm(forms.ModelForm):
-    password = forms.CharField(label='Password',
-                               widget=forms.PasswordInput)
-    password2 = forms.CharField(label='Repeat password',
-                                widget=forms.PasswordInput)
+    username = forms.CharField(label='', required=True, widget=forms.TextInput(attrs={'placeholder': 'Username'}))
+    first_name = forms.CharField(label='', required=True, widget=forms.TextInput(attrs={'placeholder': 'First Name'}))
+    last_name = forms.CharField(label='', required=True, widget=forms.TextInput(attrs={'placeholder': 'Last Name'}))
+    # email = forms.CharField(label='', widget=forms.EmailInput(attrs={'placeholder', 'johndoe@example.com'}))
+    email = forms.CharField(label='', max_length=100,
+                            widget=forms.EmailInput
+                            (attrs={'placeholder': 'Enter your email'}))
+    password = forms.CharField(label='', widget=forms.PasswordInput(attrs={'placeholder': 'Password'}), required=True)
+    password2 = forms.CharField(label='',
+                                widget=forms.PasswordInput(attrs={'placeholder': 'Verify Password'}))
 
     class Meta:
         model = User
