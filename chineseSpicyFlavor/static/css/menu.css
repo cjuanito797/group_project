@@ -1,7 +1,7 @@
 
 h2 {
-    background-color: white;
-    color: cornflowerblue;
+
+    color: black;
     font-size: 300%;
 }
 
@@ -21,6 +21,19 @@ div.container {
 
 
 body {
-    background-image: url(../../static/images/menu.jpg);
-    background-attachment: fixed;
-        }
+    background: transparent url(../../static/images/menu.jpg) fixed ;
+
+
+}
+
+img:hover {
+    opacity: 0.6;
+}
+
+p {
+    color: darkblue;
+    font-family: Monaco,serif;
+    font-size: 200%;
+    
+
+

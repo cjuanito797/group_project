@@ -130,7 +130,7 @@
     <a href="{% url 'chineseSpicyFlavor:edit' %}">
         <input type="submit" value="Edit Account">
     </a>
-     <a href="{% url 'chineseSpicyFlavor:item_list' %}">
+    <a href="{% url 'chineseSpicyFlavor:item_list' %}">
         <input type="submit" value="Our Foods">
     </a>
     <a href="{% url 'chineseSpicyFlavor:order_now' %}">
@@ -139,11 +139,10 @@
     <a href="{% url 'chineseSpicyFlavor:editDeliveryPref' %}">
         <input type="submit" value="My Delivery Preferences">
     </a>
-
-
-
+    <a href="{% url 'chineseSpicyFlavor:myOrders' %}">
+        <input type="submit" value="My Orders">
+    </a>
 </div>
-
 
 <div id="logo">
 </div>
@@ -167,6 +166,7 @@
 {% for o in orders %}
 
     <h4>Order #: {{ o.id }}</h4>
+    <p>Order Date: {{ o.order_date }}</p>
     <p>Order Qty: {{ o.orderQty }}</p>
     <p>Delivery Pref: {{ o.deliveryPref }}</p>
     {% ifequal o.deliveryPref|stringformat:"s" "delivery" %}
@@ -174,10 +174,10 @@
     {% endifequal %}
 
     <h5>Items: </h5>
-{% for oi in orderItem %}
-    <li><p>{{ oi.product }}</p></li>
+    {% for oi in orderItem %}
+        <li><p>{{ oi.product }},&nbsp;{{ oi.quantity }}</p></li>
 
-{% endfor %}
+    {% endfor %}
 {% endfor %}
 
 
