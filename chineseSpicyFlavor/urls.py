@@ -20,5 +20,6 @@ urlpatterns = [
     path('menu/', views.menu, name='menu'),
     path('edit/', views.edit, name='edit'),
     path('edit_delivery', views.editDeliveryPref, name="editDeliveryPref"),
+    path('entrees/', views.entrees, name='entrees'),
 
 ]

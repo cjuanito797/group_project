@@ -11,3 +11,4 @@ admin.site.register(OrderItem)
 @admin.register(Profile)
 class ProfileAdmin(admin.ModelAdmin):
     list_display = ['user', 'date_of_birth', 'image']
+

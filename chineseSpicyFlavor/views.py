@@ -44,6 +44,10 @@ def menu(request):
     return render(request, 'menu.html')
 
 
+def entrees(request):
+    return render(request, 'entrees.html')
+
+
 def user_login(request):
     if request.method == 'POST':
         form = LoginForm(request.POST)
@@ -72,7 +76,7 @@ from django.contrib.auth.decorators import login_required
 def customerView(request):
     orders = Order.objects.all()
     orderItem = OrderItem.objects.all()
-    return render(request, 'account/base.html', {'orders' : orders, 'orderItem' : orderItem})
+    return render(request, 'account/base.html', {'orders': orders, 'orderItem': orderItem})
 
 
 from .forms import UserEditForm, ProfileEditForm

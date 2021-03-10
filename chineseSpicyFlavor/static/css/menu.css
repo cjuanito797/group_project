@@ -1,0 +1,39 @@
+
+h2 {
+
+    color: black;
+    font-size: 300%;
+}
+
+
+
+img {
+
+    width: 35%;
+    border: 7px solid #DEB887;
+    border-radius: 7px ;
+}
+
+div.container {
+  text-align: center;
+  padding: 10px 20px;
+}
+
+
+body {
+    background: transparent url(../../static/images/menu.jpg) fixed ;
+
+
+}
+
+img:hover {
+    opacity: 0.6;
+}
+
+p {
+    color: darkblue;
+    font-family: Monaco,serif;
+    font-size: 200%;
+    
+
+
