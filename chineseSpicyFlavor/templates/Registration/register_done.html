@@ -1,12 +1,33 @@
 <!DOCTYPE html>
+{% load static %}
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+            <link rel="stylesheet" href="../../static/css/COVID.css">
+    <style>
+        body{
+            background-image: none;
+            background-color: lightcoral;
+            background-size: cover;
+        }
+    </style>
+
 </head>
 <body>
 
- <h1>Welcome {{ new_user.first_name }}!</h1>
-  <p>Your account has been successfully created. Now you can <a href="{% url "chineseSpicyFlavor:user_login" %}">log in</a>.</p>
+<h1>Welcome {{ new_user.first_name }}!</h1>
+<br>
+<h3>We're happy you joined our family. Now you can complete your account.</h3>
+<div id="button">
+    <a href="javascript:">Sign In</a>
+    <a href="{% url 'chineseSpicyFlavor:user_login' %}">Sign In</a>
+</div>
+
+<br>
+<div id="happyPanda">
+    <img src="../../static/images/happyPanda.png" alt="happyPanda">
+</div>
+<br>
 </body>
 </html>
