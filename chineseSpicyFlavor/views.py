@@ -1,6 +1,6 @@
 from django.contrib.auth import authenticate, login
 from django.http import HttpResponse
-from django.shortcuts import get_object_or_404
+from django.shortcuts import get_object_or_404, redirect
 from django.shortcuts import render
 from django.contrib import messages
 from .models import Item, Order, Category, Profile, OrderItem
@@ -160,7 +160,23 @@ def editDeliveryPref(request):
                   {
                       'profile_form': profile_form})
 
+
 @login_required
 def order_list(request):
     orders = Order.objects.all()
     return render(request, 'account/order_list.html', {'orders': orders})
+
+
+@login_required
+def order_delete(request, pk):
+    order = get_object_or_404(Order, pk=pk)
+    order.delete()
+    return redirect('chineseSpicyFlavor:myOrders')
+
+
+@login_required
+def order_detail(request, pk):
+    order_instance = get_object_or_404(Order, pk=pk)
+    orderItems = OrderItem.objects.filter(order = order_instance)
+
+    return render(request, 'account/order_detail.html', {'order_instance': order_instance, 'orderItems': orderItems})
