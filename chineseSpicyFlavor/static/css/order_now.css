@@ -1,18 +1,58 @@
 h1 {
+    color: white;
+    font-size: 70px;
+    margin: 10px;
+    background-color: darkred;
+    text-align: center;
+}
+
+h2 {
     color: red;
+    font-size: 40px;
+    margin: 2px;
+    text-align: -moz-left;
+}
+
+h5 {
+    color: black;
     font-size: 50px;
-    margin: 0;
-    background-color: green;
+    margin: 10px;
     text-align: center;
 }
 
 img {
-
-    width: 35%;
+    height: 350px;
+    width: 350px;
     border: 7px solid #DEB887;
-    border-radius: 7px ;
+    border-radius: 5px ;
+    margin: 20px 20px 50px 20px;
 }
 
+img:hover {
+    opacity: 0.7;
+}
+
+div.container {
+    width:270px;
+    height:auto;
+    padding: 13%;
+    float: left;
+    margin: 0px 20px 500px 20px;
+}
+h4{
+    margin: 0px 0px 30px 18px;
+    text-align: center;
+    color: brown;
+    font-size: 20px;
+}
+div.container2 {
+    width:270px;
+    height:auto;
+    padding: 13%;
+    float: right;
+    margin: 0px 20px 500px 20px;
+}
 body {
-    background-color: yellow;
+    background: transparent url(../../static/images/on.jpg) fixed ;
         }
+
