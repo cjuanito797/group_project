@@ -9,6 +9,7 @@ urlpatterns = [
     path('', views.covidWarning, name='covidWarning'),
     re_path('home/', views.home, name='home'),
     path('customerView/', views.customerView, name='customerView'),
+    path('myOrders/', views.order_list, name='myOrders'),
     # path('signup/', views.signup, name='signup'),
     path('register/', views.register, name='register'),
     path('login/', auth_views.LoginView.as_view(), name='user_login'),
