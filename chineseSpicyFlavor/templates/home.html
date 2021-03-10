@@ -10,30 +10,57 @@
 </head>
 
 <body>
-<ul class="nav navbar-nav">
-    <a href="{% url 'chineseSpicyFlavor:item_list' %}">Foods</a>
-    <a href="{% url 'chineseSpicyFlavor:home' %}">Home</a>
-    <a href="{% url 'chineseSpicyFlavor:home' %}">About</a>
-    <a href="{% url 'chineseSpicyFlavor:home' %}">Contact</a>
-    <a href="{% url 'chineseSpicyFlavor:menu' %}">Menu</a>
-    <a href="{% url 'chineseSpicyFlavor:order_now' %}">Order Now</a>
+<header>
+    
+</header>
 
-</ul>
+<div class="row">
+    <div class="left" style="background-color: #bbb;">
+        <h2>Search</h2>
 
+        <input type="text" id="mySearch" onkeyup="myFunction()" placeholder="Searching..." title="Search bar">
+        <ul id="myMenu">
+            <li><a href="{% url 'chineseSpicyFlavor:item_list' %}">Foods</a></li>
+            <li><a href="{% url 'chineseSpicyFlavor:home' %}">Home</a></li>
+            <li><a href="{% url 'chineseSpicyFlavor:home' %}">About</a></li>
+            <li><a href="{% url 'chineseSpicyFlavor:home' %}">Contact</a></li>
+            <li><a href="{% url 'chineseSpicyFlavor:menu' %}">Menu</a></li>
+            <li><a href="{% url 'chineseSpicyFlavor:order_now' %}">Order Now</a></li>
+            <li><a href="{% url 'chineseSpicyFlavor:register' %}">Sign Up</a></li>
+            <li><a href="{% url 'chineseSpicyFlavor:user_login' %}">Login</a></li>
+        </ul>
+    </div>
 
-<ul class="secure-nav">
-    <a href="{% url 'chineseSpicyFlavor:register' %}">Sign Up</a>
-    <a href="{% url 'chineseSpicyFlavor:user_login' %}">Login</a>
-</ul>
-<div id="banner">
+    <div class="right" style="background-color: #ddd;">
+        <h2>Welcone to chinese Spicy Flavor</h2>
+        <p>Welcome to Chinese Spicy Flavor Chinese restaurant!</p>
+        <p>It's my great honor to serve you. Here, I guarantee you can taste the best Chinese cuisine in the world.</p>
+        <P>In order to facilitate your ordering, we set up a search bar and a navigation bar on the left.You can use the search bar and the navigation bar to go to any page you want. </P>
+        <P>I strongly recommend that you register an account first so that you can order food in the future.</P>
+        <P>Enjoy and stay safe!</P>
+    </div>
 
-    <h1>Welcome to Chinese Spicy Flavor</h1>
+    <script type="text/javascript">
+        function myFunction(){
+            var input, filter, ul, li, a, i;
+
+            input = document.getElementById("mySearch");
+            filter = input.value.toUpperCase();
+            ul = document.getElementById("myMenu");
+            li = ul.getElementsByTagName("li");
+
+            for (i = 0; i < li.length; i++){
+                a = li[i].getElementsByTagName("a")[0];
+                if (a.innerHTML.toUpperCase().indexOf(filter) > -1){
+                    li[i].style.display = "";
+                }else {
+                    li[i].style.display = "none";
+                }
+            }
+        }
+    </script>
+
 </div>
-
-<div id="logo">
-    <img src="{% static "images/logo1.jpg" %}" alt="panda"/>
-</div>
-
 
 </body>
 </html>
