@@ -159,3 +159,8 @@ def editDeliveryPref(request):
                   'account/edit_delivery.html',
                   {
                       'profile_form': profile_form})
+
+@login_required
+def order_list(request):
+    orders = Order.objects.all()
+    return render(request, 'account/order_list.html', {'orders': orders})
