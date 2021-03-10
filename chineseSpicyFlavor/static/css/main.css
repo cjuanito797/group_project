@@ -1,53 +1,55 @@
 
-body{
-  font-family: Arial, sans-serif;
+body {
+    font-family: Arial, sans-serif;
+    background-image: url("../images/bg_home_2.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
 }
 
-*{
-  box-sizing: border-box;
+* {
+    box-sizing: border-box;
 }
 
-.row{
-  display: flex;
+.row {
+    display: flex;
 }
 
-.left{
-  flex: 15%;
-  padding: 15px 0;
+.left {
+    flex: 15%;
+    padding: 15px 0;
 }
 
-.left h2{
-  padding-left: 8px;
+.left h2 {
+    padding-left: 8px;
 }
 
-.right{
-  flex: 85%;
-  padding: 15px;
+.right {
+    flex: 85%;
+    padding: 15px;
 }
 
 #mySearch {
-  width: 100%;
-  font-size: 18px;
-  padding: 11px;
-  border: 1px solid #ddd;
+    width: 100%;
+    font-size: 18px;
+    padding: 11px;
+    border: 1px solid;
 }
 
 #myMenu {
-  list-style-type: none;
-  padding: 0;
-  margin: 0;
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
 }
 
 #myMenu li a {
-  background-color: #bbbbbb;
-  padding: 12px;
-  text-decoration: none;
-  font-size: 18px;
-  color: black;
-  display: block;
+    padding: 12px;
+    text-decoration: none;
+    font-size: 18px;
+    color: black;
+    display: block;
 }
 
-#myMenu li a:hover{
-  background-color: #eee;
+#myMenu li a:hover {
+    background-color: coral;
 }
 
