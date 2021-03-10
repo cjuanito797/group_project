@@ -27,23 +27,10 @@
     </script>
     <style>
         /* Remove the navbar's default margin-bottom and rounded borders */
-        .navbar {
-
-            margin-bottom: 0;
-            border-radius: 0;
-        }
 
         /* Set height of the grid so .sidenav can be 100% (adjust as needed) */
-        .row.content {
-            height: 450px
-        }
 
         /* Set gray background color and 100% height */
-        .sidenav {
-            padding-top: 20px;
-            background-color: #f1f1f1;
-            height: 100%;
-        }
 
         /* Set black background color, white text and some padding */
         footer {
@@ -54,14 +41,7 @@
 
         /* On small screens, set height to 'auto' for sidenav and grid */
         @media screen and (max-width: 767px) {
-            .sidenav {
-                height: auto;
-                padding: 15px;
-            }
 
-            .row.content {
-                height: auto;
-            }
         }
 
         ul.messages {
@@ -75,6 +55,9 @@
         }
 
         #profilePic {
+            position: relative;
+            top: 5%;
+            left: 1%;
             border-radius: 50px;
         }
     </style>
@@ -110,6 +93,7 @@
 
 
 </ul>
+<br>
 <div id="profilePic">
     <img src="
             {% if user.profile.image %}{{ user.profile.image.url }}{% else %}{% static "images/logo1.jpg" %}{% endif %}"
@@ -147,13 +131,6 @@
 <div id="logo">
 </div>
 
-
-<h3>If you submitted an order we would deliver to the following location</h3>
-<h4>Zipcode: {{ user.profile.zipcode }}</h4>
-<h4>Street Number: {{ user.profile.streetNum }}</h4>
-<h4>City: {{ user.profile.city }}</h4>
-<h4>State: {{ user.profile.state }}</h4>
-
 {% ifequal user.profile.city|stringformat:"s" "" %}
 
     <h3>Looks like we still have a a couple of things to set up</h3>
@@ -162,23 +139,6 @@
 
 {% endifequal %}
 
-<h3>Your Recent Orders</h3>
-{% for o in orders %}
-
-    <h4>Order #: {{ o.id }}</h4>
-    <p>Order Date: {{ o.order_date }}</p>
-    <p>Order Qty: {{ o.orderQty }}</p>
-    <p>Delivery Pref: {{ o.deliveryPref }}</p>
-    {% ifequal o.deliveryPref|stringformat:"s" "delivery" %}
-        <p>You chose delivery, we will deliver it to the current address on file. </p>
-    {% endifequal %}
-
-    <h5>Items: </h5>
-    {% for oi in orderItem %}
-        <li><p>{{ oi.product }},&nbsp;{{ oi.quantity }}</p></li>
-
-    {% endfor %}
-{% endfor %}
 
 
 </body>
