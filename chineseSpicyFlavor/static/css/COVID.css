@@ -38,9 +38,10 @@ header {
 body {
 
     background-image:    url(../images/BackGround.jpg);
-    background-size:     cover;                      /* <------ */
+    background-size:     cover;
     background-repeat:   no-repeat;
-    background-position: center center;              /* optional, center the image */
+    background-position: center center;
+    background-attachment: fixed;
 }
 
 
