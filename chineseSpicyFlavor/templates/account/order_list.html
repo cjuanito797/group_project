@@ -14,6 +14,7 @@
         <th>Order #</th>
         <th>Order Date</th>
         <th>Delivery Preference</th>
+        <th colspan="2">Actions</th>
     </tr>
 
     </thead>
@@ -25,6 +26,8 @@
             <td>{{ o.id }}</td>
             <td>{{ o.order_date }}</td>
             <td>{{ o.deliveryPref }}</td>
+            <td><a href="{% url 'chineseSpicyFlavor:OrderDetail' pk=o.pk%}"
+                           class="btn btn-primary">Items</a></td>
 
         </tr>
     {% endfor %}
