@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 {% load static %}
 <html lang="en">
+<title>Dashboard</title>
 <head>
     <title>{% block title %}{% endblock %}</title>
     <link href="{% static "css/main.css" %}" rel="stylesheet">
@@ -124,17 +125,25 @@
 <div id="sidebar">
 </div>
 <br><br>
-<ul class="nav navbar-nav">
-    <a href="{% url 'chineseSpicyFlavor:edit' %}">Edit Account</a>
-    <a href="{% url 'chineseSpicyFlavor:item_list' %}">Foods</a>
-    <a href="{% url 'chineseSpicyFlavor:order_now' %}">Order Now</a>
-    <a href="{% url 'chineseSpicyFlavor:editDeliveryPref' %}">Delivery Preferences</a>
-</ul>
 
-<div id="banner">
+<div id="nav">
+    <a href="{% url 'chineseSpicyFlavor:edit' %}">
+        <input type="submit" value="Edit Account">
+    </a>
+     <a href="{% url 'chineseSpicyFlavor:item_list' %}">
+        <input type="submit" value="Our Foods">
+    </a>
+    <a href="{% url 'chineseSpicyFlavor:order_now' %}">
+        <input type="submit" value="Order Now">
+    </a>
+    <a href="{% url 'chineseSpicyFlavor:editDeliveryPref' %}">
+        <input type="submit" value="My Delivery Preferences">
+    </a>
 
-    <h1>Welcome to Chinese Spicy Flavor</h1>
+
+
 </div>
+
 
 <div id="logo">
 </div>
