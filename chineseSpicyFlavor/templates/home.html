@@ -11,11 +11,15 @@
 
 <body>
 
-<header>
-    <audio autoplay="autoplay" controls="controls" loop="loop" preload="auto">
-        <source src="../static/Music/01.mp3">
-    </audio>
+<header class="header">
+    <img align="left" src="../static/images/logo_home.PNG" height="400" width="490">
 </header>
+
+<div class="musicPlayer" align="right">
+    <audio autoplay="autoplay" controls="controls" loop="loop" preload="auto">
+        <source src="../static/Music/01.mp3" type="audio/mpeg">
+    </audio>
+</div>
 
 <div class="home">
     <div class="ChPicture"></div>
@@ -38,17 +42,18 @@
         </ul>
     </div>
 
-    <div class="right" >
+    <div class="right">
         <h2>Welcome to chinese Spicy Flavor</h2>
         <p>Welcome to Chinese Spicy Flavor Chinese restaurant!</p>
         <p>It's my great honor to serve you. Here, I guarantee you can taste the best Chinese cuisine in the world.</p>
-        <P>In order to facilitate your ordering, we set up a search bar and a navigation bar on the left.You can use the search bar and the navigation bar to go to any page you want. </P>
+        <P>In order to facilitate your ordering, we set up a search bar and a navigation bar on the left.</P>
+        <p>You can use the search bar and the navigation bar to go to any page you want.</p>
         <P>I strongly recommend that you register an account first so that you can order food in the future.</P>
         <P>Enjoy and stay safe!</P>
     </div>
 
     <script type="text/javascript">
-        function myFunction(){
+        function myFunction() {
             var input, filter, ul, li, a, i;
 
             input = document.getElementById("mySearch");
@@ -56,11 +61,11 @@
             ul = document.getElementById("myMenu");
             li = ul.getElementsByTagName("li");
 
-            for (i = 0; i < li.length; i++){
+            for (i = 0; i < li.length; i++) {
                 a = li[i].getElementsByTagName("a")[0];
-                if (a.innerHTML.toUpperCase().indexOf(filter) > -1){
+                if (a.innerHTML.toUpperCase().indexOf(filter) > -1) {
                     li[i].style.display = "";
-                }else {
+                } else {
                     li[i].style.display = "none";
                 }
             }
