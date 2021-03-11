@@ -45,14 +45,24 @@
         <div class="row">
             <div class="links">
                 <div class="col-md-3">
-                    <img src="{% static "images/Entrees.jpg" %}" alt="Entrees"/>
-                    <div class="caption">
-                        <h2>Entrees</h2>
-                        <p>Choose the sides and drink with your entree and make your own platters.</p>
-                        <p><a href="{% url 'templates:entrees' %}"></a>
+                    <div class="collapse navbar-collapse" id="myNavbar">
+                        <ul class="nav navbar-nav">
+                            <li><a href="{% url 'templates:menu' %}">menu</a></li>
+                            <li><a href="{% url 'templates:entrees' %}">entrees</a></li>
+                        </ul>
 
 
 
+                        <img src="{% static "images/Entrees.jpg" %}" alt="Entrees"/>
+                        <div class="caption">
+                            <h2>Entrees</h2>
+                            <p>Choose the sides and drink with your entree and make your own platters.</p>
+                            <p><a class="btn btn-primary" href="{% url 'templates:entrees' %}">
+                                role="button">View
+                                        details &raquo;</a></p>
+
+
+                        </div>
                     </div>
                 </div>
                 <div class="col-sm-3">
