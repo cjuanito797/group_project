@@ -22,9 +22,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = '@x$d3zb^^^l-$_rf*x8-#i=%hl*ig6=*jw7#pe3cr1u-ra)q28'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['127.0.0.1', '.pythonanywhere.com']
 
 MEDIA_URL = '/media/'
 # Application definition
