@@ -26,6 +26,7 @@ img {
     border: 7px solid #DEB887;
     border-radius: 5px ;
     margin: 20px 20px 50px 20px;
+
 }
 
 img:hover {
@@ -37,8 +38,9 @@ div.container {
     height:auto;
     padding: 13%;
     float: left;
-    margin: 0px 20px 500px 20px;
+    margin: 20px 20px 50px 20px;
 }
+
 h4{
     margin: 0px 0px 30px 18px;
     text-align: center;
@@ -50,7 +52,7 @@ div.container2 {
     height:auto;
     padding: 13%;
     float: right;
-    margin: 0px 20px 500px 20px;
+    margin: 20px 20px 50px 20px;
 }
 body {
     background: transparent url(../../static/images/on.jpg) fixed ;
