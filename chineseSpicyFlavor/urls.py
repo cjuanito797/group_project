@@ -8,6 +8,7 @@ app_name = 'chineseSpicyFlavor'
 urlpatterns = [
     path('', views.covidWarning, name='covidWarning'),
     re_path('home/', views.home, name='home'),
+    path('about/', views.about, name='about'),
     path('customerView/', views.customerView, name='customerView'),
     path('myOrders/', views.order_list, name='myOrders'),
     path('myOrders/<int:pk>/details', views.order_detail, name='OrderDetail'),
