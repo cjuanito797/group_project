@@ -1,10 +1,86 @@
 <!DOCTYPE html>
 <html lang="en">
+{% extends 'menu.html' %}
+{% load static %}
+{% block content %}
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Desserts</title>
 </head>
+
 <body>
+    <div class="page-container">
+           <h1>Do not forget to add delicious, mouth-watering traditional Chinese desserts with your food. </h1>
+    </div>
+
+    <style>
+
+
+
+
+        h2 {
+            color: black;
+        }
+
+        img{
+            width: 10%;
+
+            border-radius: 7px ;
+
+        }
+
+        p {
+            text-align: left;
+            color: blue;
+
+        }
+        body {
+            background: transparent url(../../static/images/menu.jpg) fixed;
+        }
+
+    </style>
+
+    <div class="content container">
+       <div class="row">
+           <div class="links">
+               <div class="col-sm-1">
+
+                   <div class = "row">
+                       <div class="col-sm-1">
+                           <img src="{% static "images/Chinese Cake.jpg" %}" alt="Chinese Cake"/>
+                           <div class="caption">
+                               <h2>Chinese Cake: $15.00</h2>
+                               <p>Chinese Traditional cake make with secret chinese ingredients..</p>
+                           </div>
+                       </div>
+                   </div>
+
+                   <div class = "row">
+                       <div class="col-sm-1">
+                           <img src="{% static "images/mangopudding.jpg" %}" alt="Mango Pudding"/>
+                           <div class="caption">
+                               <h2>Mango Pudding: $10.00</h2>
+                               <p>Chinese traditional mango pudding served with slices of apples on the top.</p>
+                           </div>
+                       </div>
+                   </div>
+
+                   <div class = "row">
+                       <div class="col-sm-1">
+                           <img src="{% static "images/mochi.jpg" %}" alt="Mochi"/>
+                           <div class="caption">
+                               <h2>Mochi: $12.00</h2>
+                               <p>Chinese Ice-cream comes with different kinds of fruit flavors. </p>
+                           </div>
+                       </div>
+                   </div>
+
+               </div>
+           </div>
+       </div>
+    </div>
 
 </body>
+
+{% endblock %}
 </html>
