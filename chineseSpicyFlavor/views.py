@@ -52,6 +52,14 @@ def sides(request):
     return render(request, 'sides.html')
 
 
+def drinks(request):
+    return render(request, 'drinks.html')
+
+
+def desserts(request):
+    return render(request, 'desserts.html')
+
+
 def user_login(request):
     if request.method == 'POST':
         form = LoginForm(request.POST)

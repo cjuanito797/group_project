@@ -25,5 +25,7 @@ urlpatterns = [
     path('edit_delivery', views.editDeliveryPref, name="editDeliveryPref"),
     path('entrees/', views.entrees, name='entrees'),
     path('sides/', views.sides, name='sides'),
+    path('drinks/', views.drinks, name='drinks'),
+    path('desserts/', views.desserts, name='desserts'),
 
 ]
