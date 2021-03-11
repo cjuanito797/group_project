@@ -39,6 +39,7 @@ div.container {
     float: left;
     margin: 0px 20px 500px 20px;
 }
+
 h4{
     margin: 0px 0px 30px 18px;
     text-align: center;
@@ -46,11 +47,12 @@ h4{
     font-size: 20px;
 }
 div.container2 {
-    width:270px;
+
+    width:200px;
     height:auto;
-    padding: 13%;
-    float: right;
+    padding: 10%;
     margin: 0px 20px 500px 20px;
+
 }
 body {
     background: transparent url(../../static/images/on.jpg) fixed ;
