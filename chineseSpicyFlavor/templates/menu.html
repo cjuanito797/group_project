@@ -1,17 +1,17 @@
- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 
 {% block content %}
-{% load static %}
-<head>
-    <meta charset="UTF-8">
-    <title>Menu</title>
-     <link rel="stylesheet" type="text/css" href="../static/css/menu.css">
+    {% load static %}
+    <head>
+        <meta charset="UTF-8">
+        <title>Menu</title>
+        <link rel="stylesheet" type="text/css" href="../static/css/menu.css">
 
-</head>
+    </head>
 
 
-<body>
+    <body>
     <div>
         <h1>Chinese Spicy Flavor</h1>
     </div>
@@ -26,6 +26,7 @@
 
 
             }
+
             h1 {
                 text-align: center;
                 font-family: DejaVu Sans, sans-serif;
@@ -38,28 +39,24 @@
     </div>
 
 
-
-
-
     <div class="content container">
         <div class="row">
             <div class="links">
                 <div class="col-md-3">
                     <div class="collapse navbar-collapse" id="myNavbar">
                         <ul class="nav navbar-nav">
-                            <li><a href="{% url 'templates:menu' %}">menu</a></li>
-                            <li><a href="{% url 'templates:entrees' %}">entrees</a></li>
+                            <li><a href="{% url 'chineseSpicyFlavor:menu' %}">menu</a></li>
+                            <li><a href="{% url 'chineseSpicyFlavor:entrees' %}">entrees</a></li>
                         </ul>
-
 
 
                         <img src="{% static "images/Entrees.jpg" %}" alt="Entrees"/>
                         <div class="caption">
                             <h2>Entrees</h2>
                             <p>Choose the sides and drink with your entree and make your own platters.</p>
-                            <p><a class="btn btn-primary" href="{% url 'templates:entrees' %}">
+                            <p><a class="btn btn-primary" href="{% url 'chineseSpicyFlavor:entrees' %}">
                                 role="button">View
-                                        details &raquo;</a></p>
+                                details &raquo;</a></p>
 
 
                         </div>
@@ -74,14 +71,14 @@
 
                     </div>
                 </div>
-                    <div class="col-md-9">
-                        <img src="{% static "images/Drinks.jpg" %}" alt="Drinks"/>
-                        <div class="caption">
-                         <h2>Drinks</h2>
-                            <p>Match your entree with the choice of your fruit drinks.</p>
+                <div class="col-md-9">
+                    <img src="{% static "images/Drinks.jpg" %}" alt="Drinks"/>
+                    <div class="caption">
+                        <h2>Drinks</h2>
+                        <p>Match your entree with the choice of your fruit drinks.</p>
 
 
-                     </div>
+                    </div>
                 </div>
                 <div class="col-md-6">
                     <img src="{% static "images/Desserts.jpg" %}" alt="Desserts"/>
@@ -98,6 +95,6 @@
 
         </div>
     </div>
-</body>
+    </body>
 {% endblock %}
 </html>

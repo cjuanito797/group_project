@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>About US</title>
+    <link rel="stylesheet" href="../static/css/about.css">
+</head>
+<body>
+<header>
+    <div>
+        <div id="title_aboutUs">Welcome to our restaurant!</div>
+        <div id="titlebottom_aboutUs">
+            Chinese Spicy Flavor restaurant was founded in 2021. Our team is committed to providing you with the highest quality service and the best food.
+            Our restaurant not only serves Chinese food, but also various kinds of snacks and drinks for your choice.
+            We are also recruiting new chef and staff. If you are interested, please contact us.
+            If you are a new customer who would like to enjoy our delicious food, please register a customer account.
+        </div>
+
+        <div id="signUp_aboutUs">
+            <a href="{% url 'chineseSpicyFlavor:register' %}">Sign Up</a>
+        </div>
+    </div>
+</header>
+
+<section>
+    <div id="members">
+        <div>Our Awesome Crew</div>
+        <div>Our team members are very friendly and knowledgeable, they come from different countries all over the world, such as America, China, Nepal and so on
+        If you have any question about our restaurant, you can contact our team members, they will get back to you as soon as possible.</div>
+        <div id="membersPhoto">
+            <img src="../static/images/juan.jpg" width="500"/>
+
+
+
+        </div>
+    </div>
+</section>
+
+<section id="contact">
+    <div>
+        <div>
+            <div id="message">FELL FREE TO SEND OUR MESSAGE</div>
+            <input type="email" id="email" placeholder="E-mail">
+            <input type="text" id="subject" placeholder="Subject">
+            <input type="text" id="message" placeholder="Message">
+            <input type="submit" id="send" value="SEND">
+        </div>
+
+        <div>
+            <div id="con">
+                <p>Contacts Information</p>
+                <P>Here are our restaurant location and contact information. </P>
+                <p>
+                    <img src="../static/images/location.png"/> 111 UNO Street
+                    <br/>Omaha, NE 68123
+                </p>
+
+                <p>
+                    <img src="../static/images/call.png"/> (402)-123-4567
+                </p>
+
+                <p>
+                    <img src="../static/images/email.png"/> isqa3900@chinesespicyflavor.com
+                </p>
+
+                <p>
+                    <img src="../static/images/link.png"/> www.chinesespicyflavor.com
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+</body>
+</html>
