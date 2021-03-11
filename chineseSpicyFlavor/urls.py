@@ -14,7 +14,7 @@ urlpatterns = [
     path('myOrders/<int:pk>/details', views.order_detail, name='OrderDetail'),
     # path('signup/', views.signup, name='signup'),
     path('register/', views.register, name='register'),
-    path('login/', views.user_login, name='user_login'),
+    path('login/', auth_views.LoginView.as_view(), name='user_login'),
     path('logout/', auth_views.LogoutView.as_view(), name='logout'),
     path('foods/', views.item_list, name='item_list'),
     path('foods/<slug:category_slug>/', views.item_list,
