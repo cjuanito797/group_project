@@ -1,13 +1,37 @@
 <!DOCTYPE html>
 <html lang="en">
-{%  load static %}
-
+{% entends 'templates/menu.html' %}
+{% load static %}
+{% block content %}
 <head>
     <meta charset="UTF-8">
     <title>Entrees</title>
 </head>
 
 <body>
+    <div class="page-container">
+           <h1>Choose your choice of entree and match it with your favorite sides, drinks and desserts.</h1>
+    </div>
+
+    <div class="content container">
+       <div class="row">
+           <div class="links">
+               <div class="col-sm-1">
+                   <div class = "row">
+                       <div class="col-sm-1">
+                           <img src="{% static "images/sesamechk.jpg" %}" alt="sesamechk"/>
+                           <div class="caption">
+                               <h2>Sesame Chicken</h2>
+                               <p>Boneless Chicken marinated with orange sauce and topped with sesame. Added spicy of your choices.</p>
+                           </div>
+                       </div>
+                   </div>
+               </div>
+           </div>
+       </div>
+    </div>
 
 </body>
+
+{% endblock %}
 </html>
