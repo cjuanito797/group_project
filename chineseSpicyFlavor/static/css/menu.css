@@ -1,4 +1,6 @@
 
+
+
 h2 {
     color: black;
     font-size: 300%;
@@ -16,7 +18,9 @@ img {
 div.container {
   text-align: center;
   padding: 10px 20px;
+
 }
+
 
 
 body {
@@ -30,9 +34,11 @@ img:hover {
 }
 
 p {
-    color: darkblue;
-    font-family: Monaco, serif;
+
     font-size: 200%;
+    font-family: Arial, sans-serif;
+    color: darkblue;
 }
+
 
 
