@@ -180,3 +180,6 @@ def order_detail(request, pk):
     orderItems = OrderItem.objects.filter(order = order_instance)
 
     return render(request, 'account/order_detail.html', {'order_instance': order_instance, 'orderItems': orderItems})
+
+def about(request):
+    return render(request, 'about.html')
