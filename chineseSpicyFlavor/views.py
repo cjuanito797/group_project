@@ -48,6 +48,10 @@ def entrees(request):
     return render(request, 'entrees.html')
 
 
+def sides(request):
+    return render(request, 'sides.html')
+
+
 def user_login(request):
     if request.method == 'POST':
         form = LoginForm(request.POST)
@@ -177,9 +181,10 @@ def order_delete(request, pk):
 @login_required
 def order_detail(request, pk):
     order_instance = get_object_or_404(Order, pk=pk)
-    orderItems = OrderItem.objects.filter(order = order_instance)
+    orderItems = OrderItem.objects.filter(order=order_instance)
 
     return render(request, 'account/order_detail.html', {'order_instance': order_instance, 'orderItems': orderItems})
+
 
 def about(request):
     return render(request, 'about.html')

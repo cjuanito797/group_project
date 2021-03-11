@@ -74,15 +74,27 @@
                         </div>
                     </div>
                 </div>
+
                 <div class="col-sm-3">
-                    <img src="{% static "images/Sides.jpg" %}" alt="Sides"/>
-                    <div class="caption">
-                        <h2>Sides</h2>
-                        <p>Stimulate your appetite with best appetizer.</p>
+                    <div class="collapse navbar-collapse" id="myNavbar">
+                        <ul class="nav navbar-nav">
+
+                        </ul>
 
 
+                        <img src="{% static "images/Sides.jpg" %}" alt="Sides"/>
+                        <div class="caption">
+
+                            <p>Stimulate your appetite with the best appetizers.</p>
+                            <p><a class="btn btn-primary" href="{% url 'chineseSpicyFlavor:sides' %}">
+                                Sides
+                                 &raquo;</a></p>
+
+
+                        </div>
                     </div>
                 </div>
+
                 <div class="col-md-9">
                     <img src="{% static "images/Drinks.jpg" %}" alt="Drinks"/>
                     <div class="caption">
