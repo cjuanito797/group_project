@@ -84,7 +84,7 @@ class Order(models.Model):
         unique=True,
         default=create_new_ref_number()
     )
-    orderQty = models.CharField(max_length=100)
+    # orderQty = models.CharField(max_length=100)
     order_date = models.DateTimeField(auto_now=True)
     deliveryChoices = (
         ('delivery', 'Delivery'),
