@@ -40,7 +40,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'chineseSpicyFlavor.apps.ChinesespicyflavorConfig',
     'mathfilters',
-    'django.contrib.humanize'
+    'django.contrib.humanize',
+    'cart.apps.CartConfig',
 ]
 
 MIDDLEWARE = [
@@ -67,6 +68,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'cart.context_processors.cart'
             ],
         },
     },
@@ -122,3 +124,6 @@ STATIC_URL = '/static/'
 LOGIN_REDIRECT_URL = '/customerView/'
 LOGIN_URL = 'login'
 LOGOUT_REDIRECT_URL = '/login/'
+
+
+CART_SESSION_ID = 'cart'
