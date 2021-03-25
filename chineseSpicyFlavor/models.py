@@ -30,8 +30,7 @@ class Category(models.Model):
     name = models.CharField(max_length=200,
                             db_index=True)
     slug = models.SlugField(max_length=200,
-                            unique=True,
-                            default='someValue')
+                            unique=True)
 
     class Meta:
         ordering = ('name',)
@@ -42,21 +41,23 @@ class Category(models.Model):
         return self.name
 
     def get_absolute_url(self):
-        return reverse('chineseSpicyFlavor:item_list',
+        return reverse('chineseSpicyFlavor:product_list_by_category',
                        args=[self.slug])
 
 
-class Item(models.Model):
+class Product(models.Model):
     category = models.ForeignKey(Category,
-                                 related_name='items',
+                                 related_name='products',
                                  on_delete=models.CASCADE)
     name = models.CharField(max_length=200, db_index=True)
-    slug = models.SlugField(max_length=200, db_index=True, default='someValue')
+    slug = models.SlugField(max_length=200, db_index=True)
     image = models.ImageField(upload_to='products/%Y/%m/%d',
                               blank=True)
     description = models.TextField(blank=True)
     price = models.DecimalField(max_digits=10, decimal_places=2)
     available = models.BooleanField(default=True)
+    created = models.DateTimeField(auto_now_add=True)
+    updated = models.DateTimeField(auto_now=True)
 
     class Meta:
         ordering = ('name',)
@@ -66,8 +67,9 @@ class Item(models.Model):
         return self.name
 
     def get_absolute_url(self):
-        return reverse('chineseSpicyFlavor:item_list',
+        return reverse('chineseSpicyFlavor:product_detail',
                        args=[self.id, self.slug])
+
 
 
 class Customer(models.Model):
@@ -110,7 +112,7 @@ class OrderItem(models.Model):
     order = models.ForeignKey(Order,
                               related_name='items',
                               on_delete=models.CASCADE)
-    product = models.ForeignKey(Item,
+    product = models.ForeignKey(Product,
                                 related_name='order_items',
                                 on_delete=models.CASCADE)
     price = models.DecimalField(max_digits=10, decimal_places=2)
