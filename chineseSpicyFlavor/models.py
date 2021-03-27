@@ -71,12 +71,12 @@ class Product(models.Model):
                        args=[self.id, self.slug])
 
 
-
 class Customer(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     address = models.CharField(max_length=100)
 
 
+"""
 class Order(models.Model):
     id = models.CharField(
         primary_key=True,
@@ -104,22 +104,8 @@ class Order(models.Model):
         managed = True
 
     def __str__(self):
-        """String representation for an order object"""
         return f'{self.id}'
+"""
 
 
-class OrderItem(models.Model):
-    order = models.ForeignKey(Order,
-                              related_name='items',
-                              on_delete=models.CASCADE)
-    product = models.ForeignKey(Product,
-                                related_name='order_items',
-                                on_delete=models.CASCADE)
-    price = models.DecimalField(max_digits=10, decimal_places=2)
-    quantity = models.PositiveIntegerField(default=1)
 
-    def __str__(self):
-        return '{}'.format(self.order.id)
-
-    def get_cost(self):
-        return self.price * self.quantity
