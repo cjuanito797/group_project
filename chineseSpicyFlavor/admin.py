@@ -1,10 +1,8 @@
 from django.contrib import admin
-from .models import Product, Customer, Order, Category, Profile, OrderItem
+from .models import Product, Customer, Category, Profile
 
 # Register your models here.
 admin.site.register(Customer)
-admin.site.register(Order)
-admin.site.register(OrderItem)
 
 @admin.register(Profile)
 class ProfileAdmin(admin.ModelAdmin):
