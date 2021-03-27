@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'mathfilters',
     'django.contrib.humanize',
     'cart.apps.CartConfig',
+    'orders.apps.OrdersConfig',
 ]
 
 MIDDLEWARE = [
