@@ -3,7 +3,7 @@ from django.http import HttpResponse
 from django.shortcuts import get_object_or_404, redirect
 from django.shortcuts import render
 from django.contrib import messages
-from .models import Product, Order, Category, Profile, OrderItem
+from .models import Product, Category, Profile
 from django.shortcuts import render, get_object_or_404
 from cart.forms import CartAddProductForm
 
@@ -35,12 +35,9 @@ def product_detail(request, id, slug):
 
 # Create your views here.
 def home(request):
-    num_orders = Order.objects.all()
-    context = {
-        'num_orders': num_orders
-    }
+
     # Render the html template home.html with the data in the context variable
-    return render(request, 'home.html', context=context)
+    return render(request, 'home.html')
 
 
 def order_now(request):
