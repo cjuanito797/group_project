@@ -12,7 +12,7 @@ h1, h2, h3, h4, h5 , h6 {
 
 a {
     text-decoration:none;
-    color:#5993bb;
+    color:coral;
 }
 
 a:hover {
@@ -20,8 +20,8 @@ a:hover {
 }
 
 a.button, input[type="submit"] {
-    color:#fff;
-    background:#5993bb;
+    color:coral;
+    background: coral;
     border-radius:4px;
     padding:10px 20px;
     font-size:14px;
@@ -29,7 +29,7 @@ a.button, input[type="submit"] {
 }
 
 a.button.light {
-    color:#666;
+    color:coral;
     background:#ededed;
 }
 
@@ -55,15 +55,15 @@ table th, table td {
 }
 
 tbody tr:nth-child(odd) {
-    background:#efefef;
+    background:coral;
 }
 
 tbody tr.subtotal {
-    background:#ccc;
+    background:coral;
 }
 
 thead th, tbody tr.total {
-    background:#5993bb;
+    background:coral;
     color:#fff;
     font-weight:bold;
 }
@@ -169,12 +169,12 @@ ul.errorlist {
 }
 
 #sidebar ul li.selected {
-    background:#5993bb;
+    background:lightcoral;
     border-radius:4px;
 }
 
 #sidebar ul li.selected a {
-    color:#fff;
+    color:lightcoral;
 }
 
 #main {
@@ -235,7 +235,7 @@ ul.errorlist {
 }
 
 .order-info h3 {
-    color:#5993bb;
+    color:lightcoral;
 }
 
 .order-info ul li {
@@ -318,13 +318,12 @@ ul.errorlist {
 /* braintree hosted fields */
 form div.field {
     font-size:13px;
-    color:#666;
+    color:coral;
     width:300px;
     height:22px;
     margin-bottom:10px;
     padding:6px 12px;
     border:0;
-    background:#efefef;
-    color:#666;
+    background:lightcoral;
     border-radius:4px;
 }
