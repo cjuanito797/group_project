@@ -169,12 +169,12 @@ ul.errorlist {
 }
 
 #sidebar ul li.selected {
-    background:lightcoral;
+    background:blue;
     border-radius:4px;
 }
 
 #sidebar ul li.selected a {
-    color:lightcoral;
+    color:blue;
 }
 
 #main {
