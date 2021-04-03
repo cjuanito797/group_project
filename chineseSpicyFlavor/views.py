@@ -4,6 +4,7 @@ from django.shortcuts import get_object_or_404, redirect
 from django.shortcuts import render
 from django.contrib import messages
 from .models import Product, Category, Profile
+from orders.models import Order, OrderItem
 from django.shortcuts import render, get_object_or_404
 from cart.forms import CartAddProductForm
 
@@ -96,7 +97,7 @@ from django.contrib.auth.decorators import login_required
 def customerView(request):
     orders = Order.objects.all()
     orderItem = OrderItem.objects.all()
-    return render(request, 'account/base.html', {'orders': orders, 'orderItem': orderItem})
+    return render(request, 'account/base.html')
 
 
 from .forms import UserEditForm, ProfileEditForm
