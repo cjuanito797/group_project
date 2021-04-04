@@ -53,6 +53,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'django.contrib.sessions.middleware.SessionMiddleware'
 ]
 
 ROOT_URLCONF = 'group_project.urls'
@@ -125,6 +126,5 @@ STATIC_URL = '/static/'
 LOGIN_REDIRECT_URL = '/customerView/'
 LOGIN_URL = 'login'
 LOGOUT_REDIRECT_URL = '/login/'
-
 
 CART_SESSION_ID = 'cart'
