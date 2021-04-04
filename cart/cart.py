@@ -1,5 +1,6 @@
 from decimal import Decimal
 from django.conf import settings
+from django.contrib.auth import authenticate, login, user_logged_in
 from chineseSpicyFlavor.models import Product
 
 
@@ -9,6 +10,7 @@ class Cart(object):
         """
         Initialize the cart.
         """
+
         self.session = request.session
         cart = self.session.get(settings.CART_SESSION_ID)
         if not cart:
