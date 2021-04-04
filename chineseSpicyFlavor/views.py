@@ -95,6 +95,7 @@ from django.contrib.auth.decorators import login_required
 
 @login_required
 def customerView(request):
+    request.session.set_test_cookie()
     orders = Order.objects.all()
     orderItem = OrderItem.objects.all()
     return render(request, 'account/base.html')
@@ -184,7 +185,8 @@ def editDeliveryPref(request):
 
 @login_required
 def order_list(request):
-    orders = Order.objects.all()
+    request.session.test_cookie_worked()
+    orders = Order.objects.filter(paid=True)
     return render(request, 'account/order_list.html', {'orders': orders})
 
 
@@ -205,3 +207,14 @@ def order_detail(request, pk):
 
 def about(request):
     return render(request, 'about.html')
+
+@login_required
+def user_logout(request):
+    try:
+        for key in list(request.session.keys()):
+            if key == 'CART':
+                continue
+            del request.session[key]
+    except KeyError:
+        pass
+    return HttpResponseRedirect(reversed('your_app:login'))
