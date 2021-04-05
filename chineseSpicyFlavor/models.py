@@ -73,7 +73,8 @@ class Product(models.Model):
 
 class Customer(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    address = models.CharField(max_length=100)
+    name = models.CharField(max_length=20, default="null")
+    email = models.EmailField(default="null")
 
 
 """
