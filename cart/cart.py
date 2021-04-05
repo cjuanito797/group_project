@@ -2,6 +2,7 @@ from decimal import Decimal
 from django.conf import settings
 from django.contrib.auth import authenticate, login, user_logged_in
 from chineseSpicyFlavor.models import Product
+from cart.models import account_data
 
 
 class Cart(object):
