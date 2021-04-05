@@ -34,9 +34,9 @@ def product_detail(request, id, slug):
                   {'product': product,
                    'cart_product_form': cart_product_form})
 
+
 # Create your views here.
 def home(request):
-
     # Render the html template home.html with the data in the context variable
     return render(request, 'home.html')
 
@@ -207,6 +207,7 @@ def order_detail(request, pk):
 
 def about(request):
     return render(request, 'about.html')
+
 
 @login_required
 def user_logout(request):
