@@ -21,6 +21,14 @@
   </div>
 
     <h3>Delivery Info:</h3>
+    <h5>{{ user.profile.city }}</h5>
+    <h5>{{ user.profile.state }}</h5>
+    <h5>{{ user.profile.streetNum }}</h5>
+    <h5>{{ user.profile.zipcode }}</h5>
+    <a href="{% url 'chineseSpicyFlavor:editDeliveryPref' %}">Edit Delivery Preferences</a><br>
+
+
+
 
   <form action="." method="post" class="order-form">
     {{ form.as_p }}
