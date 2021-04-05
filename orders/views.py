@@ -8,7 +8,10 @@ from .models import Order
 from django.conf import settings
 from django.http import HttpResponse
 from django.template.loader import render_to_string
-#import weasyprint
+from chineseSpicyFlavor.models import Profile
+
+
+# import weasyprint
 
 @staff_member_required
 def admin_order_pdf(request, order_id):
@@ -19,9 +22,10 @@ def admin_order_pdf(request, order_id):
     response['Content-Disposition'] = 'filename=\
         "order_{}.pdf"'.format(order.id)
     weasyprint.HTML(string=html).write_pdf(response,
-        stylesheets=[weasyprint.CSS(
-            settings.STATIC_ROOT + 'css/pdf.css')])
+                                           stylesheets=[weasyprint.CSS(
+                                               settings.STATIC_ROOT + 'css/pdf.css')])
     return response
+
 
 @staff_member_required
 def admin_order_detail(request, order_id):
@@ -30,9 +34,9 @@ def admin_order_detail(request, order_id):
                   'admin/orders/order/detail.html',
                   {'order': order})
 
+
 def order_create(request):
     cart = Cart(request)
-
     return render(request,
                   'orders/order/create.html',
                   {'cart': cart})
