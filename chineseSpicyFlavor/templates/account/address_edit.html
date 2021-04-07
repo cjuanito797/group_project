@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit Address</title>
+</head>
+<body>
+
+<h1>Edit Address</h1>
+
+<form method="POST" class="address-form">{% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="save btn btn-default">Update</button>
+    </form>
+</body>
+</html>
