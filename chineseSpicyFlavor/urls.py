@@ -25,9 +25,6 @@ urlpatterns = [
     path('menu/', views.menu, name='menu'),
     path('edit/', views.edit, name='edit'),
     path('edit_delivery', views.editDeliveryPref, name="editDeliveryPref"),
-    path('entrees/', views.entrees, name='entrees'),
-    path('sides/', views.sides, name='sides'),
-    path('drinks/', views.drinks, name='drinks'),
-    path('desserts/', views.desserts, name='desserts'),
+    path('addresses', views.display_addresses, name="displayAddresses")
 
 ]
