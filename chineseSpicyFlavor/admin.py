@@ -1,8 +1,10 @@
 from django.contrib import admin
-from .models import Product, Customer, Category, Profile
+from .models import Product, Customer, Category, Profile, Address
 
 # Register your models here.
-
+@admin.register(Address)
+class AddressAdmin(admin.ModelAdmin):
+    list_display = ['streetNum', 'city', 'state', 'zipcode', 'user']
 
 @admin.register(Profile)
 class ProfileAdmin(admin.ModelAdmin):
