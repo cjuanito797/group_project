@@ -24,7 +24,7 @@
 
         <tr>
             <td>{{ o.id }}</td>
-            <td>{{ o.order_date }}</td>
+            <td>{{ o.created}}</td>
             <td>{{ o.deliveryPref }}</td>
             <td><a href="{% url 'chineseSpicyFlavor:OrderDetail' pk=o.pk%}"
                            class="btn btn-primary">Items</a></td>
