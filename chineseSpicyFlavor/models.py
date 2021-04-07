@@ -4,6 +4,13 @@ from django.contrib.auth.models import User
 from django.db import models
 from django.urls import reverse
 
+class Address(models.Model):
+    user = models.ForeignKey(settings.AUTH_USER_MODEL,
+                                on_delete=models.CASCADE,)
+    streetNum = models.CharField(max_length=25)
+    city = models.CharField(max_length=20)
+    state = models.CharField(max_length=2)
+    zipcode = models.CharField(max_length=5)
 
 class Profile(models.Model):
     user = models.OneToOneField(settings.AUTH_USER_MODEL,
@@ -12,10 +19,10 @@ class Profile(models.Model):
     date_of_birth = models.DateField(blank=True, null=True)
     image = models.ImageField(upload_to='users/%Y/%m/%d',
                               blank=True)
-    streetNum = models.CharField(max_length=25)
-    city = models.CharField(max_length=20)
-    state = models.CharField(max_length=2)
-    zipcode = models.CharField(max_length=5)
+    address = models.ForeignKey(Address,
+                                related_name='address',
+                                on_delete=models.CASCADE,
+                                null='blank')
 
     def __str__(self):
         return f'Profile for user {self.user.username}'
