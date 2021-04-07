@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>MY Addresses</title>
+</head>
+<body>
+
+<h1>Your Addresses</h1>
+
+{% for a in addresses %}
+    <p>{{ a.streetNum }}</p>
+    <p>{{ a.state }}</p>
+    <p>{{ a.zipcode }}</p>
+    <p>{{ a.city }}</p>
+{% endfor %}
+
+</body>
+</html>
