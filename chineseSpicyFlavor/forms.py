@@ -10,16 +10,6 @@ class UserEditForm(forms.ModelForm):
         fields = ('first_name', 'last_name', 'email')
 
 
-class ProfileEditForm(forms.ModelForm):
-    class Meta:
-        model = Profile
-        fields = ('date_of_birth', 'image', 'streetNum', 'city', 'state', 'zipcode')
-
-
-class DeliveryEditForm(forms.ModelForm):
-    class Meta:
-        model = Profile
-        fields = ('streetNum', 'city', 'state', 'zipcode')
 
 
 class SignUp(UserCreationForm):
