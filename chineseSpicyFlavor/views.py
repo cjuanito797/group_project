@@ -7,6 +7,7 @@ from .models import Product, Category, Profile, Address
 from orders.models import Order, OrderItem
 from django.shortcuts import render, get_object_or_404
 from cart.forms import CartAddProductForm
+from .forms import AddressForm
 
 
 def product_list(request, category_slug=None):
@@ -96,7 +97,7 @@ from django.contrib.auth.decorators import login_required
 @login_required
 def customerView(request):
     request.session.set_test_cookie()
-    orders = Order.objects.all()
+    orders = Order.objects.filter()
     orderItem = OrderItem.objects.all()
     return render(request, 'account/base.html')
 
@@ -152,41 +153,52 @@ def register(request):
                   'Registration/register.html',
                   {'user_form': user_form})
 
+@login_required
+def address_new(request):
+    if request.method == "POST":
+        form = AddressForm(request.POST)
+        if form.is_valid():
+            address = form.save(commit=False)
+            address.save()
+            addresses = Address.objects.all()
+            return render(request, 'account/addresses.html',
+                          {'addresses' : addresses})
+    else:
+        form = AddressForm()
+    return render(request, 'account/address_new.html', {'form': form})
+
+
 
 # Create a prototype view that displays the user's addresses on file
 @login_required
 def display_addresses(request):
-    addresses = Address.objects.all()
-    return render(request, 'account/addresses.html' ,{'addresses' : addresses})
+    addresses = Address.objects.filter(request.user)
+    return render(request, 'account/addresses.html', {'addresses': addresses})
+
+
 
 
 @login_required
-def editDeliveryPref(request):
-    if request.method == 'POST':
-        profile_form = DeliveryEditForm(
-            instance=request.user.profile,
-            data=request.POST,
-            files=request.FILES)
-        if profile_form.is_valid():
-            profile_form.save()
-            messages.success(request, 'Delivery Preferences Updated '
-                                      'successfully')
-            return render(request, 'account/base.html')
-        else:
-            messages.error(request, 'Error updating your delivery preferences')
+def address_edit(request, pk):
+    address = get_object_or_404(Address, pk=pk)
+    if request.method == "POST":
+        form = AddressForm(request.POST, instance=address)
+        if form.is_valid():
+            address = form.save()
+            # service.customer = service.id
+            address.save()
+            addresses = Address.objects.all()
+            return render(request, 'account/addresses.html', {'addresses': addresses})
     else:
-        profile_form = DeliveryEditForm(
-            instance=request.user.profile)
-    return render(request,
-                  'account/edit_delivery.html',
-                  {
-                      'profile_form': profile_form})
+        # print("else")
+        form = AddressForm(instance=address)
+    return render(request, 'account/address_edit.html', {'form': form})
 
 
 @login_required
 def order_list(request):
     request.session.test_cookie_worked()
-    orders = Order.objects.filter(paid=True)
+    orders = Order.objects.filter(profile__user_id=request.user)
     return render(request, 'account/order_list.html', {'orders': orders})
 
 
