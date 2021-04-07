@@ -24,7 +24,8 @@ urlpatterns = [
     path('orderNow/', views.order_now, name='order_now'),
     path('menu/', views.menu, name='menu'),
     path('edit/', views.edit, name='edit'),
-    path('edit_delivery', views.editDeliveryPref, name="editDeliveryPref"),
-    path('addresses', views.display_addresses, name="displayAddresses")
+    path('address/', views.display_addresses, name="displayAddresses"),
+    path('address/<int:pk>/edit/', views.address_edit, name='address_edit'),
+    path('address/create/', views.address_new, name='address_new'),
 
 ]
