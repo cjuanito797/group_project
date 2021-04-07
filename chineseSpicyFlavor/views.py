@@ -3,7 +3,7 @@ from django.http import HttpResponse
 from django.shortcuts import get_object_or_404, redirect
 from django.shortcuts import render
 from django.contrib import messages
-from .models import Product, Category, Profile
+from .models import Product, Category, Profile, Address
 from orders.models import Order, OrderItem
 from django.shortcuts import render, get_object_or_404
 from cart.forms import CartAddProductForm
@@ -101,9 +101,6 @@ def customerView(request):
     return render(request, 'account/base.html')
 
 
-from .forms import UserEditForm, ProfileEditForm
-
-
 @login_required
 def edit(request):
     if request.method == 'POST':
@@ -156,8 +153,11 @@ def register(request):
                   {'user_form': user_form})
 
 
-# Create a view that allows user to edit delivery preferences
-from .forms import DeliveryEditForm
+# Create a prototype view that displays the user's addresses on file
+@login_required
+def display_addresses(request):
+    addresses = Address.objects.all()
+    return render(request, 'account/addresses.html' ,{'addresses' : addresses})
 
 
 @login_required
