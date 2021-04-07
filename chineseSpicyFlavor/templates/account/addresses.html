@@ -13,7 +13,13 @@
     <p>{{ a.state }}</p>
     <p>{{ a.zipcode }}</p>
     <p>{{ a.city }}</p>
+    <p>*****************</p>
+    <a href="{% url 'chineseSpicyFlavor:address_edit' pk=a.pk %}"
+                           class="btn btn-warning">Edit</a>
 {% endfor %}
 
+
+<a href="{% url 'chineseSpicyFlavor:address_new' %}" class="row"><span
+                    class="btn btn-primary">Add Address</span></a>
 </body>
 </html>
