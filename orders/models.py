@@ -2,6 +2,7 @@ from django.db import models
 from chineseSpicyFlavor.models import Product, Profile
 import random
 
+
 def create_ref_number():
     return str(random.randint(100000, 999999))
 
@@ -29,7 +30,6 @@ class Order(models.Model):
 
     def __str__(self):
         return f'{self.id}'
-
 
     def get_total_cost(self):
         return sum(item.get_cost() for item in self.items.all())
