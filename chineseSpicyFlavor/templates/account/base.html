@@ -121,9 +121,7 @@
     <a href="{% url 'chineseSpicyFlavor:product_list' %}">
         <input type="submit" value="Order Now">
     </a>
-    <a href="{% url 'chineseSpicyFlavor:editDeliveryPref' %}">
-        <input type="submit" value="My Delivery Preferences">
-    </a>
+
     <a href="{% url 'chineseSpicyFlavor:myOrders' %}">
         <input type="submit" value="My Orders">
     </a>
@@ -138,7 +136,6 @@
 {% ifequal user.profile.city|stringformat:"s" "" %}
 
     <h3>Looks like we still have a a couple of things to set up</h3>
-    <a href="{% url 'chineseSpicyFlavor:editDeliveryPref' %}">Edit Delivery Preferences</a><br>
     <a href="{% url 'chineseSpicyFlavor:edit' %}">Edit Account</a>
 
 {% endifequal %}
