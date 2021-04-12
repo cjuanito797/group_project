@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Address Added Successfully</title>
+</head>
+<body>
+
+<h1>Your new address was saved successfully.</h1>
+
+<div id="nav">
+    <a href="{% url 'chineseSpicyFlavor:edit' %}">
+        <input type="submit" value="Edit Account">
+    </a>
+
+    <a href="{% url 'chineseSpicyFlavor:product_list' %}">
+        <input type="submit" value="Order Now">
+    </a>
+
+    <a href="{% url 'chineseSpicyFlavor:myOrders' %}">
+        <input type="submit" value="My Orders">
+    </a>
+     <a href="{% url 'chineseSpicyFlavor:displayAddresses' %}">
+        <input type="submit" value="My Addresses">
+    </a>
+</div>
+</body>
+</html>
