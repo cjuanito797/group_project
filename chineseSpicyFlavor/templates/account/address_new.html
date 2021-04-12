@@ -7,6 +7,7 @@
 <body>
 
 <h1>Add a New Address</h1>
+<p>{{ user.email }}</p>
     <form method="POST" class="address-form">{% csrf_token %}
           {{ form.as_p }}
         <button type="submit" class="save btn btn-default">Save</button>
