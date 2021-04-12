@@ -8,7 +8,8 @@ from .models import Order
 from django.conf import settings
 from django.http import HttpResponse
 from django.template.loader import render_to_string
-from chineseSpicyFlavor.models import Profile
+from chineseSpicyFlavor.models import Profile, Address
+from chineseSpicyFlavor.views import display_addresses
 
 
 # import weasyprint
@@ -37,6 +38,7 @@ def admin_order_detail(request, order_id):
 
 def order_create(request):
     cart = Cart(request)
+    addresses = Address.objects.filter(user_id=request.user)
     return render(request,
                   'orders/order/create.html',
-                  {'cart': cart})
+                  {'cart': cart, 'addresses': addresses})
