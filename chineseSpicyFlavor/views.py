@@ -8,6 +8,7 @@ from orders.models import Order, OrderItem
 from django.shortcuts import render, get_object_or_404
 from cart.forms import CartAddProductForm
 from .forms import AddressForm
+from django.http import HttpResponse
 
 
 def product_list(request, category_slug=None):
@@ -160,16 +161,25 @@ def display_addresses(request):
     addresses = Address.objects.filter(user_id=request.user)
     return render(request, 'account/addresses.html', {'addresses': addresses})
 
+
+@login_required
+def sample_view(request):
+    current_user = request.user
+    return render(request, 'account/sample.html', {'current_user': current_user})
+
+
 @login_required
 def address_new(request):
     if request.method == "POST":
         form = AddressForm(request.POST)
         if form.is_valid():
             address = form.save(commit=False)
+            address.user = request.user
             address.save()
-            addresses = Address.objects.all()
-            return render(request, 'account/success.html',
-                          {'addresses': addresses})
+            addresses = Address.objects.filter(user_id=request.user)
+            messages.success(request, 'Address Added '
+                                      'successfully')
+            return render(request, 'account/base.html')
     else:
         form = AddressForm()
     return render(request, 'account/address_new.html', {'form': form})
@@ -191,11 +201,13 @@ def address_edit(request, pk):
         form = AddressForm(instance=address)
     return render(request, 'account/address_edit.html', {'form': form})
 
+
 @login_required()
 def address_delete(request, pk):
     address = get_object_or_404(Address, pk=pk)
     address.delete()
     return redirect('chineseSpicyFlavor:displayAddresses')
+
 
 @login_required
 def order_list(request):
