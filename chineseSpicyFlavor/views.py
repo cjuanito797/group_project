@@ -153,6 +153,13 @@ def register(request):
                   'Registration/register.html',
                   {'user_form': user_form})
 
+
+# Create a prototype view that displays the user's addresses on file
+@login_required
+def display_addresses(request):
+    addresses = Address.objects.filter(user_id=request.user)
+    return render(request, 'account/addresses.html', {'addresses': addresses})
+
 @login_required
 def address_new(request):
     if request.method == "POST":
@@ -161,21 +168,11 @@ def address_new(request):
             address = form.save(commit=False)
             address.save()
             addresses = Address.objects.all()
-            return render(request, 'account/addresses.html',
-                          {'addresses' : addresses})
+            return render(request, 'account/success.html',
+                          {'addresses': addresses})
     else:
         form = AddressForm()
     return render(request, 'account/address_new.html', {'form': form})
-
-
-
-# Create a prototype view that displays the user's addresses on file
-@login_required
-def display_addresses(request):
-    addresses = Address.objects.filter(request.user)
-    return render(request, 'account/addresses.html', {'addresses': addresses})
-
-
 
 
 @login_required
@@ -194,6 +191,11 @@ def address_edit(request, pk):
         form = AddressForm(instance=address)
     return render(request, 'account/address_edit.html', {'form': form})
 
+@login_required()
+def address_delete(request, pk):
+    address = get_object_or_404(Address, pk=pk)
+    address.delete()
+    return redirect('chineseSpicyFlavor:displayAddresses')
 
 @login_required
 def order_list(request):
