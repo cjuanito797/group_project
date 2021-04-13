@@ -21,13 +21,11 @@ urlpatterns = [
          name='product_list_by_category'),
     path('foods/<int:id>/<slug:slug>/', views.product_detail,
          name='product_detail'),
-    path('orderNow/', views.order_now, name='order_now'),
     path('menu/', views.menu, name='menu'),
     path('edit/', views.edit, name='edit'),
     path('address/', views.display_addresses, name="displayAddresses"),
     path('address/<int:pk>/edit/', views.address_edit, name='address_edit'),
     path('address/create/', views.address_new, name='address_new'),
     path('address/<int:pk>/delete', views.address_delete, name='address_delete'),
-    path('sample/', views.sample_view, name='sample_view')
 
 ]
