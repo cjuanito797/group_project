@@ -53,14 +53,7 @@ class OrderItem(models.Model):
 
 
 class GuestOrder(models.Model):
-    id = models.CharField(
-        primary_key=True,
-        max_length=6,
-        blank=True,
-        editable=False,
-        unique=True,
-        default=create_ref_number()
-    )
+
     first_name = models.CharField(max_length=50)
     last_name = models.CharField(max_length=50)
     email = models.EmailField()
