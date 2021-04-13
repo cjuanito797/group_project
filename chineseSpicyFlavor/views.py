@@ -7,7 +7,7 @@ from .models import Product, Category, Profile, Address
 from orders.models import Order, OrderItem
 from django.shortcuts import render, get_object_or_404
 from cart.forms import CartAddProductForm
-from .forms import AddressForm
+from .forms import AddressForm, UserEditForm, ProfileEditForm
 from django.http import HttpResponse
 
 
@@ -41,10 +41,6 @@ def product_detail(request, id, slug):
 def home(request):
     # Render the html template home.html with the data in the context variable
     return render(request, 'home.html')
-
-
-def order_now(request):
-    return render(request, 'order_now.html')
 
 
 def covidWarning(request):
