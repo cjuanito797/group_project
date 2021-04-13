@@ -58,7 +58,7 @@ class GuestOrder(models.Model):
         max_length=6,
         blank=True,
         editable=False,
-        unique=False,
+        unique=True,
         default=create_ref_number()
     )
     first_name = models.CharField(max_length=50)
