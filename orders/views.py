@@ -58,6 +58,8 @@ def order_create(request):
                 # clear the cart
                 cart.clear()
                 # set the order in the session
+                request.session['order_id'] = order.id
+
                 # redirect for payment
                 return render(request, 'orders/order/created.html')
 
