@@ -49,9 +49,9 @@ def order_create(request):
         if request.method == 'POST':
             form = OrderCreateForm(request.POST)
             if form.is_valid():
-                guest_order = form.save()
+                order = form.save()
                 for item in cart:
-                    GuestOrderItem.objects.create(guest_order=guest_order,
+                    GuestOrderItem.objects.create(guest_order=order,
                                                   product=item['product'],
                                                   price=item['price'],
                                                   quantity=item['quantity'])
