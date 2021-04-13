@@ -2,7 +2,7 @@ import csv
 import datetime
 from django.contrib import admin
 from django.http import HttpResponse
-from .models import Order, OrderItem
+from .models import Order, OrderItem, GuestOrder, GuestOrderItem
 from django.urls import reverse
 from django.utils.safestring import mark_safe
 
@@ -52,8 +52,12 @@ order_pdf.short_description = 'Invoice'
 
 @admin.register(Order)
 class OrderAdmin(admin.ModelAdmin):
-
     list_display = ['profile', 'id']
     list_filter = ['paid', 'created', 'updated', 'profile']
     inlines = [OrderItemInline]
     actions = [export_to_csv]
+
+
+@admin.register(GuestOrder)
+class GuestOrderAdmin(admin.ModelAdmin):
+    list_display = ['first_name', 'last_name', 'id']
