@@ -10,7 +10,7 @@ from django.http import HttpResponse
 from django.template.loader import render_to_string
 from chineseSpicyFlavor.models import Profile, Address
 from chineseSpicyFlavor.views import display_addresses
-from .forms import OrderCreateForm
+from .forms import OrderCreateForm, RegisteredUserForm
 
 
 # import weasyprint
@@ -41,9 +41,18 @@ def order_create(request):
     cart = Cart(request)
     if request.user.is_authenticated:
         addresses = Address.objects.filter(user_id=request.user)
-        return render(request,
-                      'orders/order/create.html',
-                      {'cart': cart, 'addresses': addresses})
+        if request.method == 'POST':
+
+            myVar = request.POST.get("address")
+            address = Address.objects.get(pk=myVar)
+
+            cart.clear()
+            return render(request, 'orders/order/created.html', {'address': address})
+        else:
+            return render(request,
+                          'orders/order/create.html',
+                          {'cart': cart, 'addresses': addresses})
+
     else:
 
         if request.method == 'POST':
