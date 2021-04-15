@@ -42,10 +42,16 @@ def order_create(request):
     if request.user.is_authenticated:
         addresses = Address.objects.filter(user_id=request.user)
         if request.method == 'POST':
-            myVar = request.POST.get("address")
-            address = Address.objects.get(pk=myVar)
-            cart.clear()
-            return render(request, 'orders/order/created.html', {'address': address})
+            if 'place_order' in request.POST:
+                myVar = request.POST.get("address")
+                address = Address.objects.get(pk=myVar)
+                cart.clear()
+                return render(request, 'orders/order/created.html', {'address': address})
+
+            elif 'pickup_order' in request.POST:
+                cart.clear()
+                return render(request, 'orders/order/pickup.html')
+
         else:
             return render(request,
                           'orders/order/create.html',
@@ -71,5 +77,5 @@ def order_create(request):
         else:
             form = OrderCreateForm()
         return render(request,
-                      'orders/order/create.html',
+                      'orders/order/guest_orderCreate.html',
                       {'cart': cart, 'form': form})
