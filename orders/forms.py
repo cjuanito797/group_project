@@ -7,9 +7,3 @@ class OrderCreateForm(forms.ModelForm):
         model = GuestOrder
         fields = ['first_name', 'last_name', 'email', 'address',
                   'postal_code', 'city']
-
-
-class RegisteredUserForm(forms.ModelForm):
-    class Meta:
-        model = Order
-        fields = ['profile',]
