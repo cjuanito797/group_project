@@ -1,13 +1,44 @@
-<!DOCTYPE html>
+
 {% load static %}
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>About US</title>
-    <link rel="stylesheet" href="../static/css/about.css">
+    <link rel="stylesheet" type="text/css" href="../static/css/about.css">
 </head>
 <body>
 <header>
+
+    <div class="top">
+        <center>
+            <ul>
+                <li><a href="#">WELCOME!</a></li>
+                <li><a href="{% url 'chineseSpicyFlavor:home' %}">Home</a></li>
+
+                <li><a href="#">ACCOUNT</a>
+                    <ul>
+                        <li><a href="{% url 'chineseSpicyFlavor:register' %}">Sign Up</a></li>
+                        <li><a href="{% url 'chineseSpicyFlavor:user_login' %}">Login</a></li>
+                    </ul>
+                </li>
+
+                <li><a href="#">MENU</a>
+                    <ul>
+                        <li><a href="{% url 'chineseSpicyFlavor:product_list' %}">Foods</a></li>
+                        <li><a href="{% url 'chineseSpicyFlavor:product_list' %}">Order Now</a></li>
+                    </ul>
+                </li>
+
+                <li><a href="#">CONTACT INFO</a>
+                    <ul>
+                        <li><a href="{% url 'chineseSpicyFlavor:about' %}">About</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </center>
+    </div>
+
+
     <div>
         <div id="title_aboutUs">Welcome to our restaurant!</div>
         <div id="titlebottom_aboutUs">
