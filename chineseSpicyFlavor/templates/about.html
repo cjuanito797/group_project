@@ -9,26 +9,26 @@
 <body>
 
 <div class="container">
-    <ul class="menu">
+    <ul class="nav">
         <li><a href="#">Welcome!</a></li>
         <li><a href="{% url 'chineseSpicyFlavor:home' %}">HOME PAGE</a></a>
         </li>
 
         <li><a href="#s2">Account</a>
-            <ul class="submenu">
+            <ul class="subnav">
                 <li><a href="{% url 'chineseSpicyFlavor:register' %}">Sign Up</a></li>
                 <li><a href="{% url 'chineseSpicyFlavor:user_login' %}">Login</a></li>
             </ul>
         </li>
 
         <li><a href="#s3">Food Menu</a>
-            <ul class="submenu">
+            <ul class="subnav">
                 <li><a href="{% url 'chineseSpicyFlavor:product_list' %}">Foods</a></li>
             </ul>
         </li>
 
         <li><a href="#s4">Contact INFO</a>
-            <ul class="submenu">
+            <ul class="subnav">
                 <li><a href="{% url 'chineseSpicyFlavor:about' %}">About US</a></li>
             </ul>
         </li>

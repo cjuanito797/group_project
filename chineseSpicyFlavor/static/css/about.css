@@ -14,17 +14,17 @@ body {
     width: 90%
 }
 
-.menu {
+.nav {
     height: 58px;
 }
 
-.menu, .menu ul {
+.nav, .mnav ul {
     list-style: none;
     padding: 0;
     margin: 0;
 }
 
-.menu li {
+.nav li {
     background: -moz-linear-gradient(#292929, #252525);
     background: -ms-linear-gradient(#292929, #252525);
     background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #292929), color-stop(100%, #252525));
@@ -37,17 +37,17 @@ body {
     min-width: 160px;
 }
 
-.menu > li {
+.nav > li {
     display: block;
     float: left;
     position: relative;
 }
 
-.menu > li:first-child {
+.nav > li:first-child {
     border-radius: 5px 0 0;
 }
 
-.menu a {
+.nav a {
     border-left: 3px solid rgba(0, 0, 0, 0);
     color: #808080;
     display: block;
@@ -59,7 +59,7 @@ body {
     text-transform: uppercase;
 }
 
-.menu li:hover {
+.nav li:hover {
     background-color: #1c1c1c;
     background: -moz-linear-gradient(#1c1c1c, #1b1b1b);
     background: -ms-linear-gradient(#1c1c1c, #1b1b1b);
@@ -72,13 +72,13 @@ body {
     border-top: 2px solid #1B1B1B;
 }
 
-.menu li:hover > a {
+.nav li:hover > a {
     border-radius: 5px 0 0 0;
     border-left: 3px solid #C4302B;
     color: #C4302B;
 }
 
-.submenu {
+.subnav {
     left: 0;
     max-height: 0;
     position: absolute;
@@ -92,7 +92,7 @@ body {
     perspective: 400px;
 }
 
-.submenu li {
+.subnav li {
     opacity: 0;
     -webkit-transform: rotateY(90deg);
     -moz-transform: rotateY(90deg);
@@ -106,18 +106,18 @@ body {
     transition: opacity .4s, transform .5s;
 }
 
-.menu .submenu li:hover a {
+.nav .subnav li:hover a {
     border-left: 3px solid #454545;
     border-radius: 0;
     color: #ffffff;
 }
 
-.menu > li:hover .submenu, .menu > li:focus .submenu {
+.nav > li:hover .subnav, .nav > li:focus .subnav {
     max-height: 2000px;
     z-index: 10;
 }
 
-.menu > li:hover .submenu li, .menu > li:focus .submenu li {
+.nav > li:hover .subnav li, .nav > li:focus .subnav li {
     opacity: 1;
     -webkit-transform: none;
     -moz-transform: none;
