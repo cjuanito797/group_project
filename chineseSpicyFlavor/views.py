@@ -190,7 +190,7 @@ def address_edit(request, pk):
             address = form.save()
             # service.customer = service.id
             address.save()
-            addresses = Address.objects.all()
+            addresses = Address.objects.filter(user_id=request.user)
             return render(request, 'account/addresses.html', {'addresses': addresses})
     else:
         # print("else")
