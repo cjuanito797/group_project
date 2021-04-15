@@ -20,26 +20,25 @@
         <p>Total: ${{ cart.get_total_price }}</p>
     </div>
 
-
-
-
-        <form method="POST" class="post-form">
+    <form method="POST" class="post-form">
         {% csrf_token %}
         {% for a in addresses %}
             <div class="addressListing">
-            <input type="radio" id="address_{{ a.id }}" name="address" value="{{ a.id }}">
+                <input type="radio" id="address_{{ a.id }}" name="address" value="{{ a.id }}">
                 <label for="address_{{ a.id }}"></label>
 
-            <p>{{ a.streetNum }}</p>
-            <p>{{ a.state }}</p>
-            <p>{{ a.zipcode }}</p>
-            <p>{{ a.city }}</p>
+                <p>{{ a.streetNum }}</p>
+                <p>{{ a.state }}</p>
+                <p>{{ a.zipcode }}</p>
+                <p>{{ a.city }}</p>
             </div>
         {% endfor %}
-            <p><input type="submit" value="Place order"></p>
+        <input type="radio" id="address_{{ a.id }}" name="address" value="Pickup">
 
-</form>
+        <p><input type="submit" value="Place order"></p>
 
-    
+    </form>
+
+
 
 {% endblock %}
