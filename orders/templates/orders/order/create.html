@@ -21,29 +21,23 @@
     </div>
 
 
-    {% for a in addresses %}
-        <div class="addressListing">
+
+
+        <form method="POST" class="post-form">
+        {% csrf_token %}
+        {% for a in addresses %}
+            <div class="addressListing">
+            <input type="radio" id="address_{{ a.id }}" name="address" value="{{ a.id }}">
+                <label for="address_{{ a.id }}"></label>
+
             <p>{{ a.streetNum }}</p>
             <p>{{ a.state }}</p>
             <p>{{ a.zipcode }}</p>
             <p>{{ a.city }}</p>
-            <a href="{% url 'chineseSpicyFlavor:address_edit' pk=a.pk %}"
-               class="btn btn-warning">Edit</a>
-            <a href="{% url 'chineseSpicyFlavor:address_delete' pk=a.pk %}"
-               onclick="return confirm('Are you sure you want to delete?')"
-               class="btn btn-danger">Delete</a><br>
-           <input type="radio">
+            </div>
+        {% endfor %}
+            <p><input type="submit" value="Place order"></p>
 
-        </div>
+</form>
 
-    {% endfor %}
-
-
-
-
-    <form action="." method="post" class="order-form">
-        {{ form.as_p }}
-        <p><input type="submit" value="Place order"></p>
-        {% csrf_token %}
-    </form>
 {% endblock %}
