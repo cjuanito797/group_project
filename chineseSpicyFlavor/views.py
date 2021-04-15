@@ -10,7 +10,6 @@ from cart.forms import CartAddProductForm
 from .forms import AddressForm, UserEditForm, ProfileEditForm
 from django.http import HttpResponse
 
-
 def product_list(request, category_slug=None):
     category = None
     categories = Category.objects.all()
