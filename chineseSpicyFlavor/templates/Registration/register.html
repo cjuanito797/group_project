@@ -26,6 +26,7 @@
             border-radius: 5px;
             border-style: solid;
             border-color: white;
+            margin-top: 150px;
         }
 
         #signupBackdrop {
@@ -37,6 +38,8 @@
 
             background: black;
             background: rgba(0, 0, 0, 0.3);
+
+            margin-top: 100px;
 
             filter: blur(8px);
             -o-filter: blur(4px);
@@ -98,8 +101,12 @@
             top: 15%;
             left: 0;
             right: 0;
+            margin-top: 150px;
 
+        }
 
+        .signTop {
+            margin-top: 100px;
         }
 
         .top {
@@ -192,20 +199,21 @@
     </center>
 </div>
 
-<div id="banner">
-    <h1>Who's Hungry</h1>
-</div>
-<div id="signupBackdrop">
-    &nbsp;
-</div>
-<div id="form">
-    <h2>Please, sign up using the following form:</h2>
-    <form method="post">
-        {{ user_form.as_p }}
-        {% csrf_token %}
-        <p><input type="submit" value="Join Now"></p>
-    </form>
-</div>
-
+<header class="signTop">
+    <div id="banner">
+        <h1>Who's Hungry</h1>
+    </div>
+    <div id="signupBackdrop">
+        &nbsp;
+    </div>
+    <div id="form">
+        <h2>Please, sign up using the following form:</h2>
+        <form method="post">
+            {{ user_form.as_p }}
+            {% csrf_token %}
+            <p><input type="submit" value="Join Now"></p>
+        </form>
+    </div>
+</header>
 </body>
 </html>

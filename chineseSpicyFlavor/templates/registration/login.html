@@ -24,11 +24,12 @@
 
         }
 
+
         .top {
             height: auto;
             width: 100%;
             margin-left: 0;
-            background: rgb(189, 181, 181);
+
             position: fixed;
             top: 0;
             margin-bottom: 5px;
@@ -41,6 +42,10 @@
             overflow: hidden;
             margin-left: 5%;
             padding: 0;
+        }
+
+        .headTop {
+            margin-top: 100px;
         }
 
         .top li {
@@ -113,23 +118,25 @@
     </center>
 </div>
 
-<h1>Deliciousness Awaits</h1>
-{% if form.errors %}
-    <p>
-        Your username and password didn't match.
-        Please try again.
-    </p>
-{% else %}
-    <p>Please, use the following form to log-in:</p>
-{% endif %}
-<div class="login-form">
-    <form action="{% url 'chineseSpicyFlavor:user_login' %}" method="post">
-        {{ form.as_p }}
-        {% csrf_token %}
-        <input type="hidden" name="next" value="{{ next }}"/>
-        <p><input type="submit" value="Log-in"></p>
-    </form>
+<header class="headTop">
+    <h1>Deliciousness Awaits</h1>
+    {% if form.errors %}
+        <p>
+            Your username and password didn't match.
+            Please try again.
+        </p>
+    {% else %}
+        <p>Please, use the following form to log-in:</p>
+    {% endif %}
+    <div class="login-form">
+        <form action="{% url 'chineseSpicyFlavor:user_login' %}" method="post">
+            {{ form.as_p }}
+            {% csrf_token %}
+            <input type="hidden" name="next" value="{{ next }}"/>
+            <p><input type="submit" value="Log-in"></p>
+        </form>
 
-</div>
+    </div>
+</header>
 </body>
 </html>
