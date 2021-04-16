@@ -33,9 +33,10 @@
                 <p>{{ a.city }}</p>
             </div>
         {% endfor %}
-        <input type="radio" id="address_{{ a.id }}" name="address" value="Pickup">
 
-        <p><input type="submit" value="Place order"></p>
+        <p><input type="submit" name="place_order" value="Place order"></p>
+        <p><input type="submit" name="pickup_order" value="Pickup"></p>
+
 
     </form>
 

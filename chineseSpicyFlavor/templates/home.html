@@ -15,13 +15,34 @@
     <img align="left" src="../static/images/logo_home.PNG" height="400" width="490">
 </header>
 
-<div class="musicPlayer" align="right">
-    <!--
-    <audio autoplay="autoplay" controls="controls" loop="loop" preload="auto">
-        <source src="../static/Music/01.mp3" type="audio/mpeg">
-    </audio>
-    -->
-</div>
+<div class="top">
+        <center>
+            <ul>
+                <li><a href="#">WELCOME!</a></li>
+                <li><a href="{% url 'chineseSpicyFlavor:home' %}">Home</a></li>
+
+                <li><a href="#">ACCOUNT</a>
+                    <ul>
+                        <li><a href="{% url 'chineseSpicyFlavor:register' %}">Sign Up</a></li>
+                        <li><a href="{% url 'chineseSpicyFlavor:user_login' %}">Login</a></li>
+                    </ul>
+                </li>
+
+                <li><a href="#">MENU</a>
+                    <ul>
+                        <li><a href="{% url 'chineseSpicyFlavor:product_list' %}">Foods</a></li>
+                        <li><a href="{% url 'chineseSpicyFlavor:product_list' %}">Order Now</a></li>
+                    </ul>
+                </li>
+
+                <li><a href="#">CONTACT INFO</a>
+                    <ul>
+                        <li><a href="{% url 'chineseSpicyFlavor:about' %}">About</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </center>
+    </div>
 
 <div class="home">
     <div class="ChPicture"></div>
