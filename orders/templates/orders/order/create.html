@@ -34,7 +34,15 @@
             </div>
         {% endfor %}
 
-        <p><input type="submit" name="place_order" value="Place order"></p>
+        {% if addresses.count > 0 %}
+            <p><input type="submit" name="place_order" value="Place order"></p>
+        {% endif %}
+
+        {% ifequal addresses.count  0 %}
+            <!-- Add an add address button -->
+            <p>It appears that you don't have an address on file. Select pickup to continue. </p>
+            <a href="{% url 'chineseSpicyFlavor:address_new' %}">Add Address</a>
+        {% endifequal %}
         <p><input type="submit" name="pickup_order" value="Pickup"></p>
 
 
