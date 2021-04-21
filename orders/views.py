@@ -56,6 +56,7 @@ def create_order(request):
                 new_order = Order(
                     id=create_ref_number(),
                     profile_id=request.user.id,
+                    delivery_pref='Delivery',
                 )
                 new_order.save()
 
@@ -73,8 +74,14 @@ def create_order(request):
                 new_order = Order(
                     id=create_ref_number(),
                     profile_id=request.user.id,
+                    delivery_pref='Pickup'
                 )
                 new_order.save()
+                for item in cart:
+                    OrderItem.objects.create(order=new_order,
+                                             product=item['product'],
+                                             price=item['price'],
+                                             quantity=item['quantity'])
                 cart.clear()
 
                 return render(request, 'orders/order/pickup.html')
