@@ -40,9 +40,11 @@
 
         {% ifequal addresses.count  0 %}
             <!-- Add an add address button -->
-            <p>It appears that you don't have an address on file. Select pickup to continue. </p>
-            <a href="{% url 'chineseSpicyFlavor:address_new' %}">Add Address</a>
+            <p>It appears that you don't have an address on file. Add an address or select "Pickup" to continue.</p>
+            <u><a href="{% url 'chineseSpicyFlavor:address_new' %}">Add Address</a></u>
         {% endifequal %}
+
+
         <p><input type="submit" name="pickup_order" value="Pickup"></p>
 
 
