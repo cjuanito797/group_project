@@ -24,6 +24,8 @@ class Order(models.Model):
     updated = models.DateTimeField(auto_now=True)
     paid = models.BooleanField(default=False)
     braintree_id = models.CharField(max_length=150, blank=True)
+    DELIVERY_CHOICES = (("DELIVERY", 'Delivery'), ("PICKUP", 'Pickup'))
+    delivery_pref = models.CharField(max_length=10, choices=DELIVERY_CHOICES, default="Pickup")
 
     class Meta:
         ordering = ('-created',)
@@ -53,7 +55,6 @@ class OrderItem(models.Model):
 
 
 class GuestOrder(models.Model):
-
     first_name = models.CharField(max_length=50)
     last_name = models.CharField(max_length=50)
     email = models.EmailField()

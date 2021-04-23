@@ -11,6 +11,13 @@ from django.template.loader import render_to_string
 from chineseSpicyFlavor.models import Profile, Address
 from chineseSpicyFlavor.views import display_addresses
 from .forms import OrderCreateForm
+from django.contrib.auth import authenticate, login
+from django.contrib.auth.decorators import login_required
+import random
+
+
+def create_ref_number():
+    return str(random.randint(100000, 999999))
 
 
 # import weasyprint
@@ -37,7 +44,7 @@ def admin_order_detail(request, order_id):
                   {'order': order})
 
 
-def order_create(request):
+def create_order(request):
     cart = Cart(request)
     if request.user.is_authenticated:
         addresses = Address.objects.filter(user_id=request.user)
@@ -45,17 +52,44 @@ def order_create(request):
             if 'place_order' in request.POST:
                 myVar = request.POST.get("address")
                 address = Address.objects.get(pk=myVar)
+                # create a dummy order object to store in database
+                new_order = Order(
+                    id=create_ref_number(),
+                    profile_id=request.user.id,
+                    delivery_pref='Delivery',
+                )
+                new_order.save()
+
+                for item in cart:
+                    OrderItem.objects.create(order=new_order,
+                                             product=item['product'],
+                                             price=item['price'],
+                                             quantity=item['quantity'])
                 cart.clear()
-                return render(request, 'orders/order/created.html', {'address': address})
+
+                return render(request, 'orders/order/created.html', {'address': address, 'new_order': new_order})
 
             elif 'pickup_order' in request.POST:
+                # create a dummy order object to store in database
+                new_order = Order(
+                    id=create_ref_number(),
+                    profile_id=request.user.id,
+                    delivery_pref='Pickup'
+                )
+                new_order.save()
+                for item in cart:
+                    OrderItem.objects.create(order=new_order,
+                                             product=item['product'],
+                                             price=item['price'],
+                                             quantity=item['quantity'])
                 cart.clear()
+
                 return render(request, 'orders/order/pickup.html')
 
         else:
             return render(request,
-                          'orders/order/create.html',
-                          {'cart': cart, 'addresses': addresses})
+                              'orders/order/create.html',
+                              {'cart': cart, 'addresses': addresses})
     else:
         if request.method == 'POST':
             form = OrderCreateForm(request.POST)
