@@ -54,10 +54,12 @@ def create_order(request):
                 address = Address.objects.get(pk=myVar)
                 # create a dummy order object to store in database
                 new_order = Order(
-                    id=create_ref_number(),
                     profile_id=request.user.id,
+                    id=create_ref_number(),
                     delivery_pref='Delivery',
-                ).save()
+
+                )
+                new_order.save()
 
                 for item in cart:
                     OrderItem.objects.create(order=new_order,
@@ -87,8 +89,8 @@ def create_order(request):
 
         else:
             return render(request,
-                          'orders/order/create.html',
-                          {'cart': cart, 'addresses': addresses})
+                              'orders/order/create.html',
+                              {'cart': cart, 'addresses': addresses})
     else:
         if request.method == 'POST':
             form = OrderCreateForm(request.POST)
