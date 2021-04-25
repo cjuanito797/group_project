@@ -3,6 +3,7 @@
 <html lang="en">
 <title>Dashboard</title>
 <head>
+
     <title>{% block title %}{% endblock %}</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -60,9 +61,19 @@
             border-radius: 50px;
         }
 
-        img{
-            border-radius: 50%;
+        #ShoppingCart{
+            position: absolute;
+            top: 5%;
+            left: 85%;
+            background: transparent;
         }
+
+        #productCt{
+            position: relative;
+            top: 3%;
+            left: 15%;
+        }
+
     </style>
 </head>
 <body>
@@ -96,11 +107,13 @@
 
 
 </ul>
+
+
 <br>
 <div id="profilePic">
     <img src="
             {% if user.profile.image %}{{ user.profile.image.url }}{% else %}{% static "images/logo1.jpg" %}{% endif %}"
-         alt="panda" width="200" height="200">
+         alt="panda" width="200" height="200" style="border-radius: 50%">
 </div>
 
 <h3>Welcome, {{ user.username }}</h3>
@@ -130,7 +143,23 @@
     </a>
 </div>
 
-<div id="logo">
+<div id="ShoppingCart">
+
+            <a href="{% url "cart:cart_detail" %}">
+    <img src="../../static/images/redBasket.png" width="200" >
+            </a>
+<div id="productCt">
+    {% with total_items=cart|length %}
+          {% if cart|length > 0 %}
+            Your cart:
+              {{ total_items }} item{{ total_items|pluralize }},
+              ${{ cart.get_total_price }}
+          {% else %}
+            Your cart is empty.
+          {% endif %}
+        {% endwith %}
+</div>
+
 </div>
 
 {% ifequal user.profile.city|stringformat:"s" "" %}
