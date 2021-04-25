@@ -57,8 +57,7 @@ def create_order(request):
                     id=create_ref_number(),
                     profile_id=request.user.id,
                     delivery_pref='Delivery',
-                )
-                new_order.save()
+                ).save()
 
                 for item in cart:
                     OrderItem.objects.create(order=new_order,
@@ -88,8 +87,8 @@ def create_order(request):
 
         else:
             return render(request,
-                              'orders/order/create.html',
-                              {'cart': cart, 'addresses': addresses})
+                          'orders/order/create.html',
+                          {'cart': cart, 'addresses': addresses})
     else:
         if request.method == 'POST':
             form = OrderCreateForm(request.POST)
