@@ -9,6 +9,8 @@ from django.shortcuts import render, get_object_or_404
 from cart.forms import CartAddProductForm
 from .forms import AddressForm, UserEditForm, ProfileEditForm
 from django.http import HttpResponse
+from cart.views import cart_detail
+
 
 def product_list(request, category_slug=None):
     category = None
@@ -45,6 +47,7 @@ def home(request):
 def covidWarning(request):
     return render(request, 'covidPrec.html')
 
+
 def user_login(request):
     if request.method == 'POST':
         form = LoginForm(request.POST)
@@ -74,7 +77,9 @@ def customerView(request):
     request.session.set_test_cookie()
     orders = Order.objects.filter()
     orderItem = OrderItem.objects.all()
-    return render(request, 'account/base.html')
+    cart_product_form = CartAddProductForm()
+
+    return render(request, 'account/base.html', {'cart_product_form': cart_product_form})
 
 
 @login_required
