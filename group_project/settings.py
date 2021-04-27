@@ -43,6 +43,8 @@ INSTALLED_APPS = [
     'django.contrib.humanize',
     'cart.apps.CartConfig',
     'orders.apps.OrdersConfig',
+    'payment.apps.PaymentConfig',
+
 ]
 
 MIDDLEWARE = [
