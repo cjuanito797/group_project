@@ -109,8 +109,8 @@ def create_order(request):
                 # set the order in the session
                 request.session['order_id'] = order.id
 
-                # redirect for payment
-                return render(request, 'orders/order/created.html')
+                # Redirect for the payment
+                return redirect(reverse('payment:process'))
 
         else:
             form = OrderCreateForm()
