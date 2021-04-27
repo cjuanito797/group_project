@@ -69,7 +69,8 @@ def create_order(request):
                                              quantity=item['quantity'])
                 cart.clear()
 
-                return render(request, 'orders/order/created.html', {'address': address, 'new_order': new_order})
+                # Redirect for the payment
+                return redirect(reverse('payment:process'))
 
             elif 'pickup_order' in request.POST:
                 # create a dummy order object to store in database
@@ -86,7 +87,8 @@ def create_order(request):
                                              quantity=item['quantity'])
                 cart.clear()
 
-                return render(request, 'orders/order/pickup.html')
+                # Redirect for the payment
+                return redirect(reverse('payment:process'))
 
         else:
             return render(request,
