@@ -1,6 +1,6 @@
 import braintree
 from django.shortcuts import render, redirect, get_object_or_404
-from orders.models import Order
+from orders.models import GuestOrder
 from django.template.loader import render_to_string
 from django.core.mail import EmailMessage
 from django.conf import settings
@@ -10,7 +10,7 @@ from io import BytesIO
 
 def payment_process(request):
     order_id = request.session.get('order_id')
-    order = get_object_or_404(Order, id=order_id)
+    order = get_object_or_404(GuestOrder, id=order_id)
 
     if request.method == 'POST':
         # retrieve nonce
@@ -58,6 +58,7 @@ def payment_process(request):
                       'payment/process.html',
                       {'order': order,
                        'client_token': client_token})
+
 
 
 def payment_done(request):
