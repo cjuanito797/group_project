@@ -123,10 +123,14 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
 
-
 STATIC_URL = '/static/'
 LOGIN_REDIRECT_URL = '/customerView/'
 LOGIN_URL = 'login'
 LOGOUT_REDIRECT_URL = '/login/'
 
 CART_SESSION_ID = 'cart'
+
+BRAINTREE_PRODUCTION = False
+RAINTREE_MERCHANT_ID = "fmfwbrnzcpzmgcx2"
+BRAINTREE_PUBLIC_KEY = "ygsfsdtfxcm8vk4f"
+BRAINTREE_PRIVATE_KEY = "de2e0c071da1f807da7a341fd7600722"
