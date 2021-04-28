@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>My Orders</title>
-            <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
 
 </head>
 <body>
@@ -14,7 +14,7 @@
         <th>Order #</th>
         <th>Order Date</th>
         <th>Delivery Preference</th>
-        <th>Delivered to: </th>
+        <th>Delivered to:</th>
         <th>Total Cost</th>
         <th colspan="2">Actions</th>
     </tr>
@@ -26,12 +26,21 @@
 
         <tr>
             <td>{{ o.id }}</td>
-            <td>{{ o.created}}</td>
-            <td>{{ o.delivery_pref}}</td>
+            <td>{{ o.created }}</td>
+            <td>{{ o.delivery_pref }}</td>
             <td>{{ o.delivery_pref }}</td>
             <td>{{ o.get_total_cost }}</td>
-            <td><a href="{% url 'chineseSpicyFlavor:OrderDetail' pk=o.pk%}"
-                           class="btn btn-primary">Items</a></td>
+            <td><a href="{% url 'chineseSpicyFlavor:OrderDetail' pk=o.pk %}"
+                   class="btn btn-primary">Items</a>
+            {% if o.paid %}
+                <a href="{% url 'chineseSpicyFlavor:myOrders'  %}" class="btn btn-primary" style="background-color:green;">Paid</a>
+            {% else %}
+                <a href="{% url 'payment:process'  %}" class="btn btn-primary" style="background-color: red">Pay</a>
+
+            {% endif %}
+
+
+            </td>
 
 
         </tr>
