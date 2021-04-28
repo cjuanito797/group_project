@@ -14,6 +14,8 @@
         <th>Order #</th>
         <th>Order Date</th>
         <th>Delivery Preference</th>
+        <th>Delivered to: </th>
+        <th>Total Cost</th>
         <th colspan="2">Actions</th>
     </tr>
 
@@ -25,9 +27,12 @@
         <tr>
             <td>{{ o.id }}</td>
             <td>{{ o.created}}</td>
-            <td>{{ o.deliveryPref }}</td>
+            <td>{{ o.delivery_pref}}</td>
+            <td>{{ o.delivery_pref }}</td>
+            <td>{{ o.get_total_cost }}</td>
             <td><a href="{% url 'chineseSpicyFlavor:OrderDetail' pk=o.pk%}"
                            class="btn btn-primary">Items</a></td>
+
 
         </tr>
     {% endfor %}

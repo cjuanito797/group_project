@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 """
 import os
 from pathlib import Path
+from braintree import Configuration, Environment
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -43,6 +44,8 @@ INSTALLED_APPS = [
     'django.contrib.humanize',
     'cart.apps.CartConfig',
     'orders.apps.OrdersConfig',
+    'payment.apps.PaymentConfig',
+
 ]
 
 MIDDLEWARE = [
@@ -123,10 +126,27 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
 
-
 STATIC_URL = '/static/'
 LOGIN_REDIRECT_URL = '/customerView/'
 LOGIN_URL = 'login'
 LOGOUT_REDIRECT_URL = '/login/'
 
 CART_SESSION_ID = 'cart'
+
+
+# Braintree settings - replace with your credentials after signing up for braintree account
+BRAINTREE_PRODUCTION = False
+BRAINTREE_MERCHANT_ID = "fmfwbrnzcpzmgcx2"
+BRAINTREE_PUBLIC_KEY = "ygsfsdtfxcm8vk4f"
+BRAINTREE_PRIVATE_KEY = "de2e0c071da1f807da7a341fd7600722"
+
+
+Configuration.configure(
+    Environment.Sandbox,
+    BRAINTREE_MERCHANT_ID,
+    BRAINTREE_PUBLIC_KEY,
+    BRAINTREE_PRIVATE_KEY
+)
+
+
+STATIC_ROOT = os.path.join(BASE_DIR, 'static/')

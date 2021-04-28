@@ -14,7 +14,7 @@
 <h2>Order #: {{ order_instance.id }}</h2>
 {% for oi in orderItems %}
 
-    <p>{{ oi.product }}&nbsp;{{ oi.price }}</p>
+    <p>{{ oi.quantity }} x {{ oi.product }}&nbsp;{{ oi.price }}</p>
 {% endfor %}
 
 </body>

@@ -11,6 +11,13 @@ from django.template.loader import render_to_string
 from chineseSpicyFlavor.models import Profile, Address
 from chineseSpicyFlavor.views import display_addresses
 from .forms import OrderCreateForm
+from django.contrib.auth import authenticate, login
+from django.contrib.auth.decorators import login_required
+import random
+
+
+def create_ref_number():
+    return str(random.randint(100000, 999999))
 
 
 # import weasyprint
@@ -37,7 +44,7 @@ def admin_order_detail(request, order_id):
                   {'order': order})
 
 
-def order_create(request):
+def create_order(request):
     cart = Cart(request)
     if request.user.is_authenticated:
         addresses = Address.objects.filter(user_id=request.user)
@@ -45,12 +52,43 @@ def order_create(request):
             if 'place_order' in request.POST:
                 myVar = request.POST.get("address")
                 address = Address.objects.get(pk=myVar)
+                # create a dummy order object to store in database
+                new_order = Order(
+                    profile_id=request.user.id,
+                    id=create_ref_number(),
+                    delivery_pref='Delivery'
+
+                )
+
+                new_order.save()
+
+                for item in cart:
+                    OrderItem.objects.create(order=new_order,
+                                             product=item['product'],
+                                             price=item['price'],
+                                             quantity=item['quantity'])
                 cart.clear()
-                return render(request, 'orders/order/created.html', {'address': address})
+
+                # Redirect for the payment
+                return redirect(reverse('payment:process'))
 
             elif 'pickup_order' in request.POST:
+                # create a dummy order object to store in database
+                new_order = Order(
+                    id=create_ref_number(),
+                    profile_id=request.user.id,
+                    delivery_pref='Pickup'
+                )
+                new_order.save()
+                for item in cart:
+                    OrderItem.objects.create(order=new_order,
+                                             product=item['product'],
+                                             price=item['price'],
+                                             quantity=item['quantity'])
                 cart.clear()
-                return render(request, 'orders/order/pickup.html')
+
+                # Redirect for the payment
+                return redirect(reverse('payment:process'))
 
         else:
             return render(request,
@@ -71,8 +109,8 @@ def order_create(request):
                 # set the order in the session
                 request.session['order_id'] = order.id
 
-                # redirect for payment
-                return render(request, 'orders/order/created.html')
+                # Redirect for the payment
+                return redirect(reverse('payment:process'))
 
         else:
             form = OrderCreateForm()
