@@ -135,10 +135,9 @@ CART_SESSION_ID = 'cart'
 
 
 # Braintree settings - replace with your credentials after signing up for braintree account
-BRAINTREE_PRODUCTION = False
-BRAINTREE_MERCHANT_ID = "fmfwbrnzcpzmgcx2"
-BRAINTREE_PUBLIC_KEY = "ygsfsdtfxcm8vk4f"
-BRAINTREE_PRIVATE_KEY = "de2e0c071da1f807da7a341fd7600722"
+BRAINTREE_MERCHANT_ID = 'jsgy67fzfw2v2pd4'
+BRAINTREE_PUBLIC_KEY = 'fn7459mfqgkv47jt'
+BRAINTREE_PRIVATE_KEY = '46e765a76c06c79843e7123df89c6183'
 
 
 Configuration.configure(
