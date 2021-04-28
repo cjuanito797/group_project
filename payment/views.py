@@ -1,64 +1,54 @@
 import braintree
 from django.shortcuts import render, redirect, get_object_or_404
-from orders.models import GuestOrder
+from orders.models import GuestOrder, Order
 from django.template.loader import render_to_string
 from django.core.mail import EmailMessage
 from django.conf import settings
 # import weasyprint
 from io import BytesIO
+from django.contrib.auth import authenticate, login
+from django.contrib.auth.decorators import login_required
 
 
 def payment_process(request):
-    order_id = request.session.get('order_id')
-    order = get_object_or_404(GuestOrder, id=order_id)
+    # Process payment if user is authenticated
+    if request.user.is_authenticated:
+        order_id = request.session.get('user_order_id')
+        order = get_object_or_404(Order, id=order_id)
 
-    if request.method == 'POST':
-        # retrieve nonce
-        nonce = request.POST.get('payment_method_nonce', None)
-        # create and submit transaction
-        result = braintree.Transaction.sale({
-            'amount': '{:.2f}'.format(order.get_total_cost()),
-            'payment_method_nonce': nonce,
-            'options': {
-                'submit_for_settlement': True
-            }
-        })
-        if result.is_success:
-            # mark the order as paid
-            order.paid = True
-            # store the unique transaction id
-            order.braintree_id = result.transaction.id
-            order.save()
-            # create invoice e-mail
-            subject = 'Fun for Kids Store - Invoice no. {}'.format(order.id)
-            message = 'Thank you for shopping at Fun for Kids. Your total bill card to CC is.'
-            email = EmailMessage(subject,
-                                 message,
-                                 'admin@myshop.com',
-                                 [order.email])
-            # generate PDF
-            #            html = render_to_string('orders/order/pdf.html', {'order': order})
-            #            out = BytesIO()
-            #            stylesheets=[weasyprint.CSS(settings.STATIC_ROOT + 'css/pdf.css')]
-            #            weasyprint.HTML(string=html).write_pdf(out,
-            #                                                  stylesheets=stylesheets)
-            # attach PDF file
-            #            email.attach('order_{}.pdf'.format(order.id),
-            #                         out.getvalue(),
-            #                         'application/pdf')
-            # send e-mail
-            email.send()
-            return redirect('payment:done')
+        if request.method == 'POST':
+            # retrieve nonce
+            nonce = request.POST.get('payment_method_nonce', None)
+            # create and submit transaction
+            result = braintree.Transaction.sale({
+                'amount': '{:.2f}'.format(order.get_total_cost()),
+                'payment_method_nonce': nonce,
+                'options': {
+                    'submit_for_settlement': True
+                }
+            })
+            if result.is_success:
+                # mark the order as paid
+                order.paid = True
+                # store the unique transaction id
+                order.braintree_id = result.transaction.id
+                order.save()
+                # create invoice e-mail
+
+                return redirect('payment:done')
+            else:
+                order.paid = False
+                order.save()
+                return redirect('payment:canceled')
         else:
-            return redirect('payment:canceled')
+            # generate token
+            client_token = braintree.ClientToken.generate()
+            return render(request,
+                          'payment/process.html',
+                          {'order': order,
+                           'client_token': client_token})
     else:
-        # generate token
-        client_token = braintree.ClientToken.generate()
-        return render(request,
-                      'payment/process.html',
-                      {'order': order,
-                       'client_token': client_token})
-
+        print("Working on it.")
 
 
 def payment_done(request):
