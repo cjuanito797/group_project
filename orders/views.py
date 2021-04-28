@@ -53,15 +53,13 @@ def create_order(request):
                 myVar = request.POST.get("address")
                 address = Address.objects.get(pk=myVar)
                 # create a dummy order object to store in database
-                new_order = Order(
+                new_order = Order.objects.create(
                     profile_id=request.user.id,
                     id=create_ref_number(),
                     delivery_pref='Delivery'
 
                 )
 
-                new_order.save()
-
                 for item in cart:
                     OrderItem.objects.create(order=new_order,
                                              product=item['product'],
@@ -70,16 +68,16 @@ def create_order(request):
                 cart.clear()
 
                 # Redirect for the payment
+                request.session['user_order_id'] = new_order.id
                 return redirect(reverse('payment:process'))
 
             elif 'pickup_order' in request.POST:
                 # create a dummy order object to store in database
-                new_order = Order(
+                new_order = Order.objects.create(
                     id=create_ref_number(),
                     profile_id=request.user.id,
                     delivery_pref='Pickup'
                 )
-                new_order.save()
                 for item in cart:
                     OrderItem.objects.create(order=new_order,
                                              product=item['product'],
@@ -88,6 +86,7 @@ def create_order(request):
                 cart.clear()
 
                 # Redirect for the payment
+                request.session['user_order_id'] = new_order.id
                 return redirect(reverse('payment:process'))
 
         else:
