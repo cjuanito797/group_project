@@ -19,6 +19,7 @@ urlpatterns = [
     path('register/', views.register, name='register'),
     path('login/', auth_views.LoginView.as_view(), name='user_login'),
     path('logout/', auth_views.LogoutView.as_view(), name='logout'),
+    path('password_reset/', auth_views.PasswordResetView.as_view(), name='password_reset'),
     path('foods/', views.product_list, name='product_list'),
     path('foods/<slug:category_slug>/', views.product_list,
          name='product_list_by_category'),
