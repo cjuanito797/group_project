@@ -45,7 +45,10 @@ def home(request):
 
 
 def covidWarning(request):
-    return render(request, 'covidPrec.html')
+    if request.user.is_authenticated:
+        return render(request, 'account/base.html')
+    else:
+        return render(request, 'covidPrec.html')
 
 
 def user_login(request):
@@ -199,7 +202,8 @@ def order_list(request):
 def order_delete(request, pk):
     order = get_object_or_404(Order, pk=pk)
     order.delete()
-    return redirect('chineseSpicyFlavor:myOrders')
+    messages.success(request, 'Order Deleted Successfully')
+    return render(request, 'account/base.html')
 
 
 @login_required
