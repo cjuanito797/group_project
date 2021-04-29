@@ -2,33 +2,64 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <title>{% block title %}Order Now!{% endblock %}</title>
-  <link href="{% static "css/base.css" %}" rel="stylesheet">
+    <meta charset="utf-8"/>
+    <title>{% block title %}Order Now!{% endblock %}</title>
+    <link href="{% static "css/base.css" %}" rel="stylesheet">
 </head>
 <body>
-  <div id="header">
-    <h3>Order Now!</h3>
-  </div>
-  <div id="subheader">
-    <div class="cart">
-      {% with total_items=cart|length %}
-          {% if cart|length > 0 %}
-            Your cart:
-            <a href="{% url "cart:cart_detail" %}">
-              {{ total_items }} item{{ total_items|pluralize }},
-              ${{ cart.get_total_price }}
-            </a>
-          {% else %}
-            Your cart is empty.
-          {% endif %}
-        {% endwith %}
-    </div>
 
-  </div>
-  <div id="content">
-    {% block content %}
-    {% endblock %}
-  </div>
+<div class="Top">
+    <ul>
+        <li><a href="#">WELCOME!</a></li>
+        <li><a href="{% url 'chineseSpicyFlavor:home' %}">Home</a></li>
+
+        <li><a href="#">ACCOUNT</a>
+            <ul>
+                <li><a href="{% url 'chineseSpicyFlavor:register' %}">Sign Up</a></li>
+                <li><a href="{% url 'chineseSpicyFlavor:user_login' %}">Login</a></li>
+            </ul>
+        </li>
+
+        <li><a href="#">MENU</a>
+            <ul>
+                <li><a href="{% url 'chineseSpicyFlavor:product_list' %}">Foods</a></li>
+                <li><a href="{% url 'chineseSpicyFlavor:product_list' %}">Order Now</a></li>
+            </ul>
+        </li>
+
+        <li><a href="#">CONTACT INFO</a>
+            <ul>
+                <li><a href="{% url 'chineseSpicyFlavor:about' %}">About</a></li>
+            </ul>
+        </li>
+    </ul>
+</div>
+
+<div class="Top_Top">
+    <div id="header">
+        <h3>Order Now!</h3>
+    </div>
+    <div id="subheader">
+        <div class="cart">
+            {% with total_items=cart|length %}
+                {% if cart|length > 0 %}
+                    Your cart:
+                    <a href="{% url "cart:cart_detail" %}">
+                        {{ total_items }} item{{ total_items|pluralize }},
+                        ${{ cart.get_total_price }}
+                    </a>
+                {% else %}
+                    Your cart is empty.
+                {% endif %}
+            {% endwith %}
+        </div>
+
+    </div>
+    <div id="content">
+        {% block content %}
+        {% endblock %}
+    </div>
+</div>
+
 </body>
 </html>
