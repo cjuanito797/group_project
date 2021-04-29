@@ -86,33 +86,3 @@ class Customer(models.Model):
     email = models.EmailField(default="null")
 
 
-"""
-class Order(models.Model):
-    id = models.CharField(
-        primary_key=True,
-        max_length=6,
-        blank=True,
-        editable=False,
-        unique=True,
-        default=create_new_ref_number()
-    )
-    # orderQty = models.CharField(max_length=100)
-    order_date = models.DateTimeField(auto_now=True)
-    deliveryChoices = (
-        ('delivery', 'Delivery'),
-        ('pickup', 'Pickup')
-    )
-
-    customer = models.ForeignKey(Profile, db_column="Profile", on_delete=models.CASCADE)
-
-    deliveryPref = models.CharField(max_length=10,
-                                    choices=deliveryChoices,
-                                    default='pickup')
-
-    class Meta:
-        ordering = ('id',)
-        managed = True
-
-    def __str__(self):
-        return f'{self.id}'
-"""
