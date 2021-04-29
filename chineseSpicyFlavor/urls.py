@@ -1,17 +1,20 @@
 from django.contrib.auth import views as auth_views
 from django.urls import path, re_path
+from django.contrib.auth import authenticate, login
 
 from . import views
 
 app_name = 'chineseSpicyFlavor'
 
 urlpatterns = [
+
     path('', views.covidWarning, name='covidWarning'),
     re_path('home/', views.home, name='home'),
     path('about/', views.about, name='about'),
     path('customerView/', views.customerView, name='customerView'),
     path('myOrders/', views.order_list, name='myOrders'),
     path('myOrders/<int:pk>/details', views.order_detail, name='OrderDetail'),
+    path('myOrders/<int:pk>/delete', views.order_delete, name='OrderDelete'),
     # path('signup/', views.signup, name='signup'),
     path('register/', views.register, name='register'),
     path('login/', auth_views.LoginView.as_view(), name='user_login'),
