@@ -1,6 +1,5 @@
 from django.contrib.auth import views as auth_views
 from django.urls import path, re_path
-from django.contrib.auth import authenticate, login
 
 from . import views
 
@@ -21,6 +20,8 @@ urlpatterns = [
     path('logout/', auth_views.LogoutView.as_view(), name='logout'),
     path('password_reset/', auth_views.PasswordResetView.as_view(), name='password_reset'),
     path('password_reset/done/', auth_views.PasswordResetDoneView.as_view(), name='password_reset_done.html'),
+    path('password_reset/confirm/<uidb64>/<token>/', auth_views.PasswordResetConfirmView.as_view(),
+         name='password_reset_confirm.html'),
     path('foods/', views.product_list, name='product_list'),
     path('foods/<slug:category_slug>/', views.product_list,
          name='product_list_by_category'),
