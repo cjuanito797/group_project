@@ -16,7 +16,7 @@
         <th>Delivery Preference</th>
         <th>Delivered to:</th>
         <th>Total Cost</th>
-        <th colspan="2">Actions</th>
+        <th colspan="3">Actions</th>
     </tr>
 
     </thead>
@@ -28,24 +28,28 @@
             <td>{{ o.id }}</td>
             <td>{{ o.created }}</td>
             <td>{{ o.delivery_pref }}</td>
-            <td>{{ o.delivery_pref }}</td>
+        {% ifnotequal o.address.pk None  %}
+            <td>{{ o.address.streetNum  }}<br>{{ o.address.city }},{{ o.address.state }}<br>{{ o.address.zipcode }}</td>
+
+        {% endifnotequal %}
+        {% ifequal o.address.pk None %}
+            <td>Chinese Spicy Flavor</td>
+        {% endifequal %}
             <td>{{ o.get_total_cost }}</td>
             <td><a href="{% url 'chineseSpicyFlavor:OrderDetail' pk=o.pk %}"
-                   class="btn btn-primary">Items</a>
+                   class="btn btn-primary">Reciept</a>
             {% if o.paid %}
                 <a href="{% url 'chineseSpicyFlavor:myOrders'  %}" class="btn btn-primary" style="background-color:green;">Paid</a>
             {% else %}
                 <a href="{% url 'payment:process'  %}" class="btn btn-primary" style="background-color: red">Pay</a>
 
             {% endif %}
-
-
+             <a href="{% url 'chineseSpicyFlavor:OrderDelete' pk=o.pk %}"
+                           onclick="return confirm('Are you sure you want to delete?')"
+                           class="btn btn-danger">Delete</a>
             </td>
-
-
         </tr>
     {% endfor %}
-
 
     </tbody>
 </table>
