@@ -4,6 +4,7 @@ from django.contrib.auth.models import User
 from django.db import models
 from django.urls import reverse
 
+
 class Address(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL,
                              on_delete=models.CASCADE,
@@ -84,5 +85,3 @@ class Customer(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     name = models.CharField(max_length=20, default="null")
     email = models.EmailField(default="null")
-
-
