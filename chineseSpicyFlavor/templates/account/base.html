@@ -134,18 +134,27 @@
             display: block;
         }
 
+
+
     </style>
 </head>
 <body>
 
 <div class="top">
-    <center>
+    <div style="text-align: center;">
         <ul>
             <li><a href="#">WELCOME!</a></li>
             <li><a href="#">ACCOUNT</a>
             <ul>
 
                     <li><a href="{% url 'chineseSpicyFlavor:edit' %}">Edit Account</a></li>
+
+                </ul>
+            </li>
+
+            <li><a href="#">ADDRESSES</a>
+            <ul>
+
                     <li><a href="{% url 'chineseSpicyFlavor:address_new' %}">Add an address</a></li>
                     <li><a href="{% url 'chineseSpicyFlavor:displayAddresses' %}">My Addresses</a></li>
 
@@ -159,11 +168,19 @@
                 </ul>
             </li>
 
+            <li><a href="#">Order</a>
+                <ul>
+                    <li><a href="{% url 'chineseSpicyFlavor:product_list' %}">Order Now</a></li>
+                    <li><a href="{% url 'chineseSpicyFlavor:myOrders' %}">My Orders</a></li>
+
+                </ul>
+            </li>
+
                 <ul>
                     <li><a href="{% url 'chineseSpicyFlavor:logout' %}">Logout</a></li>
                 </ul>
         </ul>
-    </center>
+    </div>
 </div>
 
 <div class="second_top">
@@ -177,25 +194,6 @@
         {% endfor %}
     </ul>
 </header>
-<ul class="nav navbar-nav navbar-right">
-    {% if user.is_authenticated %}
-        <li class="dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                <span class="caret"></span>
-            </a>
-            <ul class="dropdown-menu" role="menu">
-                <li><a href="{% url 'chineseSpicyFlavor:product_list' %}"><i class="fa fa-btn fa-sign-out"></i>Foods</a>
-                </li>
-                <li><a href="{% url 'chineseSpicyFlavor:logout' %}"><i class="fa fa-btn fa-sign-out"></i>Logout</a></li>
-            </ul>
-        </li>
-    {% else %}
-        <li><a href="{% url 'chineseSpicyFlavor:user_login' %}"><span class="glyphicon glyphicon-log-in"></span>
-            Login</a></li>
-    {% endif %}
-
-
-</ul>
 
 
 <br>
@@ -208,59 +206,13 @@
 
 <h3>Welcome, {{ user.username }}</h3>
 
-<div id="content">
-    {% block content %}
-    {% endblock %}
-</div>
-<div id="sidebar">
-</div>
-<br><br>
-
-<div id="nav">
-    <a href="{% url 'chineseSpicyFlavor:edit' %}">
-        <input type="submit" value="Edit Account">
-    </a>
-
-    <a href="{% url 'chineseSpicyFlavor:product_list' %}">
-        <input type="submit" value="Order Now">
-    </a>
-
-    <a href="{% url 'chineseSpicyFlavor:myOrders' %}">
-        <input type="submit" value="My Orders">
-    </a>
-     <a href="{% url 'chineseSpicyFlavor:displayAddresses' %}">
-        <input type="submit" value="My Addresses">
-    </a>
-</div>
-
 <div id="ShoppingCart">
 
             <a href="{% url "cart:cart_detail" %}">
     <img src="../../static/images/redBasket.png" width="200" >
             </a>
-<div id="productCt">
-    {% with total_items=cart|length %}
-          {% if cart|length > 0 %}
-            Your cart:
-              {{ total_items }} item{{ total_items|pluralize }},
-              ${{ cart.get_total_price }}
-          {% else %}
-            Your cart is empty.
-          {% endif %}
-        {% endwith %}
 </div>
-
 </div>
-
-{% ifequal user.profile.city|stringformat:"s" "" %}
-
-    <h3>Looks like we still have a a couple of things to set up</h3>
-    <a href="{% url 'chineseSpicyFlavor:edit' %}">Edit Account</a>
-
-{% endifequal %}
-
-</div>
-
 </body>
 </html>
 
