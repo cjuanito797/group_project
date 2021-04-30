@@ -142,12 +142,13 @@
     <center>
         <ul>
             <li><a href="#">WELCOME!</a></li>
-            <li><a href="{% url 'chineseSpicyFlavor:home' %}">Home</a></li>
-
             <li><a href="#">ACCOUNT</a>
-                <ul>
-                    <li><a href="{% url 'chineseSpicyFlavor:register' %}">Sign Up</a></li>
-                    <li><a href="{% url 'chineseSpicyFlavor:user_login' %}">Login</a></li>
+            <ul>
+
+                    <li><a href="{% url 'chineseSpicyFlavor:edit' %}">Edit Account</a></li>
+                    <li><a href="{% url 'chineseSpicyFlavor:address_new' %}">Add an address</a></li>
+                    <li><a href="{% url 'chineseSpicyFlavor:displayAddresses' %}">My Addresses</a></li>
+
                 </ul>
             </li>
 
@@ -158,11 +159,9 @@
                 </ul>
             </li>
 
-            <li><a href="#">CONTACT INFO</a>
                 <ul>
-                    <li><a href="{% url 'chineseSpicyFlavor:about' %}">About</a></li>
+                    <li><a href="{% url 'chineseSpicyFlavor:logout' %}">Logout</a></li>
                 </ul>
-            </li>
         </ul>
     </center>
 </div>
