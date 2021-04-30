@@ -3,25 +3,61 @@
 <head>
     <meta charset="UTF-8">
     <title>MY Addresses</title>
+
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+
+    <style>
+
+        #addresses {
+            width: 100%;
+        }
+
+        #addresses, th, td{
+            border: 1px solid #ddd;
+            padding: 8px;
+        }
+
+        #addresses th{
+            padding-top: 20px;
+            padding-bottom: 12px;
+
+            text-align: left;
+            background-color: coral;
+            color: white;
+        }
+
+    </style>
 </head>
 <body>
 
 <h1>Your Addresses</h1>
 
-{% for a in addresses %}
-    <p>{{ a.streetNum }}</p>
-    <p>{{ a.state }}</p>
-    <p>{{ a.zipcode }}</p>
-    <p>{{ a.city }}</p>
-    <a href="{% url 'chineseSpicyFlavor:address_edit' pk=a.pk %}"
+<table id="addresses">
+    <th>Street Num</th>
+    <th>State</th>
+    <th>City</th>
+    <th>Zipcode</th>
+    <th colspan="3">Actions</th>
+
+    {% for a in addresses %}
+        <tr>
+            <td>{{ a.streetNum }}</td>
+            <td>{{ a.state }}</td>
+            <td>{{ a.city }}</td>
+            <td>{{ a.zipcode }}</td>
+            <td>
+                <a href="{% url 'chineseSpicyFlavor:address_edit' pk=a.pk %}"
                            class="btn btn-warning">Edit</a>
-    <a href="{% url 'chineseSpicyFlavor:address_delete' pk=a.pk %}"
+                <a href="{% url 'chineseSpicyFlavor:address_delete' pk=a.pk %}"
                            onclick="return confirm('Are you sure you want to delete?')"
                            class="btn btn-danger">Delete</a>
-        <p>*****************</p>
+            </td>
 
-{% endfor %}
+        </tr>
+    {% endfor %}
 
+
+</table>
 
 <a href="{% url 'chineseSpicyFlavor:address_new' %}" class="row"><span
                     class="btn btn-primary">Add Address</span></a>

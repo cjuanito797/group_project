@@ -133,8 +133,11 @@ LOGOUT_REDIRECT_URL = '/login/'
 
 CART_SESSION_ID = 'cart'
 
-EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
-
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.Email.Backend'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = os.environ.get('EMAIL_USER')
+EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_PASS')
 
 
 # Braintree settings - replace with your credentials after signing up for braintree account
