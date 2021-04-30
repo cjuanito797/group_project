@@ -128,6 +128,8 @@
     {% else %}
         <p>Please, use the following form to log-in:</p>
     {% endif %}
+
+
     <div class="login-form">
         <form action="{% url 'chineseSpicyFlavor:user_login' %}" method="post">
             {{ form.as_p }}
@@ -137,6 +139,8 @@
         </form>
 
     </div>
+
+    <p><a href="{% url "chineseSpicyFlavor:password_reset" %}">Reset your password?</a></p>
 </header>
 </body>
 </html>

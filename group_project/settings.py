@@ -133,11 +133,18 @@ LOGOUT_REDIRECT_URL = '/login/'
 
 CART_SESSION_ID = 'cart'
 
-EMAIL_BACKEND = 'django.core.mail.backends.smtp.Email.Backend'
+
+
+# Redirect to home URL after login (Default redirects to /accounts/profile/)
+LOGIN_REDIRECT_URL = '/'
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_USER = 'cjuangas17@gmail.com'
+EMAIL_HOST_PASSWORD = 'czvfhtpiehenbkyk'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
-EMAIL_HOST_USER = os.environ.get('EMAIL_USER')
-EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_PASS')
+DEFAULT_FROM_EMAIL = 'This is from Juan\'s Django'
+
 
 
 # Braintree settings - replace with your credentials after signing up for braintree account
