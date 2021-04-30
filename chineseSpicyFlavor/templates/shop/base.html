@@ -1,38 +1,56 @@
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="utf-8"/>
     <title>{% block title %}Order Now!{% endblock %}</title>
     <link href="{% static "css/base.css" %}" rel="stylesheet">
 </head>
+
 <body>
 
-<div class="Top">
-    <ul>
-        <li><a href="#">WELCOME!</a></li>
-        <li><a href="{% url 'chineseSpicyFlavor:home' %}">Home</a></li>
-
-        <li><a href="#">ACCOUNT</a>
+<div class="top">
+    <div style="text-align: center;">
+        <ul>
+            <li><a href="#">WELCOME!</a></li>
+            <li><a href="#">ACCOUNT</a>
             <ul>
-                <li><a href="{% url 'chineseSpicyFlavor:register' %}">Sign Up</a></li>
-                <li><a href="{% url 'chineseSpicyFlavor:user_login' %}">Login</a></li>
-            </ul>
-        </li>
 
-        <li><a href="#">MENU</a>
-            <ul>
-                <li><a href="{% url 'chineseSpicyFlavor:product_list' %}">Foods</a></li>
-                <li><a href="{% url 'chineseSpicyFlavor:product_list' %}">Order Now</a></li>
-            </ul>
-        </li>
+                    <li><a href="{% url 'chineseSpicyFlavor:edit' %}">Edit Account</a></li>
 
-        <li><a href="#">CONTACT INFO</a>
+                </ul>
+            </li>
+
+            <li><a href="#">ADDRESSES</a>
             <ul>
-                <li><a href="{% url 'chineseSpicyFlavor:about' %}">About</a></li>
-            </ul>
-        </li>
-    </ul>
+
+                    <li><a href="{% url 'chineseSpicyFlavor:address_new' %}">Add an address</a></li>
+                    <li><a href="{% url 'chineseSpicyFlavor:displayAddresses' %}">My Addresses</a></li>
+
+                </ul>
+            </li>
+
+            <li><a href="#">MENU</a>
+                <ul>
+                    <li><a href="{% url 'chineseSpicyFlavor:product_list' %}">Foods</a></li>
+                    <li><a href="{% url 'chineseSpicyFlavor:product_list' %}">Order Now</a></li>
+                </ul>
+            </li>
+
+            <li><a href="#">Order</a>
+                <ul>
+                    <li><a href="{% url 'chineseSpicyFlavor:product_list' %}">Create Order</a></li>
+                    <li><a href="{% url 'chineseSpicyFlavor:myOrders' %}">My Orders</a></li>
+
+                </ul>
+            </li>
+
+                <ul>
+                    <li><a href="{% url 'chineseSpicyFlavor:logout' %}">Logout</a></li>
+                </ul>
+        </ul>
+    </div>
 </div>
 
 <div class="Top_Top">
