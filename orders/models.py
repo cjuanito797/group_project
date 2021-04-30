@@ -1,6 +1,5 @@
 from django.db import models
-from chineseSpicyFlavor.models import Product, Profile, Address
-import random
+from chineseSpicyFlavor.models import Product, Profile, random, Address
 
 
 def create_ref_number():
@@ -28,9 +27,7 @@ class Order(models.Model):
     delivery_pref = models.CharField(max_length=10, choices=DELIVERY_CHOICES, default="Pickup")
     address = models.OneToOneField(Address,
                                    unique=False,
-                                   on_delete=models.CASCADE,
-                                   null=True)
-
+                                   on_delete=models.CASCADE)
     class Meta:
         ordering = ('-created',)
         unique_together = (("profile", "id"),)
