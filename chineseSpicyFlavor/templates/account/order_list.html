@@ -4,9 +4,9 @@
     <meta charset="UTF-8">
     <title>My Orders</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
-<style>
+    <style>
 
-    .top {
+        .top {
             height: auto;
             width: 100%;
             margin-left: 0;
@@ -61,20 +61,20 @@
             display: block;
         }
 
-        body
-        {
+        body {
             padding-top: 80px;
         }
-</style>
+    </style>
 </head>
 <body>
 
 <div class="top">
     <div style="text-align: center;">
         <ul>
-            <li><a href="#">WELCOME!</a></li>
+            <li><a href="{% url 'chineseSpicyFlavor:customerView' %}">MY PAGE</a></li>
+
             <li><a href="#">ACCOUNT</a>
-            <ul>
+                <ul>
 
                     <li><a href="{% url 'chineseSpicyFlavor:edit' %}">Edit Account</a></li>
 
@@ -82,7 +82,7 @@
             </li>
 
             <li><a href="#">ADDRESSES</a>
-            <ul>
+                <ul>
 
                     <li><a href="{% url 'chineseSpicyFlavor:address_new' %}">Add an address</a></li>
                     <li><a href="{% url 'chineseSpicyFlavor:displayAddresses' %}">My Addresses</a></li>
@@ -105,9 +105,9 @@
                 </ul>
             </li>
 
-                <ul>
-                    <li><a href="{% url 'chineseSpicyFlavor:logout' %}">Logout</a></li>
-                </ul>
+            <ul>
+                <li><a href="{% url 'chineseSpicyFlavor:logout' %}">Logout</a></li>
+            </ul>
         </ul>
     </div>
 </div>
@@ -133,25 +133,27 @@
             <td>{{ o.id }}</td>
             <td>{{ o.created }}</td>
             <td>{{ o.delivery_pref }}</td>
-        {% ifnotequal o.address.pk None  %}
-            <td>{{ o.address.streetNum  }}<br>{{ o.address.city }},{{ o.address.state }}<br>{{ o.address.zipcode }}</td>
+            {% ifnotequal o.address.pk None %}
+                <td>{{ o.address.streetNum }}<br>{{ o.address.city }},{{ o.address.state }}<br>{{ o.address.zipcode }}
+                </td>
 
-        {% endifnotequal %}
-        {% ifequal o.address.pk None %}
-            <td>Chinese Spicy Flavor</td>
-        {% endifequal %}
+            {% endifnotequal %}
+            {% ifequal o.address.pk None %}
+                <td>Chinese Spicy Flavor</td>
+            {% endifequal %}
             <td>{{ o.get_total_cost }}</td>
             <td><a href="{% url 'chineseSpicyFlavor:OrderDetail' pk=o.pk %}"
                    class="btn btn-primary">Reciept</a>
-            {% if o.paid %}
-                <a href="{% url 'chineseSpicyFlavor:myOrders'  %}" class="btn btn-primary" style="background-color:green;">Paid</a>
-            {% else %}
-                <a href="{% url 'payment:process'  %}" class="btn btn-primary" style="background-color: red">Pay</a>
+                {% if o.paid %}
+                    <a href="{% url 'chineseSpicyFlavor:myOrders' %}" class="btn btn-primary"
+                       style="background-color:green;">Paid</a>
+                {% else %}
+                    <a href="{% url 'payment:process' %}" class="btn btn-primary" style="background-color: red">Pay</a>
 
-            {% endif %}
-             <a href="{% url 'chineseSpicyFlavor:OrderDelete' pk=o.pk %}"
-                           onclick="return confirm('Are you sure you want to delete?')"
-                           class="btn btn-danger">Delete</a>
+                {% endif %}
+                <a href="{% url 'chineseSpicyFlavor:OrderDelete' pk=o.pk %}"
+                   onclick="return confirm('Are you sure you want to delete?')"
+                   class="btn btn-danger">Delete</a>
             </td>
         </tr>
     {% endfor %}
