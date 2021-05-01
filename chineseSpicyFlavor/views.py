@@ -79,10 +79,11 @@ from django.contrib.auth.decorators import login_required
 def customerView(request):
     request.session.set_test_cookie()
     orders = Order.objects.filter(profile_id=request.user.id)
+
     orderItem = OrderItem.objects.all()
     cart_product_form = CartAddProductForm()
 
-    return render(request, 'account/base.html', {'cart_product_form': cart_product_form, 'orders': orders, 'n' : range(3)})
+    return render(request, 'account/base.html', {'cart_product_form': cart_product_form, 'orders': orders, 'n' : range(3), 'oi' : orderItem})
 
 
 @login_required
