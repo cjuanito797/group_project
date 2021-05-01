@@ -25,7 +25,7 @@ class Order(models.Model):
     braintree_id = models.CharField(max_length=150, blank=True)
     DELIVERY_CHOICES = (("DELIVERY", 'Delivery'), ("PICKUP", 'Pickup'))
     delivery_pref = models.CharField(max_length=10, choices=DELIVERY_CHOICES, default="Pickup")
-    address = models.OneToOneField(Address,
+    address = models.ForeignKey(Address,
                                    unique=False,
                                    on_delete=models.CASCADE)
     class Meta:
