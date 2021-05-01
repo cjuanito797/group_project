@@ -177,7 +177,15 @@
         }
 
         #favoriteItems{
+            text-align: center;
             position: relative;
+            margin-top: 20px;
+            margin-left: 200px;
+            border: 5px solid black;
+            width: 750px;
+            height: 250px;
+            overflow-y: auto;
+            width: 800px;
         }
 
 
@@ -316,7 +324,7 @@
     <h3>Your most liked items</h3>
     {% for foo in oi %}
         {% if forloop.counter < 3 %}
-            <p>{{ foo.product.name}}</p>
+            <h5>{{ foo.product.name}}</h5>
             <img src="
             {% if user.profile.image %}{{ foo.product.image.url }}{% else %}{% static "images/logo1.jpg" %}{% endif %}"
              alt="panda" width="200" height="200" style="border-radius: 50%">
