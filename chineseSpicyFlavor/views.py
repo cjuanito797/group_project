@@ -10,6 +10,8 @@ from cart.forms import CartAddProductForm
 from .forms import AddressForm, UserEditForm, ProfileEditForm
 from django.http import HttpResponse
 from cart.views import cart_detail
+from django.http import HttpResponse
+import datetime
 
 
 def product_list(request, category_slug=None):
@@ -45,10 +47,7 @@ def home(request):
 
 
 def covidWarning(request):
-    if request.user.is_authenticated:
-        return render(request, 'account/base.html')
-    else:
-        return render(request, 'covidPrec.html')
+    return render(request, 'covidPrec.html')
 
 
 def user_login(request):
@@ -78,11 +77,13 @@ from django.contrib.auth.decorators import login_required
 @login_required
 def customerView(request):
     request.session.set_test_cookie()
-    orders = Order.objects.filter()
-    orderItem = OrderItem.objects.all()
+    orders = Order.objects.filter(profile_id=request.user.id)
+
+    orderItem = OrderItem.objects.filter()
     cart_product_form = CartAddProductForm()
 
-    return render(request, 'account/base.html', {'cart_product_form': cart_product_form})
+    return render(request, 'account/base.html',
+                  {'cart_product_form': cart_product_form, 'orders': orders, 'n': range(3), 'oi': orderItem})
 
 
 @login_required
@@ -145,12 +146,6 @@ def display_addresses(request):
 
 
 @login_required
-def sample_view(request):
-    current_user = request.user
-    return render(request, 'account/sample.html', {'current_user': current_user})
-
-
-@login_required
 def address_new(request):
     if request.method == "POST":
         form = AddressForm(request.POST)
@@ -161,7 +156,13 @@ def address_new(request):
             addresses = Address.objects.filter(user_id=request.user)
             messages.success(request, 'Address Added '
                                       'successfully')
-            return render(request, 'account/base.html')
+            orders = Order.objects.filter(profile_id=request.user.id)
+
+            orderItem = OrderItem.objects.filter()
+            cart_product_form = CartAddProductForm()
+
+            return render(request, 'account/base.html',
+                          {'cart_product_form': cart_product_form, 'orders': orders, 'n': range(3), 'oi': orderItem})
     else:
         form = AddressForm()
     return render(request, 'account/address_new.html', {'form': form})
@@ -203,7 +204,14 @@ def order_delete(request, pk):
     order = get_object_or_404(Order, pk=pk)
     order.delete()
     messages.success(request, 'Order Deleted Successfully')
-    return render(request, 'account/base.html')
+    request.session.set_test_cookie()
+    orders = Order.objects.filter(profile_id=request.user.id)
+
+    orderItem = OrderItem.objects.filter()
+    cart_product_form = CartAddProductForm()
+
+    return render(request, 'account/base.html',
+                  {'cart_product_form': cart_product_form, 'orders': orders, 'n': range(3), 'oi': orderItem})
 
 
 @login_required
