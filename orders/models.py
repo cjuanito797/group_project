@@ -26,8 +26,9 @@ class Order(models.Model):
     DELIVERY_CHOICES = (("DELIVERY", 'Delivery'), ("PICKUP", 'Pickup'))
     delivery_pref = models.CharField(max_length=10, choices=DELIVERY_CHOICES, default="Pickup")
     address = models.ForeignKey(Address,
-                                   unique=False,
-                                   on_delete=models.CASCADE)
+                                unique=False,
+                                on_delete=models.CASCADE)
+
     class Meta:
         ordering = ('-created',)
         unique_together = (("profile", "id"),)
