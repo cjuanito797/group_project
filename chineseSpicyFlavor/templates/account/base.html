@@ -25,6 +25,8 @@
 
         $(".post-form")[0].reset(); // this is to reset the form
     </script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+
     <style>
         /* Remove the navbar's default margin-bottom and rounded borders */
 
@@ -61,21 +63,21 @@
             border-radius: 50px;
         }
 
-        #ShoppingCart{
+        #ShoppingCart {
             position: absolute;
             top: 5%;
             left: 85%;
             background: transparent;
         }
 
-        #productCt{
+        #productCt {
             position: relative;
             top: 3%;
             left: 15%;
 
         }
 
-        .second_top{
+        .second_top {
             margin-top: 65px;
         }
 
@@ -135,6 +137,49 @@
         }
 
 
+        #mostRecentOrders {
+            font-family: Arial, Helvetica, sans-serif;
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        #mostRecentOrders td, #mostRecentOrders th {
+            border: 1px solid #ddd;
+            padding: 8px;
+        }
+
+        #mostRecentOrders tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        #mostRecentOrders tr:hover {
+            background-color: #ddd;
+        }
+
+        #mostRecentOrders th {
+            padding-top: 12px;
+            padding-bottom: 12px;
+            text-align: left;
+            background-color: #4CAF50;
+            color: white;
+        }
+
+        #recentOrders {
+            text-align: center;
+            position: relative;
+            margin-left: 200px;
+            border: 5px solid black;
+            width: 750px;
+            height: 250px;
+            overflow-y: auto;
+            width: 800px;
+
+        }
+
+        #favoriteItems{
+            position: relative;
+        }
+
 
     </style>
 </head>
@@ -145,7 +190,7 @@
         <ul>
             <li><a href="{% url 'chineseSpicyFlavor:customerView' %}">MY PAGE</a></li>
             <li><a href="#">ACCOUNT</a>
-            <ul>
+                <ul>
 
                     <li><a href="{% url 'chineseSpicyFlavor:edit' %}">Edit Account</a></li>
 
@@ -153,7 +198,7 @@
             </li>
 
             <li><a href="#">ADDRESSES</a>
-            <ul>
+                <ul>
 
                     <li><a href="{% url 'chineseSpicyFlavor:address_new' %}">Add an address</a></li>
                     <li><a href="{% url 'chineseSpicyFlavor:displayAddresses' %}">My Addresses</a></li>
@@ -176,57 +221,114 @@
                 </ul>
             </li>
 
-                <ul>
-                    <li><a href="{% url 'chineseSpicyFlavor:logout' %}">Logout</a></li>
-                </ul>
+            <ul>
+                <li><a href="{% url 'chineseSpicyFlavor:logout' %}">Logout</a></li>
+            </ul>
         </ul>
     </div>
 </div>
 
 <div class="second_top">
-<header>
-    <ul class="messages">
-        {% for message in messages %}
-            <li class="{{ message.tags }}">
-                {{ message|safe }}
-                <a href="#" class="close">x</a>
-            </li>
-        {% endfor %}
-    </ul>
-</header>
+    <header>
+        <ul class="messages">
+            {% for message in messages %}
+                <li class="{{ message.tags }}">
+                    {{ message|safe }}
+                    <a href="#" class="close">x</a>
+                </li>
+            {% endfor %}
+        </ul>
+    </header>
 
 
-<br>
-<div id="profilePic">
-    <img src="
+    <br>
+    <div id="profilePic">
+        <img src="
             {% if user.profile.image %}{{ user.profile.image.url }}{% else %}{% static "images/logo1.jpg" %}{% endif %}"
-         alt="panda" width="200" height="200" style="border-radius: 50%">
+             alt="panda" width="200" height="200" style="border-radius: 50%">
+    </div>
+
+
+    <h3>Welcome, {{ user.username }}</h3>
+
+    <div id="ShoppingCart">
+
+        <a href="{% url "cart:cart_detail" %}">
+            <img src="../../static/images/redBasket.png" width="200">
+        </a>
+    </div>
 </div>
 
-
-<h3>Welcome, {{ user.username }}</h3>
-
-<div id="ShoppingCart">
-
-            <a href="{% url "cart:cart_detail" %}">
-    <img src="../../static/images/redBasket.png" width="200" >
-            </a>
-</div>
-</div>
-
-<div id ="recentOrders">
+<div id="recentOrders">
 
     <h3>Your most recent orders at a glance</h3>
 
+    {% if orders.count == 0 %}
+        <p>It Looks Like You Don't Have Any Orders. Start Shopping Now!</p>
+
+    {% else %}
+        <table id="mostRecentOrders">
+            <th>ID</th>
+            <th>Order Date</th>
+            <th>Delivery Address</th>
+            <th>Order Total</th>
+            <th colspan="3">Actions</th>
+
+
+            {% for o in orders %}
+                {% if forloop.counter < 5 %}
+
+                    <tr>
+                        <td>{{ o.id }}</td>
+                        <td>{{ o.created }}</td>
+                        {% ifnotequal o.address.pk None %}
+                            <td>{{ o.address.streetNum }}<br>{{ o.address.city }},{{ o.address.state }}<br>{{ o.address.zipcode }}
+                            </td>
+
+                        {% endifnotequal %}
+                        {% ifequal o.address.pk None %}
+                            <td>Chinese Spicy Flavor</td>
+                        {% endifequal %}
+                        <td>{{ o.get_total_cost }}</td>
+                        <td><a href="{% url 'chineseSpicyFlavor:OrderDetail' pk=o.pk %}"
+                               class="btn btn-primary">Reciept</a>
+                            {% if o.paid %}
+                                <a href="{% url 'chineseSpicyFlavor:myOrders' %}" class="btn btn-primary"
+                                   style="background-color:green;">Paid</a>
+                            {% else %}
+                                <a href="{% url 'payment:process' %}" class="btn btn-primary"
+                                   style="background-color: red">Pay</a>
+
+                            {% endif %}
+
+                        </td>
+                    </tr>
+                {% endif %}
+
+            {% endfor %}
+        </table>
+    {% endif %}
 
 
 </div>
 
-<div id = "favoriteItems">
+<div id="favoriteItems">
     <h3>Your most liked items</h3>
+    {% for foo in oi %}
+        {% if forloop.counter < 3 %}
+            <p>{{ foo.product.name}}</p>
+            <img src="
+            {% if user.profile.image %}{{ foo.product.image.url }}{% else %}{% static "images/logo1.jpg" %}{% endif %}"
+             alt="panda" width="200" height="200" style="border-radius: 50%">
+        {% endif %}
+
+
+    {% endfor %}
+
+
 </div>
 
-<div id ="recommendations">
+<div id="recommendations">
     <h3>We think you would like these!</h3>
 </div>
 </body>
