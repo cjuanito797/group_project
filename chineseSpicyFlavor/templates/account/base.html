@@ -176,7 +176,7 @@
 
         }
 
-        #favoriteItems{
+        #favoriteItems {
             text-align: center;
             position: relative;
             margin-top: 20px;
@@ -309,6 +309,10 @@
 
                             {% endif %}
 
+                            <a href="{% url 'chineseSpicyFlavor:OrderDelete' pk=o.pk %}"
+                               onclick="return confirm('Are you sure you want to delete?')"
+                               class="btn btn-danger">Delete</a>
+
                         </td>
                     </tr>
                 {% endif %}
@@ -324,10 +328,10 @@
     <h3>Your most liked items</h3>
     {% for foo in oi %}
         {% if forloop.counter < 3 %}
-            <h5>{{ foo.product.name}}</h5>
+            <h5>{{ foo.product.name }}</h5>
             <img src="
             {% if user.profile.image %}{{ foo.product.image.url }}{% else %}{% static "images/logo1.jpg" %}{% endif %}"
-             alt="panda" width="200" height="200" style="border-radius: 50%">
+                 alt="panda" width="200" height="200" style="border-radius: 50%">
         {% endif %}
 
 
