@@ -133,10 +133,7 @@ LOGOUT_REDIRECT_URL = '/login/'
 
 CART_SESSION_ID = 'cart'
 
-
-
 # Redirect to home URL after login (Default redirects to /accounts/profile/)
-LOGIN_REDIRECT_URL = '/'
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_HOST_USER = 'cjuangas17@gmail.com'
@@ -145,13 +142,10 @@ EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 DEFAULT_FROM_EMAIL = 'This is from Juan\'s Django'
 
-
-
 # Braintree settings - replace with your credentials after signing up for braintree account
 BRAINTREE_MERCHANT_ID = 'jsgy67fzfw2v2pd4'
 BRAINTREE_PUBLIC_KEY = 'fn7459mfqgkv47jt'
 BRAINTREE_PRIVATE_KEY = '46e765a76c06c79843e7123df89c6183'
-
 
 Configuration.configure(
     Environment.Sandbox,
@@ -159,6 +153,5 @@ Configuration.configure(
     BRAINTREE_PUBLIC_KEY,
     BRAINTREE_PRIVATE_KEY
 )
-
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'static/')
