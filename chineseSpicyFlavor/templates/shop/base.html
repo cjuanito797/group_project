@@ -13,9 +13,10 @@
 <div class="top">
     <div style="text-align: center;">
         <ul>
-            <li><a href="#">WELCOME!</a></li>
+            <li><a href="{% url 'chineseSpicyFlavor:customerView' %}">MY PAGE</a></li>
+
             <li><a href="#">ACCOUNT</a>
-            <ul>
+                <ul>
 
                     <li><a href="{% url 'chineseSpicyFlavor:edit' %}">Edit Account</a></li>
 
@@ -23,7 +24,7 @@
             </li>
 
             <li><a href="#">ADDRESSES</a>
-            <ul>
+                <ul>
 
                     <li><a href="{% url 'chineseSpicyFlavor:address_new' %}">Add an address</a></li>
                     <li><a href="{% url 'chineseSpicyFlavor:displayAddresses' %}">My Addresses</a></li>
@@ -46,9 +47,9 @@
                 </ul>
             </li>
 
-                <ul>
-                    <li><a href="{% url 'chineseSpicyFlavor:logout' %}">Logout</a></li>
-                </ul>
+            <ul>
+                <li><a href="{% url 'chineseSpicyFlavor:logout' %}">Logout</a></li>
+            </ul>
         </ul>
     </div>
 </div>
