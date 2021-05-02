@@ -57,10 +57,11 @@
         }
 
         #profilePic {
-            position: relative;
+            position: absolute;
             top: 5%;
             left: 1%;
             border-radius: 50px;
+            text-align: center;
         }
 
         #ShoppingCart {
@@ -168,6 +169,7 @@
             text-align: center;
             position: relative;
             margin-left: 200px;
+            margin-top: 15%;
             border: 5px solid black;
             width: 750px;
             height: 250px;
@@ -254,10 +256,11 @@
         <img src="
             {% if user.profile.image %}{{ user.profile.image.url }}{% else %}{% static "images/logo1.jpg" %}{% endif %}"
              alt="panda" width="200" height="200" style="border-radius: 50%">
+        <h3>Welcome, {{ user.username }}</h3>
+
     </div>
 
 
-    <h3>Welcome, {{ user.username }}</h3>
 
     <div id="ShoppingCart">
 
