@@ -28,13 +28,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
 
     <style>
-        /* Remove the navbar's default margin-bottom and rounded borders */
 
-        /* Set height of the grid so .sidenav can be 100% (adjust as needed) */
-
-        /* Set gray background color and 100% height */
-
-        /* Set black background color, white text and some padding */
         footer {
             background-color: #555;
             color: white;
@@ -57,11 +51,10 @@
         }
 
         #profilePic {
-            position: absolute;
+            position: relative;
             top: 5%;
             left: 1%;
             border-radius: 50px;
-            text-align: center;
         }
 
         #ShoppingCart {
@@ -69,6 +62,7 @@
             top: 5%;
             left: 85%;
             background: transparent;
+            text-align: center;
         }
 
         #productCt {
@@ -169,8 +163,6 @@
             text-align: center;
             position: relative;
             margin-left: 200px;
-            margin-top: 15%;
-            border: 5px solid black;
             width: 750px;
             height: 250px;
             overflow-y: auto;
@@ -183,13 +175,12 @@
             position: relative;
             margin-top: 20px;
             margin-left: 200px;
-            border: 5px solid black;
             width: 750px;
-            height: 250px;
+            height: 550px;
             overflow-y: auto;
             width: 800px;
-        }
 
+        }
 
     </style>
 </head>
@@ -223,7 +214,7 @@
                 </ul>
             </li>
 
-            <li><a href="#">Order</a>
+            <li><a href="#">ORDER</a>
                 <ul>
                     <li><a href="{% url 'chineseSpicyFlavor:product_list' %}">Order Now</a></li>
                     <li><a href="{% url 'chineseSpicyFlavor:myOrders' %}">My Orders</a></li>
@@ -261,12 +252,13 @@
     </div>
 
 
-
     <div id="ShoppingCart">
 
         <a href="{% url "cart:cart_detail" %}">
             <img src="../../static/images/redBasket.png" width="200">
         </a>
+        <p>Your Total ${{ cart.get_total_price }}</p>
+
     </div>
 </div>
 
@@ -329,18 +321,33 @@
 
 <div id="favoriteItems">
     <h3>Your most liked items</h3>
-    {% for foo in oi %}
-        {% if forloop.counter < 3 %}
-            <h5>{{ foo.product.name }}</h5>
-            <img src="
-            {% if user.profile.image %}{{ foo.product.image.url }}{% else %}{% static "images/logo1.jpg" %}{% endif %}"
-                 alt="panda" width="200" height="200" style="border-radius: 50%">
-        {% endif %}
 
 
-    {% endfor %}
+    {% if orders.count == 0 %}
+        <h3>You have not ordered any orders yet. </h3>
+        <a href="{% url 'chineseSpicyFlavor:product_list' %}" style="background-color: coral;">Order Now</a>
 
 
+    {% else %}
+        {% for oi in orderItem %}
+            {% if oi.quantity >= 10 %}
+                <h3>{{ oi.product.name }}</h3>
+               {% with product=item.product %}
+
+
+                        <a href="{{ oi.product.get_absolute_url }}">
+                            <img src="
+                                    {% if oi.product.image %}{{ oi.product.image.url }}{% else %}{% static "img/no_image.png" %}{% endif %}"
+                                 alt="" style="border-radius: 50%; width: 200px; height:200px;">
+                        </a>
+
+
+            {% endwith %}
+            {% endif %}
+        {% endfor %}
+
+
+    {% endif %}
 </div>
 
 <div id="recommendations">
