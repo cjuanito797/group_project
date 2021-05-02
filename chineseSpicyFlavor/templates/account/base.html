@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 {% load static %}
+<!--suppress ALL -->
 <html lang="en">
 <title>Dashboard</title>
 <head>
@@ -52,7 +53,7 @@
 
         #profilePic {
             position: relative;
-            top: 5%;
+            top: 2%;
             left: 1%;
             border-radius: 50px;
         }
@@ -77,11 +78,11 @@
         }
 
         .top {
-            height: auto;
+            height: 30px;
             width: 100%;
             margin-left: 0;
             background: rgb(189, 181, 181);
-            position: fixed;
+            position: absolute;
             top: 0;
             margin-bottom: 5px;
         }
@@ -162,7 +163,7 @@
         #recentOrders {
             text-align: center;
             position: relative;
-            margin-left: 200px;
+            margin-left: 25%;
             width: 750px;
             height: 250px;
             overflow-y: auto;
@@ -174,7 +175,19 @@
             text-align: center;
             position: relative;
             margin-top: 20px;
-            margin-left: 200px;
+            margin-left: 25%;
+            width: 650px;
+            height: 550px;
+            overflow-y: auto;
+            width: 800px;
+
+        }
+
+        #recommendations{
+            text-align: center;
+            position: relative;
+            margin-top: 20px;
+            margin-left: 25%;
             width: 750px;
             height: 550px;
             overflow-y: auto;
@@ -254,10 +267,18 @@
 
     <div id="ShoppingCart">
 
-        <a href="{% url "cart:cart_detail" %}">
+        {% if  cart.get_total_price > 0  %}
+            <a href="{% url "cart:cart_detail" %}">
             <img src="../../static/images/redBasket.png" width="200">
-        </a>
-        <p>Your Total ${{ cart.get_total_price }}</p>
+            </a>
+            <p>Your Total ${{ cart.get_total_price }}</p>
+
+            {% else %}
+                <a href="{% url "chineseSpicyFlavor:product_list" %}">
+            <img src="../../static/images/redBasket.png" width="200">
+            </a>
+            <p>Click Cart To Start Shopping Now</p>
+        {% endif %}
 
     </div>
 </div>
@@ -332,17 +353,18 @@
         {% for oi in orderItem %}
             {% if oi.quantity >= 10 %}
                 <h3>{{ oi.product.name }}</h3>
-               {% with product=item.product %}
+                {% with product=item.product %}
 
 
-                        <a href="{{ oi.product.get_absolute_url }}">
-                            <img src="
-                                    {% if oi.product.image %}{{ oi.product.image.url }}{% else %}{% static "img/no_image.png" %}{% endif %}"
-                                 alt="" style="border-radius: 50%; width: 200px; height:200px;">
-                        </a>
+                    <a href="{{ oi.product.get_absolute_url }}">
+                        <img src="
+
+                                {% if oi.product.image %}{{ oi.product.image.url }}{% else %}{% static "img/no_image.png" %}{% endif %}"
+                             alt="" style="border-radius: 50%; width: 200px; height:200px;">
+                    </a>
 
 
-            {% endwith %}
+                {% endwith %}
             {% endif %}
         {% endfor %}
 
@@ -352,6 +374,10 @@
 
 <div id="recommendations">
     <h3>We think you would like these!</h3>
+    {% if orders.count == 0 %}
+    <h3>Bummer. No Orders It Seems</h3>
+    <img src="../../static/images/sadPanda.jpg">
+    {% endif %}
 </div>
 </body>
 </html>
