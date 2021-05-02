@@ -2,7 +2,6 @@ from django.contrib.auth import authenticate, login
 from django.http import HttpResponse
 from django.shortcuts import get_object_or_404, redirect
 from django.shortcuts import render
-from django.contrib import messages
 from .models import Product, Category, Profile, Address
 from orders.models import Order, OrderItem
 from django.shortcuts import render, get_object_or_404
@@ -10,8 +9,10 @@ from cart.forms import CartAddProductForm
 from .forms import AddressForm, UserEditForm, ProfileEditForm
 from django.http import HttpResponse
 from cart.views import cart_detail
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseRedirect
 import datetime
+from django.contrib import messages
+
 
 
 def product_list(request, category_slug=None):
@@ -47,7 +48,10 @@ def home(request):
 
 
 def covidWarning(request):
-    return render(request, 'covidPrec.html')
+    if request.user.is_authenticated:
+        return customerView(request)
+    else:
+        return render(request, 'covidPrec.html')
 
 
 def user_login(request):
@@ -76,14 +80,13 @@ from django.contrib.auth.decorators import login_required
 
 @login_required
 def customerView(request):
-    request.session.set_test_cookie()
     orders = Order.objects.filter(profile_id=request.user.id)
 
-    orderItem = OrderItem.objects.filter()
+    orderItem = OrderItem.objects.filter(order__profile_id=request.user.id)
     cart_product_form = CartAddProductForm()
 
     return render(request, 'account/base.html',
-                  {'cart_product_form': cart_product_form, 'orders': orders, 'n': range(3), 'oi': orderItem})
+                  {'cart_product_form': cart_product_form, 'orders': orders, 'n': range(3), 'orderItem': orderItem})
 
 
 @login_required
@@ -98,11 +101,8 @@ def edit(request):
         if user_form.is_valid() and profile_form.is_valid():
             user_form.save()
             profile_form.save()
-            messages.success(request, 'Profile updated '
-                                      'successfully')
-            return render(request, 'account/base.html')
-        else:
-            messages.error(request, 'Error updating your profile')
+
+            return customerView(request)
     else:
         user_form = UserEditForm(instance=request.user)
         profile_form = ProfileEditForm(
@@ -154,15 +154,9 @@ def address_new(request):
             address.user = request.user
             address.save()
             addresses = Address.objects.filter(user_id=request.user)
-            messages.success(request, 'Address Added '
-                                      'successfully')
-            orders = Order.objects.filter(profile_id=request.user.id)
-
-            orderItem = OrderItem.objects.filter()
-            cart_product_form = CartAddProductForm()
-
-            return render(request, 'account/base.html',
-                          {'cart_product_form': cart_product_form, 'orders': orders, 'n': range(3), 'oi': orderItem})
+            form.save()
+            messages.success(request, 'Address Added Successfully')
+            return HttpResponseRedirect('/')
     else:
         form = AddressForm()
     return render(request, 'account/address_new.html', {'form': form})
@@ -203,15 +197,8 @@ def order_list(request):
 def order_delete(request, pk):
     order = get_object_or_404(Order, pk=pk)
     order.delete()
-    messages.success(request, 'Order Deleted Successfully')
-    request.session.set_test_cookie()
-    orders = Order.objects.filter(profile_id=request.user.id)
-
-    orderItem = OrderItem.objects.filter()
-    cart_product_form = CartAddProductForm()
-
-    return render(request, 'account/base.html',
-                  {'cart_product_form': cart_product_form, 'orders': orders, 'n': range(3), 'oi': orderItem})
+    messages.success(request, 'Order Deleted Succesfully')
+    return HttpResponseRedirect('/')
 
 
 @login_required
