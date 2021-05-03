@@ -33,7 +33,7 @@ class Order(models.Model):
 
     class Meta:
         ordering = ('-created',)
-        unique_together = (("profile", "id"),)
+        unique_together = (("profile", "id", "created"),)
 
     def __str__(self):
         return f'{self.id}'
