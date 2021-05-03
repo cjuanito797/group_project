@@ -12,7 +12,7 @@ from cart.views import cart_detail
 from django.http import HttpResponse, HttpResponseRedirect
 import datetime
 from django.contrib import messages
-
+import random
 
 
 def product_list(request, category_slug=None):
@@ -83,10 +83,15 @@ def customerView(request):
     orders = Order.objects.filter(profile_id=request.user.id)
 
     orderItem = OrderItem.objects.filter(order__profile_id=request.user.id)
+    mostLiked = OrderItem.objects.filter(order__profile_id=request.user.id, quantity__gt=10)
     cart_product_form = CartAddProductForm()
-
+    items = list(Product.objects.all())
+    random.shuffle(items)
+    random_items = items[:4]
+    mostLiked = mostLiked[:3]
     return render(request, 'account/base.html',
-                  {'cart_product_form': cart_product_form, 'orders': orders, 'n': range(3), 'orderItem': orderItem})
+                  {'cart_product_form': cart_product_form, 'orders': orders, 'n': range(3), 'orderItem': orderItem,
+                   'random_items': random_items, 'mostLiked' : mostLiked})
 
 
 @login_required
@@ -101,7 +106,7 @@ def edit(request):
         if user_form.is_valid() and profile_form.is_valid():
             user_form.save()
             profile_form.save()
-
+            messages.success(request, 'Profile Updated Successfully')
             return customerView(request)
     else:
         user_form = UserEditForm(instance=request.user)
