@@ -3,9 +3,12 @@
 
 {% block content %}
     <h1>Your payment has not been processed</h1>
-    <p>There was a problem processing your payment. Your order has been saved to 'My Order' page, you will be able to
+    <p>There was a problem processing your payment. </p>
+    {% if request.user.is_authenticated %}
+    <p>Your order has been saved to 'My Order' page, you will be able to
         pay later.</p>
     <img src="
                                     {% static "images/sadPanda.jpg" %}"
          alt="" width="200" height="200">
+    {% endif %}
 {% endblock %}
