@@ -91,7 +91,7 @@ def customerView(request):
     mostLiked = mostLiked[:3]
     return render(request, 'account/base.html',
                   {'cart_product_form': cart_product_form, 'orders': orders, 'n': range(3), 'orderItem': orderItem,
-                   'random_items': random_items, 'mostLiked' : mostLiked})
+                   'random_items': random_items, 'mostLiked': mostLiked})
 
 
 @login_required
@@ -223,6 +223,7 @@ def user_logout(request):
         for key in list(request.session.keys()):
             if key == 'CART':
                 continue
+
             del request.session[key]
     except KeyError:
         pass
