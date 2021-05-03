@@ -193,8 +193,7 @@ def address_delete(request, pk):
 
 @login_required
 def order_list(request):
-    request.session.test_cookie_worked()
-    orders = Order.objects.filter(profile__user_id=request.user)
+    orders = Order.objects.filter(profile_id=request.user.id)
     return render(request, 'account/order_list.html', {'orders': orders})
 
 
@@ -224,6 +223,7 @@ def user_logout(request):
         for key in list(request.session.keys()):
             if key == 'CART':
                 continue
+            
             del request.session[key]
     except KeyError:
         pass
