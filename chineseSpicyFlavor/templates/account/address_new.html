@@ -3,14 +3,113 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+
+    <style>
+        body {
+            background-image: url(../../static/images/variety.jpg);
+            background-attachment: fixed;
+            image-resolution: inherit;
+
+        }
+
+        #banner {
+            color: white;
+            text-align: center;
+            background-color: lightcoral;
+            position: absolute;
+            top: 0;
+            left: 20%;
+            right: 20%;
+            border-radius: 5px;
+            border-style: solid;
+            border-color: white;
+        }
+
+        #signupBackdrop {
+            position: absolute;
+            top: 15%;
+            left: 25%;
+            right: 25%;
+            height: 700px;
+
+            background: black;
+            background: rgba(0, 0, 0, 0.3);
+
+            filter: blur(8px);
+            -o-filter: blur(4px);
+            -ms-filter: blur(4px);
+            -moz-filter: blur(4px);
+            -webkit-filter: blur(4px);
+        }
+
+        form {
+
+        }
+
+        input[type=text] {
+            width: 20%;
+            height: 25px;
+            padding: 12px 20px;
+            margin: 8px 0;
+            box-sizing: border-box;
+            border-radius: 5px;
+            border-bottom: 2px solid black;
+        }
+
+        input[type=email] {
+            width: 20%;
+            height: 25px;
+            padding: 12px 20px;
+            margin: 8px 0;
+            box-sizing: border-box;
+            border-radius: 5px;
+            border-bottom: 2px solid black;
+
+        }
+
+        input[type=password] {
+
+            width: 20%;
+            height: 25px;
+            padding: 12px 20px;
+            margin: 8px 0;
+            box-sizing: border-box;
+            border-radius: 5px;
+            border-bottom: 2px solid black;
+        }
+
+        input[type=submit] {
+            background-color: lightcoral;
+            color: white;
+            width: 200px;
+            border-radius: 15px;
+            height: 30px;
+            font-size: larger;
+            border-style: none;
+        }
+
+        #form{
+            text-align: center;
+            color: white;
+            position: absolute;
+            top: 15%;
+            left: 0;
+            right: 0;
+
+
+        }
+    </style>
 </head>
 <body>
-
+<div id = "signupBackdrop">
+</div>
+<div id="form">
 <h1>Add a New Address</h1>
 <p>{{ user.email }}</p>
     <form method="POST" class="address-form">{% csrf_token %}
           {{ form.as_p }}
         <button type="submit" class="save btn btn-default">Save</button>
     </form>
+</div>
 </body>
 </html>
