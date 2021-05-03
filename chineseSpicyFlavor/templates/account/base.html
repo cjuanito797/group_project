@@ -51,12 +51,6 @@
             top: 5%;
         }
 
-        #profilePic {
-            position: relative;
-            top: 2%;
-            left: 1%;
-            border-radius: 50px;
-        }
 
         #ShoppingCart {
             position: absolute;
@@ -183,7 +177,18 @@
 
         }
 
-        #recommendations{
+        #favoriteItems a {
+            color: white;
+            padding: 1em 2.5em;
+            text-decoration: none;
+            text-transform: uppercase;
+            border-radius: 10px;
+            font-family: bold;
+            text-align: center;
+
+        }
+
+        #recommendations {
             text-align: center;
             position: relative;
             margin-top: 20px;
@@ -195,6 +200,36 @@
 
         }
 
+        #picture {
+            width: 100px;
+            border-radius: 50%;
+        }
+
+        #picture:hover .overlay {
+            opacity: 25;
+
+        }
+
+        .overlay {
+            position: relative;
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            right: 0;
+            height: 100%;
+            opacity: 0;
+            transition: .5s ease;
+            background-color: coral;
+            text-align: center;
+        }
+
+        .overlay a {
+            color: white;
+            text-decoration: none;
+            text-transform: uppercase;
+
+        }
+
     </style>
 </head>
 <body>
@@ -202,7 +237,7 @@
 <div class="top">
     <div style="text-align: center;">
         <ul>
-            <li><a href="{% url 'chineseSpicyFlavor:customerView' %}">MY PAGE</a></li>
+            <li><a href="{% url 'chineseSpicyFlavor:covidWarning' %}">Home Page</a></li>
             <li><a href="#">ACCOUNT</a>
                 <ul>
 
@@ -257,9 +292,20 @@
 
     <br>
     <div id="profilePic">
-        <img src="
-            {% if user.profile.image %}{{ user.profile.image.url }}{% else %}{% static "images/logo1.jpg" %}{% endif %}"
-             alt="panda" width="200" height="200" style="border-radius: 50%">
+        <div id="picture">
+            <a href="{% url "chineseSpicyFlavor:edit" %}">
+                <img src="
+
+
+
+
+                        {% if user.profile.image %}{{ user.profile.image.url }}{% else %}{% static "images/logo_home.PNG" %}{% endif %}"
+                     alt="panda" width="200" height="200" style="border-radius: 50%">
+            </a>
+            <div class="overlay">
+                <div class="text"><a href="{% url 'chineseSpicyFlavor:edit' %}">Edit</a></div>
+            </div>
+        </div>
         <h3>Welcome, {{ user.username }}</h3>
 
     </div>
@@ -267,15 +313,15 @@
 
     <div id="ShoppingCart">
 
-        {% if  cart.get_total_price > 0  %}
+        {% if  cart.get_total_price > 0 %}
             <a href="{% url "cart:cart_detail" %}">
-            <img src="../../static/images/redBasket.png" width="200">
+                <img src="../../static/images/redBasket.png" width="200">
             </a>
             <p>Your Total ${{ cart.get_total_price }}</p>
 
-            {% else %}
-                <a href="{% url "chineseSpicyFlavor:product_list" %}">
-            <img src="../../static/images/redBasket.png" width="200">
+        {% else %}
+            <a href="{% url "chineseSpicyFlavor:product_list" %}">
+                <img src="../../static/images/redBasket.png" width="200">
             </a>
             <p>Click Cart To Start Shopping Now</p>
         {% endif %}
@@ -328,11 +374,9 @@
                             <a href="{% url 'chineseSpicyFlavor:OrderDelete' pk=o.pk %}"
                                onclick="return confirm('Are you sure you want to delete?')"
                                class="btn btn-danger">Delete</a>
-
                         </td>
                     </tr>
                 {% endif %}
-
             {% endfor %}
         </table>
     {% endif %}
@@ -350,24 +394,19 @@
 
 
     {% else %}
-        {% for oi in orderItem %}
-            {% if oi.quantity >= 10 %}
+        {% for oi in mostLiked %}
                 <h3>{{ oi.product.name }}</h3>
                 {% with product=item.product %}
 
 
                     <a href="{{ oi.product.get_absolute_url }}">
                         <img src="
-
                                 {% if oi.product.image %}{{ oi.product.image.url }}{% else %}{% static "img/no_image.png" %}{% endif %}"
                              alt="" style="border-radius: 50%; width: 200px; height:200px;">
                     </a>
 
-
                 {% endwith %}
-            {% endif %}
         {% endfor %}
-
 
     {% endif %}
 </div>
@@ -375,9 +414,24 @@
 <div id="recommendations">
     <h3>We think you would like these!</h3>
     {% if orders.count == 0 %}
-    <h3>Bummer. No Orders It Seems</h3>
-    <img src="../../static/images/sadPanda.jpg">
+        <h3>Bummer. No Orders It Seems</h3>
+        <img src="../../static/images/sadPanda.jpg">
+
+    {% else %}
+        {% for ri in random_items %}
+            <h3>{{ ri.name }}</h3>
+            {% with product=item.product %}
+
+
+                <a href="{{ ri.get_absolute_url }}">
+                    <img src="
+                                {% if ri.image %}{{ ri.image.url }}{% else %}{% static "img/no_image.png" %}{% endif %}"
+                         alt="" style="border-radius: 50%; width: 200px; height:200px;">
+                </a>
+            {% endwith %}
+        {% endfor %}
     {% endif %}
+
 </div>
 </body>
 </html>
