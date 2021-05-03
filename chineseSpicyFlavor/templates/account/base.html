@@ -295,10 +295,6 @@
         <div id="picture">
             <a href="{% url "chineseSpicyFlavor:edit" %}">
                 <img src="
-
-
-
-
                         {% if user.profile.image %}{{ user.profile.image.url }}{% else %}{% static "images/logo_home.PNG" %}{% endif %}"
                      alt="panda" width="200" height="200" style="border-radius: 50%">
             </a>
@@ -307,12 +303,10 @@
             </div>
         </div>
         <h3>Welcome, {{ user.username }}</h3>
-
     </div>
 
 
     <div id="ShoppingCart">
-
         {% if  cart.get_total_price > 0 %}
             <a href="{% url "cart:cart_detail" %}">
                 <img src="../../static/images/redBasket.png" width="200">
@@ -325,14 +319,11 @@
             </a>
             <p>Click Cart To Start Shopping Now</p>
         {% endif %}
-
     </div>
 </div>
 
 <div id="recentOrders">
-
     <h3>Your most recent orders at a glance</h3>
-
     {% if orders.count == 0 %}
         <p>It Looks Like You Don't Have Any Orders. Start Shopping Now!</p>
 
@@ -343,7 +334,6 @@
             <th>Delivery Address</th>
             <th>Order Total</th>
             <th colspan="3">Actions</th>
-
 
             {% for o in orders %}
                 {% if forloop.counter < 5 %}
@@ -380,34 +370,25 @@
             {% endfor %}
         </table>
     {% endif %}
-
-
 </div>
 
 <div id="favoriteItems">
     <h3>Your most liked items</h3>
-
-
     {% if orders.count == 0 %}
         <h3>You have not ordered any orders yet. </h3>
         <a href="{% url 'chineseSpicyFlavor:product_list' %}" style="background-color: coral;">Order Now</a>
-
 
     {% else %}
         {% for oi in mostLiked %}
                 <h3>{{ oi.product.name }}</h3>
                 {% with product=item.product %}
-
-
                     <a href="{{ oi.product.get_absolute_url }}">
                         <img src="
                                 {% if oi.product.image %}{{ oi.product.image.url }}{% else %}{% static "img/no_image.png" %}{% endif %}"
                              alt="" style="border-radius: 50%; width: 200px; height:200px;">
                     </a>
-
                 {% endwith %}
         {% endfor %}
-
     {% endif %}
 </div>
 
@@ -422,7 +403,6 @@
             <h3>{{ ri.name }}</h3>
             {% with product=item.product %}
 
-
                 <a href="{{ ri.get_absolute_url }}">
                     <img src="
                                 {% if ri.image %}{{ ri.image.url }}{% else %}{% static "img/no_image.png" %}{% endif %}"
@@ -431,7 +411,6 @@
             {% endwith %}
         {% endfor %}
     {% endif %}
-
 </div>
 </body>
 </html>
