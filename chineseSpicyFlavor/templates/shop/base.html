@@ -13,8 +13,9 @@
 <div class="top">
     <div style="text-align: center;">
         <ul>
-            <li><a href="{% url 'chineseSpicyFlavor:customerView' %}">MY PAGE</a></li>
+            <li><a href="{% url 'chineseSpicyFlavor:covidWarning' %}">Home Page</a></li>
 
+            {% if request.user.is_authenticated %}
             <li><a href="#">ACCOUNT</a>
                 <ul>
 
@@ -50,6 +51,7 @@
             <ul>
                 <li><a href="{% url 'chineseSpicyFlavor:logout' %}">Logout</a></li>
             </ul>
+            {% endif %}
         </ul>
     </div>
 </div>
