@@ -83,12 +83,12 @@ def customerView(request):
     orders = Order.objects.filter(profile_id=request.user.id)
 
     orderItem = OrderItem.objects.filter(order__profile_id=request.user.id)
-    mostLiked = OrderItem.objects.filter(order__profile_id=request.user.id, quantity__gt=10)
+    mostLiked = OrderItem.objects.filter(order__profile_id=request.user.id, quantity__gt=10,).distinct()
+    mostLiked = mostLiked.distinct()
     cart_product_form = CartAddProductForm()
     items = list(Product.objects.all())
     random.shuffle(items)
     random_items = items[:4]
-    mostLiked = mostLiked[:3]
     return render(request, 'account/base.html',
                   {'cart_product_form': cart_product_form, 'orders': orders, 'n': range(3), 'orderItem': orderItem,
                    'random_items': random_items, 'mostLiked': mostLiked})
