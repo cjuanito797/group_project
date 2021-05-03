@@ -55,7 +55,7 @@ def create_order(request):
                 # create a dummy order object to store in database
                 new_order = Order.objects.create(
                     id=create_ref_number(),
-                    profile_id=request.user.id.real,
+                    profile_id=request.user.id,
                     delivery_pref='Delivery',
                     address_id=myVar
 
@@ -78,8 +78,9 @@ def create_order(request):
                 new_order = Order.objects.create(
                     id=create_ref_number(),
                     profile_id=request.user.id,
-                    delivery_pref='Pickup',
-                    address=None,
+                    delivery_pref='PICKUP',
+                    address=None
+
                 )
                 for item in cart:
                     OrderItem.objects.create(order=new_order,
