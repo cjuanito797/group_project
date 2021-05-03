@@ -223,7 +223,7 @@ def user_logout(request):
         for key in list(request.session.keys()):
             if key == 'CART':
                 continue
-            
+
             del request.session[key]
     except KeyError:
         pass
