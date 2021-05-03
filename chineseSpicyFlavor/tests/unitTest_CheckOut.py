@@ -51,7 +51,6 @@ class ll_ATS(unittest.TestCase):
             elem = driver.find_element_by_xpath("/html/body/div[3]/form/p[1]/input").click()
             time.sleep(2)
 
-
             assert True
 
         except NoSuchElementException:
@@ -67,4 +66,3 @@ def tearDown(self):
 
 if __name__ == "__main__":
     unittest.main()
-
