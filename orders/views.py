@@ -54,8 +54,8 @@ def create_order(request):
                 address = Address.objects.get(pk=myVar)
                 # create a dummy order object to store in database
                 new_order = Order.objects.create(
-                    profile_id=request.user.id,
                     id=create_ref_number(),
+                    profile_id=request.user.id.real,
                     delivery_pref='Delivery',
                     address_id=myVar
 
@@ -73,14 +73,13 @@ def create_order(request):
                 return redirect(reverse('payment:process'))
 
             elif 'pickup_order' in request.POST:
-                # create a dummy order object to store in database
+
+                print(request.user.id)
                 new_order = Order.objects.create(
                     id=create_ref_number(),
                     profile_id=request.user.id,
                     delivery_pref='Pickup',
-                    address=None
-
-
+                    address=None,
                 )
                 for item in cart:
                     OrderItem.objects.create(order=new_order,
