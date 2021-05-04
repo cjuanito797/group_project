@@ -295,6 +295,8 @@
         <div id="picture">
             <a href="{% url "chineseSpicyFlavor:edit" %}">
                 <img src="
+
+
                         {% if user.profile.image %}{{ user.profile.image.url }}{% else %}{% static "images/logo_home.PNG" %}{% endif %}"
                      alt="panda" width="200" height="200" style="border-radius: 50%">
             </a>
@@ -379,8 +381,10 @@
         <a href="{% url 'chineseSpicyFlavor:product_list' %}" style="background-color: coral;">Order Now</a>
 
     {% else %}
-        {% for oi in mostLiked %}
+        {% for oi in mostLiked|dictsort:'product.name' %}
+            {% ifchanged %}
                 <h3>{{ oi.product.name }}</h3>
+
                 {% with product=item.product %}
                     <a href="{{ oi.product.get_absolute_url }}">
                         <img src="
@@ -388,6 +392,7 @@
                              alt="" style="border-radius: 50%; width: 200px; height:200px;">
                     </a>
                 {% endwith %}
+            {% endifchanged %}
         {% endfor %}
     {% endif %}
 </div>
