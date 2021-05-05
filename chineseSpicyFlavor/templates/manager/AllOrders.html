@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Order</title>
+    <link rel="stylesheet" href="../../static/css/management.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+
+</head>
+<body>
+<div class="top">
+    <div style="text-align: center;">
+        <ul>
+            <li><a href="{% url 'chineseSpicyFlavor:covidWarning' %}">Home Page</a></li>
+            <li><a href="#">ACCOUNT</a>
+                <ul>
+
+                    <li><a href="{% url 'chineseSpicyFlavor:edit' %}">Edit Account</a></li>
+
+                </ul>
+            </li>
+
+            <li><a href="#">ADDRESSES</a>
+                <ul>
+
+                    <li><a href="{% url 'chineseSpicyFlavor:address_new' %}">Add an address</a></li>
+                    <li><a href="{% url 'chineseSpicyFlavor:displayAddresses' %}">My Addresses</a></li>
+
+                </ul>
+            </li>
+
+            <li><a href="#">MENU</a>
+                <ul>
+                    <li><a href="{% url 'chineseSpicyFlavor:product_list' %}">Foods</a></li>
+                    <li><a href="{% url 'chineseSpicyFlavor:product_list' %}">Order Now</a></li>
+                </ul>
+            </li>
+
+            <li><a href="#">ORDER</a>
+                <ul>
+                    <li><a href="{% url 'chineseSpicyFlavor:product_list' %}">Order Now</a></li>
+                    <li><a href="{% url 'chineseSpicyFlavor:myOrders' %}">My Orders</a></li>
+
+                </ul>
+            </li>
+            {% if user.is_staff %}
+                <li><a href="#">ADMIN</a>
+                    <ul>
+                        <li><a href="{% url 'chineseSpicyFlavor:ViewAllOrders' %}">Orders</a></li>
+                        <li><a href="{% url 'chineseSpicyFlavor:Sales' %}">Sales</a></li>
+                        <li><a href="{% url 'chineseSpicyFlavor:myOrders' %}">Customers</a></li>
+                    </ul>
+                </li>
+            {% endif %}
+
+            <ul>
+                <li><a href="{% url 'chineseSpicyFlavor:logout' %}">Logout</a></li>
+            </ul>
+        </ul>
+    </div>
+</div>
+<h1>Orders</h1>
+<table class="styled-table">
+    <thead>
+    <tr>
+        <th>Customer</th>
+        <th>Order ID</th>
+        <th>Order Date</th>
+        <th>Order Delivery</th>
+        <th>Total Cost</th>
+        <th colspan="3">Actions</th>
+
+    </tr>
+    </thead>
+
+    {% for order in order_list %}
+        <tbody>
+        <tr>
+            <td>{{ order.profile.user }}</td>
+            <td>{{ order.id }}</td>
+            <td>{{ order.created}}</td>
+            {% ifnotequal order.address.pk None %}
+                <td>{{ order.address.streetNum }}<br>{{ order.address.city }},{{ order.address.state }}<br>{{ order.address.zipcode }}
+                </td>
+
+            {% endifnotequal %}
+            {% ifequal order.address.pk None %}
+                <td>Chinese Spicy Flavor</td>
+            {% endifequal %}
+            <td>${{ order.get_total_cost }}</td>
+            <td><a href="{% url 'chineseSpicyFlavor:AdminOrderDetail' pk=order.pk %}"
+                   class="btn btn-primary">Reciept</a>
+                {% if order.paid %}
+                    <a href="{% url 'chineseSpicyFlavor:ViewAllOrders' %}" class="btn btn-primary"
+                       style="background-color:green;">Paid</a>
+                {% else %}
+                    <a href="{% url 'chineseSpicyFlavor:ViewAllOrders' %}" class="btn btn-primary"
+                       style="background-color: red">Not Paid</a>
+
+                {% endif %}
+
+                <a href="{% url 'chineseSpicyFlavor:AdminOrderDelete' pk=order.pk %}"
+                   onclick="return confirm('Are you sure you want to delete?')"
+                   class="btn btn-danger">Delete</a>
+            </td>
+
+        </tr>
+        </tbody>
+
+
+    {% endfor %}
+</table>
+</body>
+</html>
