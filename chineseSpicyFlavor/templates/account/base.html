@@ -269,6 +269,15 @@
 
                 </ul>
             </li>
+            {% if user.is_staff %}
+            <li><a href="#">ADMIN</a>
+                <ul>
+                    <li><a href="{% url 'chineseSpicyFlavor:ViewAllOrders' %}">Orders</a></li>
+                    <li><a href="{% url 'chineseSpicyFlavor:Sales' %}">Sales</a></li>
+                    <li><a href="{% url 'chineseSpicyFlavor:myOrders' %}">Customers</a></li>
+                </ul>
+            </li>
+            {% endif %}
 
             <ul>
                 <li><a href="{% url 'chineseSpicyFlavor:logout' %}">Logout</a></li>
@@ -295,6 +304,7 @@
         <div id="picture">
             <a href="{% url "chineseSpicyFlavor:edit" %}">
                 <img src="
+
 
 
                         {% if user.profile.image %}{{ user.profile.image.url }}{% else %}{% static "images/logo_home.PNG" %}{% endif %}"
@@ -388,6 +398,7 @@
                 {% with product=item.product %}
                     <a href="{{ oi.product.get_absolute_url }}">
                         <img src="
+
                                 {% if oi.product.image %}{{ oi.product.image.url }}{% else %}{% static "img/no_image.png" %}{% endif %}"
                              alt="" style="border-radius: 50%; width: 200px; height:200px;">
                     </a>
