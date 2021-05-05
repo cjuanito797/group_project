@@ -1,4 +1,6 @@
 <!DOCTYPE html>
+{% load mathfilters %}
+{% load humanize %}
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -50,7 +52,7 @@
                 <ul>
                     <li><a href="{% url 'chineseSpicyFlavor:ViewAllOrders' %}">Orders</a></li>
                     <li><a href="{% url 'chineseSpicyFlavor:Sales' %}">Sales</a></li>
-                    <li><a href="{% url 'chineseSpicyFlavor:ViewAllOrders' %}">Customers</a></li>
+                    <li><a href="{% url 'chineseSpicyFlavor:Customers' %}">Customers</a></li>
                 </ul>
             </li>
             {% endif %}
@@ -114,9 +116,7 @@
     {% endfor %}
 </table>
 </div>
-
- <h1>Overall Sales</h1>
-
-
+<h1>Daily Total</h1>
+<h3>${{ totalSales }}</h3>
 </body>
 </html>
