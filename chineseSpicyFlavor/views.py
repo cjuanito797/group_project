@@ -83,7 +83,7 @@ def customerView(request):
     orders = Order.objects.filter(profile_id=request.user.id)
 
     orderItem = OrderItem.objects.filter(order__profile_id=request.user.id)
-    mostLiked = OrderItem.objects.filter(order__profile_id=request.user.id, quantity__gt=10,)
+    mostLiked = OrderItem.objects.filter(order__profile_id=request.user.id, quantity__gt=10, )
 
     mostLiked = list(set(mostLiked))
     cart_product_form = CartAddProductForm()
@@ -230,3 +230,57 @@ def user_logout(request):
     except KeyError:
         pass
     return HttpResponseRedirect(reversed('your_app:login'))
+
+
+from django.contrib.auth.mixins import PermissionRequiredMixin
+from django.views import generic
+
+
+class ViewAllOrders(PermissionRequiredMixin, generic.ListView):
+    """Generic class-based view to see all of the orders"""
+    model = Order
+    permission_required = 'orders.order.can_view_order'
+    template_name = 'manager/AllOrders.html'
+    paginate_by = 10
+
+    def get_queryset(self):
+        return Order.objects.all().order_by('profile__user', 'id')
+
+
+@login_required
+def AdminOrderDetail(request, pk):
+    order_instance = get_object_or_404(Order, pk=pk)
+    orderItems = OrderItem.objects.filter(order=order_instance)
+
+    return render(request, 'account/order_detail.html', {'order_instance': order_instance, 'orderItems': orderItems})
+
+
+@login_required
+def AdminOrderDelete(request, pk):
+    order = get_object_or_404(Order, pk=pk)
+    order.delete()
+    messages.success(request, 'Order Deleted Succesfully')
+    return HttpResponseRedirect('/')
+
+
+class Sales(PermissionRequiredMixin, generic.ListView):
+    """Generic class-based view to see all of the orders"""
+    model = Order
+    labels = []
+    data = []
+    permission_required = 'orders.order.can_view_order'
+    template_name = 'manager/Sales.html'
+
+    queryset = Order.objects.filter(created__day=datetime.date.today().day, created__month=datetime.date.today().month,
+                                    created__year=datetime.date.today().year).order_by('profile', 'id')
+    for order in queryset:
+        labels.append(order.delivery_pref)
+        data.append(order.get_total_cost())
+
+    def post(self, request, *args, **kwargs):
+        return render(request, 'manager/Sales.html', {
+            'labels': labels,
+            'data': data,
+        })
+
+
