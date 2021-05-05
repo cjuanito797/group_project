@@ -32,5 +32,9 @@ urlpatterns = [
     path('address/<int:pk>/edit/', views.address_edit, name='address_edit'),
     path('address/create/', views.address_new, name='address_new'),
     path('address/<int:pk>/delete', views.address_delete, name='address_delete'),
+    path('orders/', views.ViewAllOrders.as_view(), name='ViewAllOrders'),
+    path('orders/<int:pk>/details', views.AdminOrderDetail, name='AdminOrderDetail'),
+    path('orders/<int:pk>/delete', views.AdminOrderDelete, name='AdminOrderDelete'),
+    path('sales/', views.Sales.as_view(), name='Sales'),
 
 ]
