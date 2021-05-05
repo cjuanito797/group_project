@@ -13,6 +13,8 @@ from django.http import HttpResponse, HttpResponseRedirect
 import datetime
 from django.contrib import messages
 import random
+from django.db.models import Sum
+from _decimal import Decimal
 
 
 def product_list(request, category_slug=None):
@@ -275,12 +277,22 @@ class Sales(PermissionRequiredMixin, generic.ListView):
                                     created__year=datetime.date.today().year).order_by('profile', 'id')
     for order in queryset:
         labels.append(order.delivery_pref)
-        data.append(order.get_total_cost())
+        data.append(order.get_total_cost().real.real)
 
-    def post(self, request, *args, **kwargs):
-        return render(request, 'manager/Sales.html', {
-            'labels': labels,
-            'data': data,
-        })
+    for d in data:
+        totalSales = sum(data)
 
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super(Sales, self).get_context_data(**kwargs)
+        context.update({'totalSales' : self.totalSales})
+        return context
+
+class Customers(PermissionRequiredMixin, generic.ListView):
+    """Generic class-based view to view all customers and relevant information"""
+    model = Profile
+    permission_required = 'chineseSpicyFlavor.profile.can_add_profile'
+    template_name = 'manager/Customers.html'
+
+    def get_queryset(self):
+        return Profile.objects.all()
 
