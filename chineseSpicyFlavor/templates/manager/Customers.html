@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Customers</title>
+    <link rel="stylesheet" href="../../static/css/management.css">
+</head>
+<body>
+<div class="top">
+    <div style="text-align: center;">
+        <ul>
+            <li><a href="{% url 'chineseSpicyFlavor:covidWarning' %}">Home Page</a></li>
+            <li><a href="#">ACCOUNT</a>
+                <ul>
+
+                    <li><a href="{% url 'chineseSpicyFlavor:edit' %}">Edit Account</a></li>
+
+                </ul>
+            </li>
+
+            <li><a href="#">ADDRESSES</a>
+                <ul>
+
+                    <li><a href="{% url 'chineseSpicyFlavor:address_new' %}">Add an address</a></li>
+                    <li><a href="{% url 'chineseSpicyFlavor:displayAddresses' %}">My Addresses</a></li>
+
+                </ul>
+            </li>
+
+            <li><a href="#">MENU</a>
+                <ul>
+                    <li><a href="{% url 'chineseSpicyFlavor:product_list' %}">Foods</a></li>
+                    <li><a href="{% url 'chineseSpicyFlavor:product_list' %}">Order Now</a></li>
+                </ul>
+            </li>
+
+            <li><a href="#">ORDER</a>
+                <ul>
+                    <li><a href="{% url 'chineseSpicyFlavor:product_list' %}">Order Now</a></li>
+                    <li><a href="{% url 'chineseSpicyFlavor:myOrders' %}">My Orders</a></li>
+
+                </ul>
+            </li>
+            {% if user.is_staff %}
+            <li><a href="#">ADMIN</a>
+                <ul>
+                    <li><a href="{% url 'chineseSpicyFlavor:ViewAllOrders' %}">Orders</a></li>
+                    <li><a href="{% url 'chineseSpicyFlavor:Sales' %}">Sales</a></li>
+                    <li><a href="{% url 'chineseSpicyFlavor:Customers' %}">Customers</a></li>
+                </ul>
+            </li>
+            {% endif %}
+
+            <ul>
+                <li><a href="{% url 'chineseSpicyFlavor:logout' %}">Logout</a></li>
+            </ul>
+        </ul>
+    </div>
+</div>
+<h2>OUR FANTASTIC CUSTOMERS</h2>
+<table class="styled-table">
+    <thead>
+    <tr>
+        <th>Username</th>
+        <th>Date Of Birth</th>
+        <th>Profile Picture</th>
+
+    </tr>
+    </thead>
+    {% for cust in profile_list %}
+        <tbody>
+        <tr>
+            <td>{{ cust.user }}</td>
+            <td>{{ cust.date_of_birth }}</td>
+            <td>
+                <img src="
+                        {% if user.profile.image %}{{ user.profile.image.url }}{% else %}{% static "images/logo_home.PNG" %}{% endif %}"
+                     alt="panda" width="100" height="100">
+            </td>
+        </tr>
+        </tbody>
+
+
+    {% endfor %}
+</table>
+</body>
+</html>
