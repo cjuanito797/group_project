@@ -11,12 +11,12 @@ class ll_ATS(unittest.TestCase):
         self.driver = webdriver.Safari()
 
     def test_ll(self):
-        user = "pmizar"
-        pwd = "Group2021"
+        user = "juan"
+        pwd = "Boxing129"
 
         driver = self.driver
         driver.maximize_window()
-        driver.get("http://127.0.0.1:8000/admin")
+        driver.get("https://cjuanito797.pythonanywhere.com/admin/login/?next=/admin/")
         time.sleep(3)
         elem = driver.find_element_by_id("id_username")
         elem.send_keys(user)

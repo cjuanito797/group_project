@@ -12,8 +12,8 @@ class ll_ATS(unittest.TestCase):
         self.driver = webdriver.Safari()
 
     def test_ll(self):
-        user = "mizarp"
-        pwd = "Mypage20"
+        user = "juan"
+        pwd = "Boxing129"
 
         card = "4111 1111 1111 1111"
         cvv = "564"
@@ -22,7 +22,7 @@ class ll_ATS(unittest.TestCase):
         driver = self.driver
         driver.maximize_window()
 
-        driver.get("http://127.0.0.1:8000")
+        driver.get("https://cjuanito797.pythonanywhere.com/")
 
         time.sleep(3)
         elem = driver.find_element_by_xpath("/html/body/div/a[2]").click()
@@ -43,7 +43,7 @@ class ll_ATS(unittest.TestCase):
         # Order Now
         elem = driver.find_element_by_xpath("/html/body/div[1]/div/ul/li[5]/ul/li[1]/a").click()
         time.sleep(3)
-        # Momo image
+        # 1st item image
         elem = driver.find_element_by_xpath("/html/body/div[2]/div[3]/div[2]/div[1]/a[1]/img").click()
         time.sleep(2)
         # Add to Cart
@@ -52,7 +52,7 @@ class ll_ATS(unittest.TestCase):
         # Continue shopping
         elem = driver.find_element_by_xpath("/html/body/div[2]/div[3]/p/a[1]").click()
         time.sleep(2)
-        # Chaumain
+        # 2nd item image
         elem = driver.find_element_by_xpath("/html/body/div[2]/div[3]/div[2]/div[2]/a[1]/img").click()
         time.sleep(2)
         # Add to Cart
