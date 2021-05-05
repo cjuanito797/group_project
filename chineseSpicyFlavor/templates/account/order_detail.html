@@ -6,9 +6,60 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <link rel="stylesheet" href="../../static/css/base.css">
 </head>
 <body>
+<div class="top">
+    <div style="text-align: center;">
+        <ul>
+            <li><a href="{% url 'chineseSpicyFlavor:covidWarning' %}">Home Page</a></li>
+            <li><a href="#">ACCOUNT</a>
+                <ul>
 
+                    <li><a href="{% url 'chineseSpicyFlavor:edit' %}">Edit Account</a></li>
+
+                </ul>
+            </li>
+
+            <li><a href="#">ADDRESSES</a>
+                <ul>
+
+                    <li><a href="{% url 'chineseSpicyFlavor:address_new' %}">Add an address</a></li>
+                    <li><a href="{% url 'chineseSpicyFlavor:displayAddresses' %}">My Addresses</a></li>
+
+                </ul>
+            </li>
+
+            <li><a href="#">MENU</a>
+                <ul>
+                    <li><a href="{% url 'chineseSpicyFlavor:product_list' %}">Foods</a></li>
+                    <li><a href="{% url 'chineseSpicyFlavor:product_list' %}">Order Now</a></li>
+                </ul>
+            </li>
+
+            <li><a href="#">ORDER</a>
+                <ul>
+                    <li><a href="{% url 'chineseSpicyFlavor:product_list' %}">Order Now</a></li>
+                    <li><a href="{% url 'chineseSpicyFlavor:myOrders' %}">My Orders</a></li>
+
+                </ul>
+            </li>
+            {% if user.is_staff %}
+            <li><a href="#">ADMIN</a>
+                <ul>
+                    <li><a href="{% url 'chineseSpicyFlavor:ViewAllOrders' %}">Orders</a></li>
+                    <li><a href="{% url 'chineseSpicyFlavor:Sales' %}">Sales</a></li>
+                    <li><a href="{% url 'chineseSpicyFlavor:Customers' %}">Customers</a></li>
+                </ul>
+            </li>
+            {% endif %}
+
+            <ul>
+                <li><a href="{% url 'chineseSpicyFlavor:logout' %}">Logout</a></li>
+            </ul>
+        </ul>
+    </div>
+</div>
 <h1>Your Items</h1>
 
 <h2>Order #: {{ order_instance.id }}</h2>
