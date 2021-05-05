@@ -15,7 +15,7 @@ class ll_ATS(unittest.TestCase):
         driver = self.driver
         driver.maximize_window()
 
-        driver.get("http://127.0.0.1:8000")
+        driver.get("https://cjuanito797.pythonanywhere.com/")
         time.sleep(3)
 
         elem = driver.find_element_by_xpath("/html/body/div/a[2]").click()
