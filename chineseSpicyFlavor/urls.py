@@ -36,5 +36,6 @@ urlpatterns = [
     path('orders/<int:pk>/details', views.AdminOrderDetail, name='AdminOrderDetail'),
     path('orders/<int:pk>/delete', views.AdminOrderDelete, name='AdminOrderDelete'),
     path('sales/', views.Sales.as_view(), name='Sales'),
+    path('customers/', views.Customers.as_view(), name='Customers')
 
 ]
